@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/contactmain_back"
+    android:orientation="vertical" >
+    
+    
+    <FrameLayout 
+        android:id="@+id/contactmain_top"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/contacttop_back">
+        
+        <TextView 
+        	android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+        	android:gravity="center"
+        	android:layout_gravity="center"
+        	android:text="通讯录"
+        	android:textColor="#ffffff"/>
+        
+        <Button 
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:background="@drawable/contactmain_btn_backward"
+            android:onClick="onClickOfContactTopbtnBackward"/>
+        
+    </FrameLayout>
+    
+    
+    <LinearLayout 
+        android:id="@+id/contactmain_center"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/contactmain_top"
+        android:padding="30dip"
+        android:orientation="vertical">
+        
+        <LinearLayout 
+        	android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+        	android:orientation="vertical"
+        	android:background="#fefefe">
+        
+            <TextView 
+        		android:layout_width="wrap_content"
+        		android:layout_height="wrap_content"
+        		android:text="名片更新"
+        		android:textColor="#0099FF"
+        		android:textSize="20dp"/>
+
+            <TextView 
+        		android:layout_width="wrap_content"
+        		android:layout_height="wrap_content"
+        		android:text="上次更新时间：2014-4-30"
+        		android:textColor="#0099FF"/>
+            <TextView 
+        		android:layout_width="wrap_content"
+        		android:layout_height="wrap_content"
+        		android:text="更新名片："
+        		android:textColor="#0099FF"/>
+            
+            <RelativeLayout 
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                
+                <TextView 
+                    android:id="@+id/contactmain_changeinfo"
+        			android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:text="老实人更新了名片\nhonestman更新了名片..."
+        			android:textColor="#0099FF"/>
+                
+                <Button 
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onClickOfcontactmainChangeCheck"
+                    android:text="〉〉 查看"
+                    android:textColor="#cccccc"
+                    android:background="@null"
+                    android:gravity="center_vertical"
+                    android:layout_alignParentRight="true"/>
+                
+            </RelativeLayout>
+                               
+               
+    	</LinearLayout>
+    
+        <TextView 
+        	android:layout_width="fill_parent"
+        	android:layout_height="10dip"/>
+
+        
+        <RelativeLayout 
+        	android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+        	android:background="@drawable/contactcenter_back"
+        	android:paddingBottom="20dip"
+            android:layout_marginBottom="50dp">
+            
+            <ImageButton 
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:src="@drawable/contactmain_cloudcontact"
+                android:background="@null"
+                android:gravity="center"
+                android:onClick="onClickOfcontactmain_CloudContact"/>
+        
+
+    	</RelativeLayout>
+        
+        
+        
+    </LinearLayout>
+    
+    
+
+    
+    <LinearLayout 
+        android:id="@+id/contactmainbottom"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+        
+        <Button
+            android:id="@+id/contact_dir"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/contactbottom_dir"
+            android:onClick="onClickOfContactBottomSetting"/>
+        
+        <Button
+            android:id="@+id/contact_quickshare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/contactbottom_quickshare"
+            android:onClick="onClickOfContactBottomSetting"/>
+        
+        <Button
+            android:id="@+id/contact_favourite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/contactbottom_favourite"
+            android:onClick="onClickOfContactBottomSetting"/>
+        
+        <Button
+            android:id="@+id/contact_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/contactbottom_setting"
+            android:onClick="onClickOfContactBottomSetting"/>
+        
+        
+    </LinearLayout>
+    
+    
+
+
+</RelativeLayout>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+    
+    
+    <ImageView
+        android:layout_width="50dip"
+        android:layout_height="50dip"
+        android:src="@drawable/contactlistitem_avatar"
+        android:id="@+id/contactlistitem_avatar"
+        android:layout_gravity="center"
+        android:padding="8dip"/>
+    
+    <LinearLayout 
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_centerInParent="true"
+        android:orientation="horizontal"
+        android:paddingLeft="5dip">
+        
+        <TextView     
+    		android:layout_height="wrap_content" 
+    		android:layout_width="wrap_content"  
+    		android:id="@+id/contactlistitem_name"
+    		android:textColor="#000000"/>  
+    	
+    	<TextView     
+    		android:layout_height="wrap_content" 
+    		android:layout_width="wrap_content"  
+    		android:textColor="#000000"
+    		android:id="@+id/contactlistitem_phone"/>
+        
+    </LinearLayout>
+    
+
+    
+    <ImageView 
+        android:layout_width="50dip"
+        android:layout_height="50dip"
+        android:src="@drawable/contactlistitem_cloud_yes"
+        android:id="@+id/contactlistitem_cloud"
+        android:clickable="true"
+        android:onClick="onClickOfContactlistitemCloud"
+        android:layout_alignParentRight="true"
+        android:padding="5dip"/>
+    
+    
+
+</RelativeLayout>

@@ -1,0 +1,1 @@
+package com.qihoo.feiyang;import com.qihoo.yunpan.sdk.android.config.YunpanApplication;import android.app.Application;public class MyApplication extends Application{	@Override	public void onCreate() {		super.onCreate();		YunpanApplication.setApplication(this);	}}

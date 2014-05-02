@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" 
+    android:background="#FFFFFF">
+    
+    <TextView 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/contact_text1"
+        android:text="联系人"
+        android:textColor="#000000"
+        android:gravity="center"
+        android:layout_gravity="center"/>
+    
+    <TextView 
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:id="@+id/contact_text2"
+        android:layout_below="@id/contact_text1"
+        android:background="#000000"/>
+    
+    <ListView
+        android:id="@+id/contactLV" 
+        android:layout_width="fill_parent" 
+        android:layout_height="wrap_content"
+        android:layout_below="@id/contact_text2" />
+    
+    
+</RelativeLayout>
