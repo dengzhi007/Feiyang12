@@ -74,7 +74,7 @@ public final class StrongBoxAndFavoriteUtil {
 		@Override
 		public void onCreate(SQLiteDatabase db) {
 			db.execSQL(TABLE_STRONG_CREATE);
-			db.execSQL(TABLE_FAVORITE_NAME);
+			db.execSQL(TABLE_FAVORITE_CREATE);
 		}
 
 		@Override
@@ -94,7 +94,13 @@ public final class StrongBoxAndFavoriteUtil {
 		long result = writeDB.insert(TABLE_STRONG_NAME, KEY_ID, values);
 		return result != -1;
 	}
-	
+	/**
+	 * 
+	 * @param fullName 文件的全路径名
+	 * @param nid 文件的nid
+	 * @param pid 文件的pid
+	 * @return
+	 */
 	public static boolean addFileIntoFavorite(String fullName, String nid, String pid) {
 		checkNull();
 		ContentValues values = new ContentValues();
@@ -137,8 +143,8 @@ public final class StrongBoxAndFavoriteUtil {
 		return list;
 	}
 	
-	public boolean ifFileIsFavorite(String nid) {
-		Cursor cursor = readDB.query(TABLE_FAVORITE_NAME, null, KEY_ID + "=?", new String[]{nid}, null, null, null);
+	public static boolean ifFileIsFavorite(String nid) {
+		Cursor cursor = readDB.query(TABLE_FAVORITE_NAME, null, KEY_NID + "=?", new String[]{nid}, null, null, null);
 		cursor.moveToFirst();
 		boolean result = !cursor.isAfterLast();
 		cursor.close();

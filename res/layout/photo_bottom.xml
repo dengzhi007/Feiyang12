@@ -30,7 +30,8 @@
            android:layout_height="wrap_content"
            android:layout_width="0dp"
            android:layout_weight="1.0">
-       	<ImageView android:src="@drawable/photo_favorite"
+       	<ImageView android:id="@+id/file_if_favorited"
+       	    android:src="@drawable/file_not_favorited"
        	    android:layout_width="match_parent"
             android:layout_height="30dp"/>
            <TextView android:text="收藏"
