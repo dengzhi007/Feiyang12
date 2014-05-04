@@ -5,11 +5,14 @@ import java.util.ArrayList;
 
 import com.qihoo.feiyang.R;
 import com.qihoo.feiyang.contact.ContactMainActivity;
-import com.qihoo.feiyang.photo.PhotoActivity;
+import com.qihoo.feiyang.picture.PictureClassifyActivity;
 import com.qihoo.feiyang.share.ShareActivity;
+import com.qihoo.feiyang.util.AlbumUtil;
 import com.qihoo.feiyang.util.DBUtil;
+import com.qihoo.feiyang.util.FileUtil;
 import com.qihoo.feiyang.util.GlobalsUtil;
 import com.qihoo.feiyang.util.LoginUtil;
+import com.qihoo.feiyang.util.StrongBoxUtil;
 import com.qihoo.yunpan.sdk.android.model.IYunpanInterface;
 import android.app.Activity;
 import android.content.ContentUris;
@@ -33,17 +36,15 @@ public class MainActivity extends Activity implements IYunpanInterface {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
-        
-        
-        //浜戠洏鍒濆鍖�        
         LoginUtil.setYunDiskAuth(this);
         
-        //鏁版嵁搴撳垵濮嬪寲
         DBUtil.init(this, 1);
+        FileUtil.init();
+        AlbumUtil.init(this);
+        StrongBoxUtil.init(this, 1);
         
         //test
         //setContentView(R.layout.main);
-        
         
         if(LoginUtil.switchUserEnvironment(DBUtil.getQid())){
 
@@ -109,7 +110,7 @@ public class MainActivity extends Activity implements IYunpanInterface {
 		switch (source.getId()) {
 		case R.id.photo:
 			System.out.println("photo btn click");
-			intent=new Intent(MainActivity.this,PhotoActivity.class);
+			intent=new Intent(MainActivity.this,PictureClassifyActivity.class);
 			break;
 		case R.id.contact:
 			System.out.println("contact btn click");

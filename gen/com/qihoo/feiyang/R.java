@@ -8,7 +8,59 @@
 package com.qihoo.feiyang;
 
 public final class R {
+    public static final class anim {
+        public static final int rotate_loading_anim=0x7f040000;
+    }
     public static final class attr {
+        /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+         */
+        public static final int adapterViewBackground=0x7f010000;
+        /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+         */
+        public static final int headerBackground=0x7f010001;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int headerTextColor=0x7f010002;
+        /** <p>Must be one or more (separated by '|') of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>pullDownFromTop</code></td><td>0x1</td><td></td></tr>
+<tr><td><code>pullUpFromBottom</code></td><td>0x2</td><td></td></tr>
+<tr><td><code>both</code></td><td>0x3</td><td></td></tr>
+</table>
+         */
+        public static final int mode=0x7f010003;
+    }
+    public static final class color {
+        public static final int background=0x7f060007;
+        public static final int black=0x7f06000a;
+        public static final int blue=0x7f06000b;
+        public static final int deepcolor=0x7f060003;
+        public static final int gray=0x7f060001;
+        public static final int naming=0x7f060005;
+        public static final int orange=0x7f060002;
+        public static final int orange_yellow=0x7f060008;
+        public static final int red=0x7f060006;
+        public static final int remote_connect_text=0x7f06000c;
+        public static final int remote_disconnect_text=0x7f06000d;
+        public static final int shadowcolor=0x7f060004;
+        public static final int white=0x7f060009;
+        public static final int yellow=0x7f060000;
     }
     public static final class drawable {
         public static final int background=0x7f020000;
@@ -40,48 +92,110 @@ public final class R {
         public static final int main_pic=0x7f02001a;
         public static final int main_set=0x7f02001b;
         public static final int main_share=0x7f02001c;
-        public static final int topbar_background=0x7f02001d;
+        public static final int photo_background=0x7f02001d;
+        public static final int photo_bottom=0x7f02001e;
+        public static final int photo_classfy_cloud=0x7f02001f;
+        public static final int photo_classfy_local=0x7f020020;
+        public static final int photo_classfy_select_backup=0x7f020021;
+        public static final int photo_classfy_strongbox=0x7f020022;
+        public static final int photo_delete=0x7f020023;
+        public static final int photo_download=0x7f020024;
+        public static final int photo_encrypt=0x7f020025;
+        public static final int photo_favorite=0x7f020026;
+        public static final int photo_loading=0x7f020027;
+        public static final int photo_search=0x7f020028;
+        public static final int photo_share=0x7f020029;
+        public static final int photo_switch_explorer=0x7f02002a;
+        public static final int photo_switch_favorite=0x7f02002b;
+        public static final int photo_switch_settings=0x7f02002c;
+        public static final int photo_switch_share=0x7f02002d;
+        public static final int photo_top=0x7f02002e;
+        public static final int photo_unencrypt=0x7f02002f;
+        public static final int pulltorefresh_down_arrow=0x7f020030;
+        public static final int pulltorefresh_up_arrow=0x7f020031;
+        public static final int semi_black=0x7f020033;
+        public static final int topbar_background=0x7f020032;
     }
     public static final class id {
-        public static final int allfile=0x7f050025;
-        public static final int cancelmycard=0x7f05001b;
-        public static final int contact=0x7f050021;
-        public static final int contactLV=0x7f050001;
-        public static final int contact_dir=0x7f050014;
-        public static final int contact_favourite=0x7f050016;
-        public static final int contact_quickshare=0x7f050015;
-        public static final int contact_setting=0x7f050017;
-        public static final int contact_topbar=0x7f050000;
-        public static final int contactchange_change=0x7f050005;
-        public static final int contactchange_ignore=0x7f050006;
-        public static final int contactchange_selectall=0x7f050004;
-        public static final int contactchangecheck=0x7f050009;
-        public static final int contactchangeinfo=0x7f050008;
-        public static final int contactchangeinfoLV=0x7f050003;
-        public static final int contactchangemain_top=0x7f050002;
-        public static final int contactchangetime=0x7f050007;
-        public static final int contactdetail=0x7f05000b;
-        public static final int contactdetail_name=0x7f05000a;
-        public static final int contactlistitem_avatar=0x7f05000c;
-        public static final int contactlistitem_cloud=0x7f05000f;
-        public static final int contactlistitem_name=0x7f05000d;
-        public static final int contactlistitem_phone=0x7f05000e;
-        public static final int contactmain_center=0x7f050011;
-        public static final int contactmain_changeinfo=0x7f050012;
-        public static final int contactmain_top=0x7f050010;
-        public static final int contactmainbottom=0x7f050013;
-        public static final int contactmycardtop=0x7f050018;
-        public static final int contactname=0x7f05001d;
-        public static final int layoutcontactphoto=0x7f050020;
-        public static final int layoutshareallfile=0x7f050023;
-        public static final int like=0x7f050024;
-        public static final int mycardavatar=0x7f050019;
-        public static final int mycardinfolist=0x7f05001a;
-        public static final int passwordET=0x7f05001f;
-        public static final int photo=0x7f050022;
-        public static final int sendmycard=0x7f05001c;
-        public static final int share=0x7f050026;
-        public static final int usernameET=0x7f05001e;
+        public static final int allfile=0x7f05002a;
+        public static final int both=0x7f050002;
+        public static final int cancelmycard=0x7f050020;
+        public static final int contact=0x7f050026;
+        public static final int contactLV=0x7f050006;
+        public static final int contact_dir=0x7f050019;
+        public static final int contact_favourite=0x7f05001b;
+        public static final int contact_quickshare=0x7f05001a;
+        public static final int contact_setting=0x7f05001c;
+        public static final int contact_topbar=0x7f050005;
+        public static final int contactchange_change=0x7f05000a;
+        public static final int contactchange_ignore=0x7f05000b;
+        public static final int contactchange_selectall=0x7f050009;
+        public static final int contactchangecheck=0x7f05000e;
+        public static final int contactchangeinfo=0x7f05000d;
+        public static final int contactchangeinfoLV=0x7f050008;
+        public static final int contactchangemain_top=0x7f050007;
+        public static final int contactchangetime=0x7f05000c;
+        public static final int contactdetail=0x7f050010;
+        public static final int contactdetail_name=0x7f05000f;
+        public static final int contactlistitem_avatar=0x7f050011;
+        public static final int contactlistitem_cloud=0x7f050014;
+        public static final int contactlistitem_name=0x7f050012;
+        public static final int contactlistitem_phone=0x7f050013;
+        public static final int contactmain_center=0x7f050016;
+        public static final int contactmain_changeinfo=0x7f050017;
+        public static final int contactmain_top=0x7f050015;
+        public static final int contactmainbottom=0x7f050018;
+        public static final int contactmycardtop=0x7f05001d;
+        public static final int contactname=0x7f050022;
+        public static final int encrypt=0x7f050030;
+        public static final int gridview=0x7f050003;
+        public static final int layoutcontactphoto=0x7f050025;
+        public static final int layoutshareallfile=0x7f050028;
+        public static final int like=0x7f050029;
+        public static final int mycardavatar=0x7f05001e;
+        public static final int mycardinfolist=0x7f05001f;
+        public static final int passwordET=0x7f050024;
+        public static final int password_sure=0x7f05004b;
+        public static final int photo=0x7f050027;
+        public static final int photo_classfy_bottom=0x7f05003c;
+        public static final int photo_classfy_cloud=0x7f050036;
+        public static final int photo_classfy_cloud_text=0x7f050037;
+        public static final int photo_classfy_local=0x7f050038;
+        public static final int photo_classfy_local_text=0x7f050039;
+        public static final int photo_classfy_select_backup=0x7f050035;
+        public static final int photo_classfy_strongbox=0x7f05003a;
+        public static final int photo_classfy_strongbox_text=0x7f05003b;
+        public static final int photo_classfy_top=0x7f050032;
+        public static final int photo_delete=0x7f050031;
+        public static final int photo_download=0x7f05002d;
+        public static final int photo_favorite=0x7f05002e;
+        public static final int photo_full_imageView=0x7f050042;
+        public static final int photo_full_item=0x7f050046;
+        public static final int photo_index=0x7f050045;
+        public static final int photo_info=0x7f050043;
+        public static final int photo_main_name=0x7f050047;
+        public static final int photo_name=0x7f050044;
+        public static final int photo_operation=0x7f05002c;
+        public static final int photo_password=0x7f05004a;
+        public static final int photo_return=0x7f050033;
+        public static final int photo_search=0x7f050034;
+        public static final int photo_share=0x7f05002f;
+        public static final int photo_switch_explorer=0x7f05003d;
+        public static final int photo_switch_favorite=0x7f05003f;
+        public static final int photo_switch_settings=0x7f050040;
+        public static final int photo_switch_share=0x7f05003e;
+        public static final int pict_dirname=0x7f050049;
+        public static final int pict_gallery=0x7f050048;
+        public static final int pict_thumb=0x7f050041;
+        public static final int pullDownFromTop=0x7f050000;
+        public static final int pullUpFromBottom=0x7f050001;
+        public static final int pull_to_refresh_image=0x7f05004e;
+        public static final int pull_to_refresh_progress=0x7f05004d;
+        public static final int pull_to_refresh_text=0x7f05004c;
+        public static final int sendmycard=0x7f050021;
+        public static final int share=0x7f05002b;
+        public static final int usernameET=0x7f050023;
+        public static final int webview=0x7f050004;
     }
     public static final class layout {
         public static final int contact=0x7f030000;
@@ -95,17 +209,107 @@ public final class R {
         public static final int login1=0x7f030008;
         public static final int login2=0x7f030009;
         public static final int main=0x7f03000a;
+        public static final int photo_bottom=0x7f03000b;
+        public static final int photo_classify=0x7f03000c;
+        public static final int photo_dir_list_item=0x7f03000d;
+        public static final int photo_full=0x7f03000e;
+        public static final int photo_full_list_item=0x7f03000f;
+        public static final int photo_main=0x7f030010;
+        public static final int photo_main_list_item=0x7f030011;
+        public static final int photo_password=0x7f030012;
+        public static final int photo_pull_to_refresh_header=0x7f030013;
     }
     public static final class string {
         /**   common start 
          */
-        public static final int app_name=0x7f040000;
-        public static final int authKey=0x7f040002;
-        public static final int authName=0x7f040001;
-        public static final int authSecret=0x7f040003;
-        public static final int loginMargin=0x7f040006;
-        public static final int passwordHint=0x7f040005;
-        public static final int username=0x7f040007;
-        public static final int usernameHint=0x7f040004;
+        public static final int app_name=0x7f070003;
+        public static final int authKey=0x7f070005;
+        public static final int authName=0x7f070004;
+        public static final int authSecret=0x7f070006;
+        public static final int loginMargin=0x7f070009;
+        public static final int passwordHint=0x7f070008;
+        public static final int pull_to_refresh_pull_label=0x7f070000;
+        public static final int pull_to_refresh_refreshing_label=0x7f070002;
+        public static final int pull_to_refresh_release_label=0x7f070001;
+        public static final int username=0x7f07000a;
+        public static final int usernameHint=0x7f070007;
     }
+    public static final class styleable {
+        /** Attributes that can be used with a PullToRefresh.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #PullToRefresh_adapterViewBackground com.qihoo.feiyang:adapterViewBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #PullToRefresh_headerBackground com.qihoo.feiyang:headerBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #PullToRefresh_headerTextColor com.qihoo.feiyang:headerTextColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #PullToRefresh_mode com.qihoo.feiyang:mode}</code></td><td></td></tr>
+           </table>
+           @see #PullToRefresh_adapterViewBackground
+           @see #PullToRefresh_headerBackground
+           @see #PullToRefresh_headerTextColor
+           @see #PullToRefresh_mode
+         */
+        public static final int[] PullToRefresh = {
+            0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.qihoo.feiyang.R.attr#adapterViewBackground}
+          attribute's value can be found in the {@link #PullToRefresh} array.
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+          @attr name android:adapterViewBackground
+        */
+        public static final int PullToRefresh_adapterViewBackground = 0;
+        /**
+          <p>This symbol is the offset where the {@link com.qihoo.feiyang.R.attr#headerBackground}
+          attribute's value can be found in the {@link #PullToRefresh} array.
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+          @attr name android:headerBackground
+        */
+        public static final int PullToRefresh_headerBackground = 1;
+        /**
+          <p>This symbol is the offset where the {@link com.qihoo.feiyang.R.attr#headerTextColor}
+          attribute's value can be found in the {@link #PullToRefresh} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:headerTextColor
+        */
+        public static final int PullToRefresh_headerTextColor = 2;
+        /**
+          <p>This symbol is the offset where the {@link com.qihoo.feiyang.R.attr#mode}
+          attribute's value can be found in the {@link #PullToRefresh} array.
+
+
+          <p>Must be one or more (separated by '|') of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>pullDownFromTop</code></td><td>0x1</td><td></td></tr>
+<tr><td><code>pullUpFromBottom</code></td><td>0x2</td><td></td></tr>
+<tr><td><code>both</code></td><td>0x3</td><td></td></tr>
+</table>
+          @attr name android:mode
+        */
+        public static final int PullToRefresh_mode = 3;
+    };
 }

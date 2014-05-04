@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/photo_operation"
+    android:gravity="bottom"
+    android:layout_gravity="bottom"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@drawable/photo_bottom">
+    
+    <LinearLayout  android:id="@+id/photo_download"
+             android:orientation="vertical"
+             android:layout_height="wrap_content"
+             android:layout_width="0dp"
+             android:layout_weight="1.0">
+        <ImageView android:src="@drawable/photo_download"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"/>
+       	 <TextView android:text="下载"
+		   android:layout_width="wrap_content"
+		   android:layout_height="wrap_content"
+		   android:textColor="@color/blue"
+		   android:layout_gravity="center" 
+		   android:gravity="center"
+	    />    
+   </LinearLayout>
+         
+       <LinearLayout android:id="@+id/photo_favorite"
+           android:orientation="vertical"
+           android:layout_height="wrap_content"
+           android:layout_width="0dp"
+           android:layout_weight="1.0">
+       	<ImageView android:src="@drawable/photo_favorite"
+       	    android:layout_width="match_parent"
+            android:layout_height="30dp"/>
+           <TextView android:text="收藏"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" 
+            android:textColor="@color/blue"
+		   android:gravity="center"/>
+       </LinearLayout>
+         
+       <LinearLayout android:id="@+id/photo_share"
+           android:orientation="vertical"
+           android:layout_height="wrap_content"
+           android:layout_width="0dp"
+           android:layout_weight="1.0">
+           <ImageView android:src="@drawable/photo_share"
+               android:layout_width="match_parent"
+            android:layout_height="30dp"/>
+           <TextView android:text="快享"
+		   android:layout_width="wrap_content"
+		   android:layout_height="wrap_content"
+		   android:layout_gravity="center" 
+		   android:textColor="@color/blue"
+		   android:gravity="center"
+		   />
+       </LinearLayout>
+
+       <LinearLayout android:id="@+id/encrypt"
+           android:orientation="vertical"
+           android:layout_height="wrap_content"
+           android:layout_width="0dp"
+           android:layout_weight="1.0">
+           <ImageView android:src="@drawable/photo_encrypt"
+               android:layout_width="match_parent"
+            	android:layout_height="30dp"/>
+           <TextView android:text="加密"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_gravity="center" 
+		    android:textColor="@color/blue"
+		   android:gravity="center"/>
+       </LinearLayout>
+
+       <LinearLayout android:id="@+id/photo_delete"
+           android:orientation="vertical"
+           android:layout_height="wrap_content"
+           android:layout_width="0dp"
+           android:layout_weight="1.0">
+           <ImageView android:src="@drawable/photo_delete"
+               android:layout_width="match_parent"
+            android:layout_height="30dp"/>
+           <TextView android:text="删除"
+		   android:layout_width="wrap_content"
+		   android:layout_height="wrap_content"
+		   android:layout_gravity="center" 
+		   android:textColor="@color/blue"
+		   android:gravity="center"
+		   />
+       </LinearLayout>
+    
+   <!-- <RelativeLayout android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+            
+ 	</RelativeLayout>  -->
+</LinearLayout>

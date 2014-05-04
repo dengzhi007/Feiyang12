@@ -1,1 +1,0 @@
-package com.qihoo.feiyang.photo;import android.app.Activity;public class PhotoActivity extends Activity {}

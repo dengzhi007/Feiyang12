@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white" >
+    
+    <LinearLayout 
+        android:id="@+id/photo_info"
+        android:gravity="top"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="top"
+        android:background="@drawable/photo_top">
+        <RelativeLayout android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            >
+            <LinearLayout android:id="@+id/photo_return"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_width="50dp"
+                android:background="@android:color/transparent">
+                <ImageView 
+	                android:layout_height="35dp"
+	                android:layout_width="match_parent"
+	                android:layout_gravity="center"
+	                android:src="@drawable/backward"
+	                />
+            </LinearLayout>
+            
+	        <TextView android:id="@+id/photo_main_name"
+	            android:layout_width="wrap_content"
+	            android:layout_height="match_parent"
+	            android:layout_centerInParent="true"
+	            android:gravity="center"
+	            android:textColor="@color/blue"
+	            android:textSize="20dp"
+	            android:text="云图库"
+	            />
+        </RelativeLayout>
+     </LinearLayout>
+    
+     <com.stay.pull.lib.PullToRefreshGridView android:id="@+id/pict_gallery"
+         android:layout_width="fill_parent"
+         android:layout_height="fill_parent"
+         android:columnWidth="95dp" 
+         android:numColumns="auto_fit"
+         android:horizontalSpacing="5dp"
+         android:verticalSpacing="5dp"
+         android:stretchMode="columnWidth"
+         android:gravity="center" /> 
+         
+    
+</LinearLayout>
