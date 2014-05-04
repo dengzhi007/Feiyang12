@@ -32,12 +32,12 @@
     <LinearLayout 
         android:layout_height="wrap_content"
         android:layout_width="fill_parent"
-        android:orientation="vertical"
-        android:paddingTop="20dip">
+        android:orientation="vertical">
         
         <ImageView 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/contactdetail_avatar"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:padding="20dip"
             android:layout_gravity="center"
             android:src="@drawable/main_avatar"/>
@@ -55,7 +55,10 @@
         <ListView
         	android:id="@+id/contactdetail" 
         	android:layout_width="fill_parent" 
-        	android:layout_height="wrap_content"/>
+        	android:layout_height="wrap_content"
+        	android:padding="50dp"
+        	android:divider="#cccccc"
+        	android:dividerHeight="1px"/>
         
         
         

@@ -53,6 +53,7 @@
         		android:textSize="20dp"/>
 
             <TextView 
+                android:id="@+id/lastChangeTime"
         		android:layout_width="wrap_content"
         		android:layout_height="wrap_content"
         		android:text="上次更新时间：2014-4-30"
@@ -73,7 +74,7 @@
                     android:id="@+id/contactmain_changeinfo"
         			android:layout_width="wrap_content"
         			android:layout_height="wrap_content"
-        			android:text="老实人更新了名片\nhonestman更新了名片..."
+        			android:text="老实人更新了名片"
         			android:textColor="#0099FF"/>
                 
                 <Button 

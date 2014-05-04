@@ -2,9 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#ffffff"
-    android:padding="5dip"
-    android:orientation="vertical" >
+    android:background="#ffffff" >
     
     <TextView 
         android:layout_width="wrap_content"
@@ -21,17 +19,14 @@
         android:textColor="#0099FF"
         android:id="@+id/contactchangeinfo"
         android:layout_below="@id/contactchangetime"/>
-    
-    <CheckBox 
+    
+    <CheckBox
         android:id="@+id/contactchangecheck"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="2dip"
         android:layout_alignParentRight="true"
-        style="@android:style/TextAppearance.Widget.TextView"
-        android:onClick="onClickOfcontactchangeCheckbox"
         android:checked="true"
-        android:background="#cccccc"/>
-    
+        android:gravity="center_vertical"
+        style="@android:style/TextAppearance.Widget.TextView"/>
 
 </RelativeLayout>
