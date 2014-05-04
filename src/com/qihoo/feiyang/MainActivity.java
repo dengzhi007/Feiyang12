@@ -15,7 +15,10 @@ import com.qihoo.feiyang.util.LoginUtil;
 import com.qihoo.feiyang.util.StrongBoxUtil;
 import com.qihoo.yunpan.sdk.android.model.IYunpanInterface;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ContentUris;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -26,6 +29,7 @@ import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity implements IYunpanInterface {
@@ -35,7 +39,11 @@ public class MainActivity extends Activity implements IYunpanInterface {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
+        setContentView(R.layout.splash);
+        
         LoginUtil.setYunDiskAuth(this);
+        
+        
         DBUtil.init(this, 1);
         FileUtil.init();
         AlbumUtil.init(this);
@@ -44,12 +52,24 @@ public class MainActivity extends Activity implements IYunpanInterface {
 
         
         if(LoginUtil.switchUserEnvironment(DBUtil.getQid())){
+        	
+        	LoginUtil.getUserDetail();
 
         	setContentView(R.layout.main);
         	
+        	RoundedImageView avatar=(RoundedImageView) findViewById(R.id.mainavatar);
+        	avatar.setImageBitmap(GlobalsUtil.mainAvatar);
+        	
+        	TextView name=(TextView) findViewById(R.id.mainnickname);
+        	name.setText(GlobalsUtil.nickName);
+        	
+        	TextView size=(TextView) findViewById(R.id.mainyunsize);
+        	size.setText("云盘空间：" + GlobalsUtil.usedSize +"  / total " + GlobalsUtil.totalSize);
+        	
+        	
         }else{
         	
-        	setContentView(R.layout.login2);
+        	setContentView(R.layout.login);
         }
         
         Thread thread=new Thread(new Runnable() {
@@ -67,6 +87,7 @@ public class MainActivity extends Activity implements IYunpanInterface {
 	@Override
 	public void onNewUserToken(String arg0, String arg1) {
 		// TODO Auto-generated method stub
+		System.out.println("new user token");
 		
 	}
 
@@ -74,6 +95,7 @@ public class MainActivity extends Activity implements IYunpanInterface {
 	@Override
 	public void onUserCookieInvalid(String arg0) {
 		// TODO Auto-generated method stub
+		System.out.println("user cookie invalid");
 		
 	}
     
@@ -82,8 +104,8 @@ public class MainActivity extends Activity implements IYunpanInterface {
     //login button callback function 
 	public void onClickOfLogin(View source){
 		//Toast.makeText(this, "login btn clicked", 5);
-		String user="181431178@qq.com";
-		String pwd="dzy123456";
+		String user="snser@qq.com";
+		String pwd="qihoo271828";
 		//String user=null;
 		//String pwd=null;
 		EditText username=(EditText) findViewById(R.id.usernameET);
@@ -94,7 +116,18 @@ public class MainActivity extends Activity implements IYunpanInterface {
 		
 		if(LoginUtil.login(user,pwd)){
 			//Toast.makeText(this, "login success", 50).show();
+			LoginUtil.getUserDetail();
 			setContentView(R.layout.main);
+			
+			RoundedImageView avatar=(RoundedImageView) findViewById(R.id.mainavatar);
+        	avatar.setImageBitmap(GlobalsUtil.mainAvatar);
+        	
+        	TextView name=(TextView) findViewById(R.id.mainnickname);
+        	name.setText(GlobalsUtil.nickName);
+        	
+        	TextView size=(TextView) findViewById(R.id.mainyunsize);
+        	size.setText("云盘空间：" + GlobalsUtil.usedSize +"  / total " + GlobalsUtil.totalSize);
+			
 		}else{
 			Toast.makeText(this, "login fail", 50).show();
 		}
@@ -102,6 +135,23 @@ public class MainActivity extends Activity implements IYunpanInterface {
 	}
 	
 	
+	
+	public void onClickOfMainAvatar(View source){
+		AlertDialog.Builder ad=new AlertDialog.Builder(this);   
+		ad.setTitle("是否退出登录");  
+		ad.setPositiveButton("是", new OnClickListener() {
+
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				// TODO Auto-generated method stub
+				LoginUtil.clearUserEnvironment();
+				DBUtil.saveQid("");
+				setContentView(R.layout.login);
+			}
+			});  
+		ad.setNegativeButton("否", null);  
+		ad.show();  
+	}
 	
 	// photo/contact/share button callback function 
 	public void onClickOfPCS(View source){
@@ -111,20 +161,23 @@ public class MainActivity extends Activity implements IYunpanInterface {
 		case R.id.photo:
 			System.out.println("picture btn click");
 			intent=new Intent(MainActivity.this,PictureClassifyActivity.class);
+			startActivity(intent);
 			break;
 		case R.id.contact:
 			System.out.println("contact btn click");
 			intent=new Intent(MainActivity.this,ContactMainActivity.class);
+			startActivity(intent);
 			break;
 		case R.id.share:
 			System.out.println("share btn click");
 			intent=new Intent(MainActivity.this,ShareActivity.class);
+			startActivity(intent);
 			break;	
 		default:
 			break;
 		}
 		
-		startActivity(intent);
+		
 		
 	}
 	
