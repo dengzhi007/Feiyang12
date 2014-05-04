@@ -2,21 +2,44 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="#ffffff"
     android:orientation="vertical" >
     
     
-    
+        
+    <FrameLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/topbar_background">
+        
+        <TextView 
+        	android:layout_width="fill_parent"
+        	android:layout_height="fill_parent"
+        	android:gravity="center"
+        	android:layout_gravity="center"
+        	android:text="联系人名片"
+        	android:textColor="#ffffff"
+        	android:textSize="20dp"/>
+        
+        <Button 
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:background="@drawable/backward"
+            android:onClick="onClickOfBackward"/>
+        
+    </FrameLayout>
     
     <LinearLayout 
         android:layout_height="wrap_content"
         android:layout_width="fill_parent"
         android:orientation="vertical"
-        android:paddingTop="50dip">
+        android:paddingTop="20dip">
         
         <ImageView 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="50dip"
+            android:padding="20dip"
+            android:layout_gravity="center"
             android:src="@drawable/main_avatar"/>
         
         <TextView 
@@ -25,6 +48,7 @@
             android:layout_height="wrap_content"
             android:text="我是老实人"
             android:gravity="center"
+            android:layout_gravity="center"
             android:paddingTop="20dip"
             android:paddingBottom="20dip"/>
         

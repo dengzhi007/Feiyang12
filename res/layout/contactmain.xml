@@ -2,29 +2,30 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/contactmain_back"
+    android:background="@drawable/background"
     android:orientation="vertical" >
     
     
     <FrameLayout 
         android:id="@+id/contactmain_top"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/contacttop_back">
+        android:layout_height="50dp"
+        android:background="@drawable/topbar_background">
         
         <TextView 
         	android:layout_width="fill_parent"
-        	android:layout_height="wrap_content"
+        	android:layout_height="fill_parent"
         	android:gravity="center"
         	android:layout_gravity="center"
         	android:text="通讯录"
-        	android:textColor="#ffffff"/>
+        	android:textColor="#ffffff"
+        	android:textSize="20dp"/>
         
         <Button 
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:background="@drawable/contactmain_btn_backward"
-            android:onClick="onClickOfContactTopbtnBackward"/>
+            android:background="@drawable/backward"
+            android:onClick="onClickOfBackward"/>
         
     </FrameLayout>
     
@@ -41,7 +42,8 @@
         	android:layout_width="fill_parent"
         	android:layout_height="wrap_content"
         	android:orientation="vertical"
-        	android:background="#fefefe">
+        	android:background="@drawable/contactmain_top2background"
+        	android:padding="5dip">
         
             <TextView 
         		android:layout_width="wrap_content"
@@ -127,37 +129,103 @@
         android:layout_alignParentBottom="true"
         android:orientation="horizontal">
         
-        <Button
-            android:id="@+id/contact_dir"
+        <LinearLayout 
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/contactbottom_dir"
-            android:onClick="onClickOfContactBottomSetting"/>
+        	android:layout_height="fill_parent"
+        	android:layout_weight="1"
+        	android:padding="5dip"
+        	android:orientation="vertical">
+            
+            <ImageView 
+                android:id="@+id/contact_dir"
+                android:layout_width="fill_parent"
+            	android:layout_height="wrap_content"
+            	android:clickable="true"
+            	android:src="@drawable/contactbottom_dir"
+            	android:onClick="onClickOfContactBottomSetting"/>
+            
+            <TextView 
+                android:layout_width="fill_parent"
+            	android:layout_height="wrap_content"
+                android:text="目录"
+                android:textColor="#0099FF"
+                android:gravity="center"/>
+            
+        </LinearLayout>
         
-        <Button
-            android:id="@+id/contact_quickshare"
+        <LinearLayout 
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/contactbottom_quickshare"
-            android:onClick="onClickOfContactBottomSetting"/>
+        	android:layout_height="fill_parent"
+        	android:layout_weight="1"
+        	android:padding="5dip"
+        	android:orientation="vertical">
+            
+            <ImageView 
+                android:id="@+id/contact_quickshare"
+                android:layout_width="fill_parent"
+            	android:layout_height="wrap_content"
+            	android:clickable="true"
+            	android:src="@drawable/contactbottom_quickshare"
+            	android:onClick="onClickOfContactBottomSetting"/>
+            
+            <TextView 
+                android:layout_width="fill_parent"
+            	android:layout_height="wrap_content"
+                android:text="快享"
+                android:textColor="#0099FF"
+                android:gravity="center"/>
+            
+        </LinearLayout>
         
-        <Button
-            android:id="@+id/contact_favourite"
+        <LinearLayout 
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/contactbottom_favourite"
-            android:onClick="onClickOfContactBottomSetting"/>
+        	android:layout_height="fill_parent"
+        	android:layout_weight="1"
+        	android:padding="5dip"
+        	android:orientation="vertical">
+            
+            <ImageView 
+                android:id="@+id/contact_favourite"
+                android:layout_width="fill_parent"
+            	android:layout_height="wrap_content"
+            	android:clickable="true"
+            	android:src="@drawable/contactbottom_favourite"
+            	android:onClick="onClickOfContactBottomSetting"/>
+            
+            <TextView 
+                android:layout_width="fill_parent"
+            	android:layout_height="wrap_content"
+                android:text="收藏"
+                android:textColor="#0099FF"
+                android:gravity="center"/>
+            
+        </LinearLayout>
         
-        <Button
-            android:id="@+id/contact_setting"
+        <LinearLayout 
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/contactbottom_setting"
-            android:onClick="onClickOfContactBottomSetting"/>
+        	android:layout_height="fill_parent"
+        	android:layout_weight="1"
+        	android:padding="5dip"
+        	android:orientation="vertical">
+            
+            <ImageView 
+                android:id="@+id/contact_setting"
+                android:layout_width="fill_parent"
+            	android:layout_height="wrap_content"
+            	android:clickable="true"
+            	android:src="@drawable/contactbottom_setting"
+            	android:onClick="onClickOfContactBottomSetting"/>
+            
+            <TextView 
+                android:layout_width="fill_parent"
+            	android:layout_height="wrap_content"
+                android:text="设置"
+                android:textColor="#0099FF"
+                android:gravity="center"/>
+            
+        </LinearLayout>
+        
+        
         
         
     </LinearLayout>

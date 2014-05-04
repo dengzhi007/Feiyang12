@@ -1,31 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@drawable/background"
     android:orientation="vertical" >
     
     <FrameLayout 
-        android:id="@+id/contactmain_top"
+        android:id="@+id/contactchangemain_top"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/contacttop_back">
+        android:layout_height="50dp"
+        android:background="@drawable/topbar_background">
         
         <TextView 
         	android:layout_width="fill_parent"
-        	android:layout_height="wrap_content"
+        	android:layout_height="fill_parent"
         	android:gravity="center"
         	android:layout_gravity="center"
         	android:text="名片更新"
-        	android:textColor="#ffffff"/>
+        	android:textColor="#ffffff"
+        	android:textSize="20dp"/>
         
         <Button 
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:background="@drawable/contactmain_btn_backward"
-            android:onClick="onClickOfContactBackward"/>
+            android:background="@drawable/backward"
+            android:onClick="onClickOfBackward"/>
         
     </FrameLayout>
 
+    <ListView
+        android:id="@+id/contactchangeinfoLV" 
+        android:layout_below="@id/contactchangemain_top"
+        android:layout_width="fill_parent" 
+        android:layout_height="wrap_content"
+        android:dividerHeight="10dip"
+        android:divider="#cccccc"
+        android:paddingTop="30dip" 
+        android:paddingLeft="10dip" 
+        android:paddingRight="10dip" />
     
+    <LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+        
+        <Button
+            android:id="@+id/contactchange_selectall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="5dip"
+            android:text="全选"
+            android:background="#ffffff"
+            android:onClick="onClickOfContactChangeBottomSetting"/>
+        
+        <Button
+            android:id="@+id/contactchange_change"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="5dip"
+            android:text="更新"
+            android:background="#40E0D0"
+            android:onClick="onClickOfContactChangeBottomSetting"/>
+        <Button
+            android:id="@+id/contactchange_ignore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="5dip"
+            android:text="忽略"
+            android:background="#ffffff"
+            android:onClick="onClickOfContactChangeBottomSetting"/>
+        
+    </LinearLayout>
     
-</LinearLayout>
+</RelativeLayout>

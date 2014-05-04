@@ -14,12 +14,12 @@
         
         <LinearLayout 
             android:layout_width="fill_parent"
-        	android:layout_height="100dip"
+        	android:layout_height="150dip"
         	android:orientation="horizontal">
         	
         	<com.qihoo.feiyang.RoundedImageView
-                android:layout_width="100dip"
-                android:layout_height="fill_parent"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:src="@drawable/main_avatar"
                 android:padding="2dip"
                 android:layout_gravity="center"
@@ -36,6 +36,7 @@
                 android:text="@string/username"
                 android:textColor="#FFFFFF"
                 android:gravity="center"
+                android:textSize="30dp"
                 android:layout_gravity="center"/> 
                 
         	</LinearLayout>
@@ -44,7 +45,7 @@
         	android:layout_width="fill_parent"
         	android:layout_height="wrap_content"
         	android:orientation="horizontal"
-        	android:paddingTop="5dip">
+        	android:paddingTop="10dip">
         	
             <TextView 
                 android:layout_width="wrap_content"
@@ -67,64 +68,93 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="horizontal"
-        android:padding="60dip" 
+        android:layout_margin="50dip" 
         android:gravity="center_horizontal">
 
         <LinearLayout
             android:id="@+id/layoutcontactphoto"
-            android:layout_width="120dip"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:orientation="vertical"
-            android:paddingRight="2dip" >
+            android:paddingRight="2dip">
 
             <Button
                 android:id="@+id/contact"
                 android:layout_width="fill_parent"
-                android:layout_height="98dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:background="@drawable/main_contact"
                 android:onClick="onClickOfPCS"
-                android:paddingBottom="2dip"/>
+                android:text="通讯录"
+                android:textColor="#0099FF"
+                android:textSize="20dp"
+                android:paddingBottom="20dp"
+                android:gravity="bottom|center_horizontal"/>
 
             <Button
                 android:id="@+id/photo"
                 android:layout_width="fill_parent"
-                android:layout_height="98dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:background="@drawable/main_pic"
                 android:onClick="onClickOfPCS"
-                android:paddingTop="2dip"/>
+                android:text="图库"
+                android:textColor="#0099FF"
+                android:textSize="20dp"
+                android:paddingBottom="20dp"
+                android:gravity="bottom|center_horizontal"/>
+            
+            
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/layoutshareallfile"
-            android:layout_width="120dip"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:orientation="vertical"
             android:paddingLeft="2dip" >
 
             <Button
                 android:id="@+id/like"
                 android:layout_width="fill_parent"
-                android:layout_height="50dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:background="@drawable/main_like"
                 android:onClick="onClickOfPCS"
-                android:paddingBottom="1dip"/>
+                android:text="收藏    "
+                android:textColor="#0099FF"
+                android:textSize="20dp"
+                android:paddingBottom="1dip"
+                android:gravity="right|center_vertical"/>
 
             <Button
                 android:id="@+id/allfile"
                 android:layout_width="fill_parent"
-                android:layout_height="96dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
                 android:background="@drawable/main_allfile"
                 android:onClick="onClickOfPCS"
-                android:paddingBottom="1dip"
+                android:text="目录    "
+                android:textColor="#0099FF"
+                android:textSize="20dp"
+                android:paddingBottom="10dp"
+                android:gravity="right|center_vertical"
                 android:paddingTop="1dip"/>
 
             <Button
                 android:id="@+id/share"
                 android:layout_width="fill_parent"
-                android:layout_height="50dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:background="@drawable/main_share"
                 android:onClick="onClickOfPCS"
-                android:paddingTop="1dip"/>
+                android:text="快享    "
+                android:textColor="#0099FF"
+                android:textSize="20dp"
+                android:paddingTop="1dip"
+                android:gravity="right|center_vertical"/>
 
         </LinearLayout>
     

@@ -11,20 +11,20 @@ public final class R {
     public static final class attr {
     }
     public static final class drawable {
-        public static final int contactbottom_cloudsync=0x7f020000;
-        public static final int contactbottom_dir=0x7f020001;
-        public static final int contactbottom_favourite=0x7f020002;
-        public static final int contactbottom_quickshare=0x7f020003;
-        public static final int contactbottom_setting=0x7f020004;
-        public static final int contactcenter_back=0x7f020005;
-        public static final int contactlistitem_avatar=0x7f020006;
-        public static final int contactlistitem_cloud_no=0x7f020007;
-        public static final int contactlistitem_cloud_yes=0x7f020008;
-        public static final int contactmain_back=0x7f020009;
-        public static final int contactmain_btn_backward=0x7f02000a;
+        public static final int background=0x7f020000;
+        public static final int backward=0x7f020001;
+        public static final int contactbottom_cloudsync=0x7f020002;
+        public static final int contactbottom_dir=0x7f020003;
+        public static final int contactbottom_favourite=0x7f020004;
+        public static final int contactbottom_quickshare=0x7f020005;
+        public static final int contactbottom_setting=0x7f020006;
+        public static final int contactcenter_back=0x7f020007;
+        public static final int contactlistitem_avatar=0x7f020008;
+        public static final int contactlistitem_cloud_no=0x7f020009;
+        public static final int contactlistitem_cloud_yes=0x7f02000a;
         public static final int contactmain_changecheck=0x7f02000b;
         public static final int contactmain_cloudcontact=0x7f02000c;
-        public static final int contacttop_back=0x7f02000d;
+        public static final int contactmain_top2background=0x7f02000d;
         public static final int ic_launcher=0x7f02000e;
         public static final int login1_launch_logo=0x7f02000f;
         public static final int login2_account=0x7f020010;
@@ -40,44 +40,61 @@ public final class R {
         public static final int main_pic=0x7f02001a;
         public static final int main_set=0x7f02001b;
         public static final int main_share=0x7f02001c;
+        public static final int topbar_background=0x7f02001d;
     }
     public static final class id {
-        public static final int allfile=0x7f050018;
-        public static final int contact=0x7f050014;
-        public static final int contactLV=0x7f050002;
-        public static final int contact_dir=0x7f05000d;
-        public static final int contact_favourite=0x7f05000f;
-        public static final int contact_quickshare=0x7f05000e;
-        public static final int contact_setting=0x7f050010;
-        public static final int contact_text1=0x7f050000;
-        public static final int contact_text2=0x7f050001;
-        public static final int contactdetail=0x7f050005;
-        public static final int contactdetail_name=0x7f050004;
-        public static final int contactlistitem_avatar=0x7f050006;
-        public static final int contactlistitem_cloud=0x7f050009;
-        public static final int contactlistitem_name=0x7f050007;
-        public static final int contactlistitem_phone=0x7f050008;
-        public static final int contactmain_center=0x7f05000a;
-        public static final int contactmain_changeinfo=0x7f05000b;
-        public static final int contactmain_top=0x7f050003;
-        public static final int contactmainbottom=0x7f05000c;
-        public static final int layoutcontactphoto=0x7f050013;
-        public static final int layoutshareallfile=0x7f050016;
-        public static final int like=0x7f050017;
-        public static final int passwordET=0x7f050012;
-        public static final int photo=0x7f050015;
-        public static final int share=0x7f050019;
-        public static final int usernameET=0x7f050011;
+        public static final int allfile=0x7f050025;
+        public static final int cancelmycard=0x7f05001b;
+        public static final int contact=0x7f050021;
+        public static final int contactLV=0x7f050001;
+        public static final int contact_dir=0x7f050014;
+        public static final int contact_favourite=0x7f050016;
+        public static final int contact_quickshare=0x7f050015;
+        public static final int contact_setting=0x7f050017;
+        public static final int contact_topbar=0x7f050000;
+        public static final int contactchange_change=0x7f050005;
+        public static final int contactchange_ignore=0x7f050006;
+        public static final int contactchange_selectall=0x7f050004;
+        public static final int contactchangecheck=0x7f050009;
+        public static final int contactchangeinfo=0x7f050008;
+        public static final int contactchangeinfoLV=0x7f050003;
+        public static final int contactchangemain_top=0x7f050002;
+        public static final int contactchangetime=0x7f050007;
+        public static final int contactdetail=0x7f05000b;
+        public static final int contactdetail_name=0x7f05000a;
+        public static final int contactlistitem_avatar=0x7f05000c;
+        public static final int contactlistitem_cloud=0x7f05000f;
+        public static final int contactlistitem_name=0x7f05000d;
+        public static final int contactlistitem_phone=0x7f05000e;
+        public static final int contactmain_center=0x7f050011;
+        public static final int contactmain_changeinfo=0x7f050012;
+        public static final int contactmain_top=0x7f050010;
+        public static final int contactmainbottom=0x7f050013;
+        public static final int contactmycardtop=0x7f050018;
+        public static final int contactname=0x7f05001d;
+        public static final int layoutcontactphoto=0x7f050020;
+        public static final int layoutshareallfile=0x7f050023;
+        public static final int like=0x7f050024;
+        public static final int mycardavatar=0x7f050019;
+        public static final int mycardinfolist=0x7f05001a;
+        public static final int passwordET=0x7f05001f;
+        public static final int photo=0x7f050022;
+        public static final int sendmycard=0x7f05001c;
+        public static final int share=0x7f050026;
+        public static final int usernameET=0x7f05001e;
     }
     public static final class layout {
         public static final int contact=0x7f030000;
         public static final int contactchangeinfocheck=0x7f030001;
-        public static final int contactdetail=0x7f030002;
-        public static final int contactlistitem=0x7f030003;
-        public static final int contactmain=0x7f030004;
-        public static final int login1=0x7f030005;
-        public static final int login2=0x7f030006;
-        public static final int main=0x7f030007;
+        public static final int contactchangeinfolistitem=0x7f030002;
+        public static final int contactdetail=0x7f030003;
+        public static final int contactlistitem=0x7f030004;
+        public static final int contactmain=0x7f030005;
+        public static final int contactmycard=0x7f030006;
+        public static final int contactmycardlistitem=0x7f030007;
+        public static final int login1=0x7f030008;
+        public static final int login2=0x7f030009;
+        public static final int main=0x7f03000a;
     }
     public static final class string {
         /**   common start 

@@ -1,15 +1,26 @@
 package com.qihoo.feiyang;
 
+import java.io.InputStream;
+import java.util.ArrayList;
+
 import com.qihoo.feiyang.R;
 import com.qihoo.feiyang.contact.ContactMainActivity;
 import com.qihoo.feiyang.photo.PhotoActivity;
 import com.qihoo.feiyang.share.ShareActivity;
 import com.qihoo.feiyang.util.DBUtil;
+import com.qihoo.feiyang.util.GlobalsUtil;
 import com.qihoo.feiyang.util.LoginUtil;
 import com.qihoo.yunpan.sdk.android.model.IYunpanInterface;
 import android.app.Activity;
+import android.content.ContentUris;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -35,21 +46,23 @@ public class MainActivity extends Activity implements IYunpanInterface {
         
         
         if(LoginUtil.switchUserEnvironment(DBUtil.getQid())){
-        	
-        	LinearLayout ll=(LinearLayout) findViewById(R.id.layoutcontactphoto);
-        	int screenWidth  = getWindowManager().getDefaultDisplay().getWidth();
-        	int screenHeight = getWindowManager().getDefaultDisplay().getHeight();
-        	System.out.println("screenwidth: "+screenWidth+"  screen height: "+screenHeight);
-        	//ll.setLayoutParams(new LayoutParams(100, 100));
-        	//int height=ll.getLayoutParams().height;
-        	//ll.setLayoutParams(new LayoutParams((screenWidth-100)/2, height));
+
         	setContentView(R.layout.main);
-        	//setContentView(R.layout.login);
+        	
         }else{
         	setContentView(R.layout.login2);
         }
         
-        
+        Thread thread=new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				getContacts();
+				
+			}
+		});
+		thread.start();
     }
 
 	@Override
@@ -114,6 +127,58 @@ public class MainActivity extends Activity implements IYunpanInterface {
 		
 	}
 	
-	
+	private void getContacts(){
+		if(GlobalsUtil.contactNames==null){
+			 
+			System.out.println("getting contacts in  main activity...");
+
+			GlobalsUtil.contactIds=new ArrayList<Long>();
+			GlobalsUtil.contactNames=new ArrayList<String>();
+			GlobalsUtil.phoneNums=new ArrayList<String>();
+			GlobalsUtil.avatars=new ArrayList<Bitmap>();
+			
+			String phoneNumber=null;
+			String contactName=null;
+			Bitmap avatar=null;
+			
+			
+			Cursor cursor=getContentResolver().query(Phone.CONTENT_URI, GlobalsUtil.contactInfo, null, null, null);
+			
+			while(cursor!=null&&cursor.moveToNext()){
+				
+				phoneNumber= cursor.getString(GlobalsUtil.PHONES_NUMBER_INDEX);  
+				if(phoneNumber==null||phoneNumber.length()==0)
+					continue;
+				 
+				contactName=cursor.getString(GlobalsUtil.PHONES_DISPLAY_NAME_INDEX);
+								
+				Long contactid = cursor.getLong(GlobalsUtil.PHONES_CONTACT_ID_INDEX);  
+			    //得到联系人头像ID  
+			    Long photoid = cursor.getLong(GlobalsUtil.PHONES_PHOTO_ID_INDEX);  
+
+			    //photoid 大于0 表示联系人有头像 如果没有给此人设置头像则给他一个默认的  
+			    if(photoid > 0 ) {  
+			         Uri uri =ContentUris.withAppendedId(ContactsContract.Contacts.CONTENT_URI,contactid);  
+			         InputStream input = ContactsContract.Contacts.openContactPhotoInputStream(getContentResolver(), uri);  
+			         avatar = BitmapFactory.decodeStream(input);  
+			    }else{  
+			         avatar = BitmapFactory.decodeResource(getResources(), R.drawable.contactlistitem_avatar);  
+			    } 
+				
+				
+			    GlobalsUtil.contactNames.add(contactName);
+			    GlobalsUtil.phoneNums.add(phoneNumber);
+			    GlobalsUtil.avatars.add(avatar);
+			    GlobalsUtil.contactIds.add(contactid);
+				
+
+				
+			}
+			cursor.close();
+			GlobalsUtil.contactGot=true;
+            
+            System.out.println("got contacts in main activity");
+		}
+	}
     
 }
