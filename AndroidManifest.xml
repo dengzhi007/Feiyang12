@@ -47,7 +47,8 @@
         <activity 
             android:name=".picture.PictureStrongBoxActivity"/>
 		<!-- picture end -->
-		        
+		<activity 
+		    android:name=".favorite.FavoriteFileActivity" />        
         <!--  share start-->
         <activity
             android:name=".share.ShareActivity"

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import com.qihoo.feiyang.R;
 import com.qihoo.feiyang.contact.ContactMainActivity;
+import com.qihoo.feiyang.favorite.FavoriteFileActivity;
 import com.qihoo.feiyang.picture.PictureClassifyActivity;
 import com.qihoo.feiyang.share.ShareActivity;
 import com.qihoo.feiyang.util.AlbumUtil;
@@ -172,7 +173,12 @@ public class MainActivity extends Activity implements IYunpanInterface {
 			System.out.println("share btn click");
 			intent=new Intent(MainActivity.this,ShareActivity.class);
 			startActivity(intent);
-			break;	
+			break;
+		case R.id.like:
+			System.out.println("favorite btn click");
+			intent = new Intent(MainActivity.this, FavoriteFileActivity.class);
+			startActivity(intent);
+			break;
 		default:
 			break;
 		}
