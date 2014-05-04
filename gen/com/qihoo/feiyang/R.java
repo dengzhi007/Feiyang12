@@ -203,7 +203,7 @@ containing a value of this type.
         public static final int layoutcontactphoto=0x7f050025;
         public static final int layoutshareallfile=0x7f050028;
         public static final int like=0x7f050029;
-        public static final int lv_files=0x7f050053;
+        public static final int lv_files=0x7f050054;
         public static final int mycardavatar=0x7f05001e;
         public static final int mycardinfolist=0x7f05001f;
         public static final int passwordET=0x7f050024;
@@ -236,6 +236,7 @@ containing a value of this type.
         public static final int photo_switch_favorite=0x7f05003f;
         public static final int photo_switch_settings=0x7f050040;
         public static final int photo_switch_share=0x7f05003e;
+        public static final int photo_unencrypt=0x7f05004f;
         public static final int pict_dirname=0x7f050049;
         public static final int pict_gallery=0x7f050048;
         public static final int pict_thumb=0x7f050041;
@@ -246,20 +247,20 @@ containing a value of this type.
         public static final int pull_to_refresh_text=0x7f05004c;
         public static final int sendmycard=0x7f050021;
         public static final int share=0x7f05002b;
-        public static final int share_backward=0x7f050055;
-        public static final int share_button_share=0x7f050058;
-        public static final int share_dock_bar=0x7f050059;
-        public static final int share_dock_history=0x7f05005c;
-        public static final int share_dock_receive=0x7f05005b;
-        public static final int share_dock_send=0x7f05005a;
-        public static final int share_file_item_icon=0x7f05004f;
-        public static final int share_file_item_info=0x7f050052;
-        public static final int share_file_item_name=0x7f050051;
-        public static final int share_file_item_share=0x7f050050;
-        public static final int share_file_list=0x7f05005d;
-        public static final int share_title=0x7f050056;
-        public static final int share_title_back=0x7f050057;
-        public static final int top_bar=0x7f050054;
+        public static final int share_backward=0x7f050056;
+        public static final int share_button_share=0x7f050059;
+        public static final int share_dock_bar=0x7f05005a;
+        public static final int share_dock_history=0x7f05005d;
+        public static final int share_dock_receive=0x7f05005c;
+        public static final int share_dock_send=0x7f05005b;
+        public static final int share_file_item_icon=0x7f050050;
+        public static final int share_file_item_info=0x7f050053;
+        public static final int share_file_item_name=0x7f050052;
+        public static final int share_file_item_share=0x7f050051;
+        public static final int share_file_list=0x7f05005e;
+        public static final int share_title=0x7f050057;
+        public static final int share_title_back=0x7f050058;
+        public static final int top_bar=0x7f050055;
         public static final int usernameET=0x7f050023;
         public static final int webview=0x7f050004;
     }
@@ -284,9 +285,10 @@ containing a value of this type.
         public static final int photo_main_list_item=0x7f030011;
         public static final int photo_password=0x7f030012;
         public static final int photo_pull_to_refresh_header=0x7f030013;
-        public static final int share_file_item=0x7f030014;
-        public static final int share_fragment_files=0x7f030015;
-        public static final int share_main=0x7f030016;
+        public static final int photo_strongbox_full=0x7f030014;
+        public static final int share_file_item=0x7f030015;
+        public static final int share_fragment_files=0x7f030016;
+        public static final int share_main=0x7f030017;
     }
     public static final class string {
         public static final int action_settings=0x7f07000c;

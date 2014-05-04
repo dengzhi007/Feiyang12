@@ -3,17 +3,9 @@ package com.qihoo.feiyang.picture;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.qihoo.feiyang.R;
-import com.qihoo.feiyang.util.FileUtil;
-import com.qihoo.feiyang.util.StrongBoxFile;
-import com.qihoo.feiyang.util.StrongBoxUtil;
-import com.qihoo.yunpan.sdk.android.GetNodeByNidAction;
-import com.qihoo.yunpan.sdk.android.http.model.YunFile;
-import com.qihoo.yunpan.sdk.android.http.model.YunFileNode;
-import com.stay.pull.lib.PullToRefreshGridView;
-
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
@@ -31,6 +23,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.qihoo.feiyang.R;
+import com.qihoo.feiyang.util.FileUtil;
+import com.qihoo.feiyang.util.StrongBoxFile;
+import com.qihoo.feiyang.util.StrongBoxAndFavoriteUtil;
+import com.qihoo.yunpan.sdk.android.GetNodeByNidAction;
+import com.stay.pull.lib.PullToRefreshGridView;
+
 public class PictureStrongBoxActivity extends Activity {
 	private static final String TAG = "PictureStrongBoxActivity";
 	private PullToRefreshGridView refreshGridView = null;
@@ -39,6 +38,8 @@ public class PictureStrongBoxActivity extends Activity {
 	private EditText passwd = null;
 	private Button sure = null;
 	private int MAX_TRY = 3;
+	private int try_times = 0;
+	private List<StrongBoxFile> fileLists = new ArrayList<StrongBoxFile>();
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -53,24 +54,20 @@ public class PictureStrongBoxActivity extends Activity {
 
 		sure.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				int count = 1;
-				boolean isRight = false;
-				for (count = 1; count<=MAX_TRY; count++) {
-					String pwd = passwd.getText().toString();
-					if (pwd.equals("123")) {
-						isRight = true;
-						break;
-					} else {
-						Toast.makeText(PictureStrongBoxActivity.this, 
-								"你还剩下" + (MAX_TRY-count)+ "次机会", Toast.LENGTH_SHORT);
-					}
-				}
-				
-				if (isRight) {
+				try_times++;
+				String pwd = passwd.getText().toString();
+				if (pwd.equals("123")) {
 					hideInputMethod();
 					initStrongBoxView();
+					return;
 				} else {
-					PictureStrongBoxActivity.this.finish();
+					if (try_times < MAX_TRY) {
+						passwd.setText("");
+						Toast.makeText(PictureStrongBoxActivity.this, 
+								"你还剩下" + (MAX_TRY-try_times)+ "次机会", Toast.LENGTH_SHORT).show();
+					} else {
+						PictureStrongBoxActivity.this.finish();
+					}
 				}
 			}
 		});
@@ -87,7 +84,8 @@ public class PictureStrongBoxActivity extends Activity {
 		setContentView(R.layout.photo_main);
 		refreshGridView = (PullToRefreshGridView) findViewById(R.id.pict_gallery);
 		gridView = refreshGridView.getRefreshableView();
-		AddableAdapter adapter = new StrongBoxAdapter(this);
+		AddableAdapter adapter = new StrongBoxAdapter(this, fileLists);
+		gridView.setAdapter(adapter);
 		ThumbHandler handler = new ThumbHandler(adapter);
 		LoadFromDBThread thread = new LoadFromDBThread(handler);
 		thread.start();
@@ -96,33 +94,58 @@ public class PictureStrongBoxActivity extends Activity {
 
 class StrongBoxAdapter extends AddableAdapter {
 	private Context context;
-	private List<View> list = new ArrayList<View>();
+	private List<StrongBoxFile> fileLists = null;
 	
-	public StrongBoxAdapter(Context context) {
+	public StrongBoxAdapter(Context context, List<StrongBoxFile> fileLists) {
 		this.context = context; 
+		this.fileLists = fileLists;
 	}
 	
 	public int getCount() {
-		return list.size();
+		return fileLists.size();
 	}
 
 	public Object getItem(int position) {
-		return list.get(position);
+		return fileLists.get(position);
 	}
 
 	public long getItemId(int position) {
 		return position;
 	}
 
-	public View getView(int position, View convertView, ViewGroup parent) {
-		return list.get(position);
+	public View getView(final int position, View convertView, ViewGroup parent) {
+		View currentView = createNewView(fileLists.get(position));
+		currentView.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				FullScreenStrongBoxActivity.boxFiles = fileLists;
+				Intent intent = new Intent(context, FullScreenStrongBoxActivity.class);
+				intent.putExtra("index", position);
+				System.out.println("create " + position);
+				context.startActivity(intent);
+			}
+		});
+		return currentView;
+	}
+	
+	private void addStrongFile(Bundle data) {
+		String name = data.getString("name");
+		String fullName = data.getString("fullname");
+		String nid = data.getString("nid");
+		String pid = data.getString("pid");
+		StrongBoxFile file = new StrongBoxFile(name, fullName, nid, pid);
+		fileLists.add(file);
 	}
 
 	@Override
 	public void addPicture(Bundle data) {
-		String nid = data.getString("nid");
-		String name = data.getString("name");
-		
+		addStrongFile(data);
+		this.notifyDataSetChanged();
+	}
+	
+	private View createNewView(StrongBoxFile file) {
+		String nid = file.getNid();
+		String name = file.getName();
 		Bitmap map = FileUtil.loadBitmapFromCache(FileUtil.getThumbPicName(nid));
 		String inflater=Context.LAYOUT_INFLATER_SERVICE;
 		LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(inflater);
@@ -131,34 +154,27 @@ class StrongBoxAdapter extends AddableAdapter {
 		TextView textView = (TextView) linearLayout.findViewById(R.id.pict_dirname);
 		imageView.setImageBitmap(map);
 		textView.setText(name);
-		list.add(linearLayout);
-		
-		this.notifyDataSetChanged();
+		return linearLayout;
 	}
-	
 }
 
 class LoadFromDBThread extends Thread {
 	private static final String TAG = "LoadFromDBThread";
 	private Handler handler = null;
-	private GetNodeByNidAction nidAction = new GetNodeByNidAction();
 	public LoadFromDBThread(Handler handler) {
 		this.handler = handler;
 	}
 	
 	@Override
 	public void run() {
-		List<StrongBoxFile> strongFiles = StrongBoxUtil.getAllStrongBoxPictures();
+		List<StrongBoxFile> strongFiles = StrongBoxAndFavoriteUtil.getAllStrongBoxPictures();
 		for (StrongBoxFile sf : strongFiles){
 			String nid = sf.getNid();
 			String fullName = sf.getFullName();
-			Bitmap map = FileUtil.loadBitmapFromCache(FileUtil.getThumbPicName(nid));
+			//Bitmap map = FileUtil.loadBitmapFromCache(FileUtil.getThumbPicName(nid));
+			Bitmap map = FileUtil.getLocalPictureFromStrongBox(fullName);
 			if (map == null) {
 				Log.e(TAG, nid + " " + fullName + " seems error");
-				/*YunFileNode node = nidAction.getFileNodeByNid(nid);
-				YunFile file = node.data;
-				System.out.println("thumb   " + file.thumb);
-				System.out.println("preview " + file.preview);*/
 			} else {
 				Message msg = handler.obtainMessage();
 				Bundle bundle = new Bundle();

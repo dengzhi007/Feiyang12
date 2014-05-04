@@ -42,7 +42,7 @@
             android:name=".picture.DirectoryPictureActivity"
             />
         <activity 
-            android:name=".picture.StrongBoxPassWordActivity"/>
+            android:name=".picture.FullScreenStrongBoxActivity"/>
         <activity 
             android:name=".picture.PictureStrongBoxActivity"/>
 		<!-- picture end -->

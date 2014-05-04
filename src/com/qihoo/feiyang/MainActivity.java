@@ -12,7 +12,7 @@ import com.qihoo.feiyang.util.DBUtil;
 import com.qihoo.feiyang.util.FileUtil;
 import com.qihoo.feiyang.util.GlobalsUtil;
 import com.qihoo.feiyang.util.LoginUtil;
-import com.qihoo.feiyang.util.StrongBoxUtil;
+import com.qihoo.feiyang.util.StrongBoxAndFavoriteUtil;
 import com.qihoo.yunpan.sdk.android.model.IYunpanInterface;
 import android.app.Activity;
 import android.content.ContentUris;
@@ -39,7 +39,7 @@ public class MainActivity extends Activity implements IYunpanInterface {
         DBUtil.init(this, 1);
         FileUtil.init();
         AlbumUtil.init(this);
-        StrongBoxUtil.init(this, 1);
+        StrongBoxAndFavoriteUtil.init(this, 1);
         
 
         
@@ -82,8 +82,8 @@ public class MainActivity extends Activity implements IYunpanInterface {
     //login button callback function 
 	public void onClickOfLogin(View source){
 		//Toast.makeText(this, "login btn clicked", 5);
-		String user="181431178@qq.com";
-		String pwd="dzy123456";
+		String user="snser@qq.com";
+		String pwd="qihoo271828";
 		//String user=null;
 		//String pwd=null;
 		EditText username=(EditText) findViewById(R.id.usernameET);
