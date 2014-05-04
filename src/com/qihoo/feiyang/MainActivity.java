@@ -26,7 +26,6 @@ import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 public class MainActivity extends Activity implements IYunpanInterface {
@@ -37,20 +36,19 @@ public class MainActivity extends Activity implements IYunpanInterface {
         super.onCreate(savedInstanceState);
         
         LoginUtil.setYunDiskAuth(this);
-        
         DBUtil.init(this, 1);
         FileUtil.init();
         AlbumUtil.init(this);
         StrongBoxUtil.init(this, 1);
         
-        //test
-        //setContentView(R.layout.main);
+
         
         if(LoginUtil.switchUserEnvironment(DBUtil.getQid())){
 
         	setContentView(R.layout.main);
         	
         }else{
+        	
         	setContentView(R.layout.login2);
         }
         
@@ -86,6 +84,8 @@ public class MainActivity extends Activity implements IYunpanInterface {
 		//Toast.makeText(this, "login btn clicked", 5);
 		String user="181431178@qq.com";
 		String pwd="dzy123456";
+		//String user=null;
+		//String pwd=null;
 		EditText username=(EditText) findViewById(R.id.usernameET);
 		EditText password=(EditText) findViewById(R.id.passwordET);
 		
@@ -109,7 +109,7 @@ public class MainActivity extends Activity implements IYunpanInterface {
 		Intent intent=null;
 		switch (source.getId()) {
 		case R.id.photo:
-			System.out.println("photo btn click");
+			System.out.println("picture btn click");
 			intent=new Intent(MainActivity.this,PictureClassifyActivity.class);
 			break;
 		case R.id.contact:
@@ -156,7 +156,6 @@ public class MainActivity extends Activity implements IYunpanInterface {
 				Long contactid = cursor.getLong(GlobalsUtil.PHONES_CONTACT_ID_INDEX);  
 			    //得到联系人头像ID  
 			    Long photoid = cursor.getLong(GlobalsUtil.PHONES_PHOTO_ID_INDEX);  
-
 			    //photoid 大于0 表示联系人有头像 如果没有给此人设置头像则给他一个默认的  
 			    if(photoid > 0 ) {  
 			         Uri uri =ContentUris.withAppendedId(ContactsContract.Contacts.CONTENT_URI,contactid);  
@@ -173,7 +172,6 @@ public class MainActivity extends Activity implements IYunpanInterface {
 			    GlobalsUtil.contactIds.add(contactid);
 				
 
-				
 			}
 			cursor.close();
 			GlobalsUtil.contactGot=true;

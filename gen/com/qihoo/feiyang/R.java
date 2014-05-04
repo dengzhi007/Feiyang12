@@ -50,15 +50,21 @@ containing a value of this type.
         public static final int background=0x7f060007;
         public static final int black=0x7f06000a;
         public static final int blue=0x7f06000b;
+        public static final int deep_gray=0x7f060011;
         public static final int deepcolor=0x7f060003;
         public static final int gray=0x7f060001;
+        public static final int green=0x7f06000c;
+        public static final int grey=0x7f06000f;
+        public static final int light_gray=0x7f060010;
         public static final int naming=0x7f060005;
         public static final int orange=0x7f060002;
         public static final int orange_yellow=0x7f060008;
         public static final int red=0x7f060006;
-        public static final int remote_connect_text=0x7f06000c;
-        public static final int remote_disconnect_text=0x7f06000d;
+        public static final int remote_connect_text=0x7f060012;
+        public static final int remote_disconnect_text=0x7f060013;
+        public static final int shadow=0x7f06000e;
         public static final int shadowcolor=0x7f060004;
+        public static final int transparency=0x7f06000d;
         public static final int white=0x7f060009;
         public static final int yellow=0x7f060000;
     }
@@ -113,8 +119,53 @@ containing a value of this type.
         public static final int photo_unencrypt=0x7f02002f;
         public static final int pulltorefresh_down_arrow=0x7f020030;
         public static final int pulltorefresh_up_arrow=0x7f020031;
-        public static final int semi_black=0x7f020033;
-        public static final int topbar_background=0x7f020032;
+        public static final int semi_black=0x7f020060;
+        public static final int shadow_right=0x7f020032;
+        public static final int share_apk=0x7f020033;
+        public static final int share_avi=0x7f020034;
+        public static final int share_backward=0x7f020035;
+        public static final int share_bottom_bg_gray=0x7f020036;
+        public static final int share_bottom_menu_line=0x7f020037;
+        public static final int share_btn_bottom=0x7f020038;
+        public static final int share_btn_right_menu=0x7f020039;
+        public static final int share_btn_right_menu_normal=0x7f02003a;
+        public static final int share_btn_right_menu_press=0x7f02003b;
+        public static final int share_btn_share=0x7f02003c;
+        public static final int share_btn_show=0x7f02003d;
+        public static final int share_btn_show_normal=0x7f02003e;
+        public static final int share_btn_show_pressed=0x7f02003f;
+        public static final int share_custom_progress_bar=0x7f020040;
+        public static final int share_doc=0x7f020041;
+        public static final int share_dock_history=0x7f020042;
+        public static final int share_dock_receive=0x7f020043;
+        public static final int share_dock_send=0x7f020044;
+        public static final int share_epub=0x7f020045;
+        public static final int share_file=0x7f020046;
+        public static final int share_file_item_selected=0x7f020047;
+        public static final int share_file_item_unselected=0x7f020048;
+        public static final int share_file_operate_normal=0x7f020049;
+        public static final int share_file_operate_pressed=0x7f02004a;
+        public static final int share_folder=0x7f02004b;
+        public static final int share_ic_launcher=0x7f02004c;
+        public static final int share_image=0x7f02004d;
+        public static final int share_login_border=0x7f02004e;
+        public static final int share_logo_yunpan=0x7f02004f;
+        public static final int share_logo_yunpan_home=0x7f020050;
+        public static final int share_menu_item_bg=0x7f020051;
+        public static final int share_menu_share=0x7f020052;
+        public static final int share_mkv=0x7f020053;
+        public static final int share_pdf=0x7f020054;
+        public static final int share_progress_bar_bg=0x7f020055;
+        public static final int share_progress_bar_progress=0x7f020056;
+        public static final int share_rar=0x7f020057;
+        public static final int share_shadow_right=0x7f020058;
+        public static final int share_title_bar_bg=0x7f020059;
+        public static final int share_title_bar_bg_gray=0x7f02005a;
+        public static final int share_title_menu_bg=0x7f02005b;
+        public static final int share_title_menu_current=0x7f02005c;
+        public static final int share_txt=0x7f02005d;
+        public static final int share_zip=0x7f02005e;
+        public static final int topbar_background=0x7f02005f;
     }
     public static final class id {
         public static final int allfile=0x7f05002a;
@@ -152,6 +203,7 @@ containing a value of this type.
         public static final int layoutcontactphoto=0x7f050025;
         public static final int layoutshareallfile=0x7f050028;
         public static final int like=0x7f050029;
+        public static final int lv_files=0x7f050053;
         public static final int mycardavatar=0x7f05001e;
         public static final int mycardinfolist=0x7f05001f;
         public static final int passwordET=0x7f050024;
@@ -194,6 +246,20 @@ containing a value of this type.
         public static final int pull_to_refresh_text=0x7f05004c;
         public static final int sendmycard=0x7f050021;
         public static final int share=0x7f05002b;
+        public static final int share_backward=0x7f050055;
+        public static final int share_button_share=0x7f050058;
+        public static final int share_dock_bar=0x7f050059;
+        public static final int share_dock_history=0x7f05005c;
+        public static final int share_dock_receive=0x7f05005b;
+        public static final int share_dock_send=0x7f05005a;
+        public static final int share_file_item_icon=0x7f05004f;
+        public static final int share_file_item_info=0x7f050052;
+        public static final int share_file_item_name=0x7f050051;
+        public static final int share_file_item_share=0x7f050050;
+        public static final int share_file_list=0x7f05005d;
+        public static final int share_title=0x7f050056;
+        public static final int share_title_back=0x7f050057;
+        public static final int top_bar=0x7f050054;
         public static final int usernameET=0x7f050023;
         public static final int webview=0x7f050004;
     }
@@ -218,21 +284,81 @@ containing a value of this type.
         public static final int photo_main_list_item=0x7f030011;
         public static final int photo_password=0x7f030012;
         public static final int photo_pull_to_refresh_header=0x7f030013;
+        public static final int share_file_item=0x7f030014;
+        public static final int share_fragment_files=0x7f030015;
+        public static final int share_main=0x7f030016;
     }
     public static final class string {
+        public static final int action_settings=0x7f07000c;
         /**   common start 
          */
         public static final int app_name=0x7f070003;
         public static final int authKey=0x7f070005;
         public static final int authName=0x7f070004;
         public static final int authSecret=0x7f070006;
+        public static final int btn_add_accounts=0x7f070028;
+        public static final int btn_download=0x7f070024;
+        public static final int btn_more=0x7f070025;
+        public static final int btn_quick_register=0x7f070029;
+        public static final int btn_share=0x7f070026;
+        public static final int btn_show=0x7f070027;
+        public static final int btn_upload=0x7f070023;
+        public static final int et_account_hint=0x7f07002a;
+        public static final int et_password_hint=0x7f07002b;
+        /**   photo start 
+  photo end 
+  contact start 
+  contact end 
+  share start 
+         */
+        public static final int hello_world=0x7f07000b;
         public static final int loginMargin=0x7f070009;
+        public static final int login_to_cloud=0x7f07000d;
         public static final int passwordHint=0x7f070008;
         public static final int pull_to_refresh_pull_label=0x7f070000;
         public static final int pull_to_refresh_refreshing_label=0x7f070002;
         public static final int pull_to_refresh_release_label=0x7f070001;
+        public static final int share_back=0x7f07002e;
+        public static final int share_dock_history=0x7f070031;
+        public static final int share_dock_receive=0x7f070030;
+        public static final int share_dock_send=0x7f07002f;
+        public static final int share_title_name=0x7f07002d;
+        public static final int title_activity_main=0x7f07002c;
+        public static final int tv_account=0x7f07000e;
+        public static final int tv_file_msg=0x7f070015;
+        public static final int tv_file_name=0x7f070014;
+        public static final int tv_file_op_delete=0x7f070016;
+        public static final int tv_file_op_download=0x7f070017;
+        public static final int tv_file_op_more=0x7f070019;
+        public static final int tv_file_op_share=0x7f070018;
+        public static final int tv_forget_password=0x7f070010;
+        public static final int tv_menu_account=0x7f07001a;
+        public static final int tv_menu_auto_backup=0x7f07001c;
+        public static final int tv_menu_connect=0x7f07001f;
+        public static final int tv_menu_history=0x7f07001e;
+        public static final int tv_menu_logout=0x7f070022;
+        public static final int tv_menu_msg=0x7f070013;
+        public static final int tv_menu_reward=0x7f070020;
+        public static final int tv_menu_setting=0x7f070021;
+        public static final int tv_menu_space=0x7f07001b;
+        public static final int tv_menu_title=0x7f070012;
+        public static final int tv_menu_transfer=0x7f07001d;
+        public static final int tv_my_cloud=0x7f070011;
+        public static final int tv_password=0x7f07000f;
         public static final int username=0x7f07000a;
         public static final int usernameHint=0x7f070007;
+    }
+    public static final class style {
+        /**  继承 
+         */
+        public static final int accountButtonStyle=0x7f080002;
+        public static final int accountEditText=0x7f080000;
+        public static final int buttonBarButtonStyle=0x7f080001;
+        public static final int menuItem=0x7f080005;
+        public static final int menuItemIcon=0x7f080006;
+        public static final int menuItemTitle=0x7f080007;
+        public static final int menuTitle=0x7f080003;
+        public static final int operationBtn=0x7f080004;
     }
     public static final class styleable {
         /** Attributes that can be used with a PullToRefresh.
