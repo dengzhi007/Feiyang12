@@ -89,10 +89,50 @@
         		style="@android:style/TextAppearance.Widget.TextView"/>
         
     	</LinearLayout>
+    	
+        
+        <TextView 
+        	android:background="#B8B8B8"
+        	android:layout_width="fill_parent"
+        	android:layout_height="1dip"/>
+        
+        <LinearLayout 
+            android:id="@+id/captchalayout"
+        	android:layout_width="fill_parent"
+        	android:layout_height="40dip"
+        	android:orientation="horizontal"
+        	android:visibility="invisible">"
+    
+    		<ImageView 
+        		android:src="@drawable/login2_passwd"
+        		android:background="#ffffff"
+        		android:layout_width="50dip"
+        		android:layout_height="fill_parent"
+        		android:layout_gravity="center"
+        		android:padding="3dip"/>
+    
+    		<TextView 
+        		android:background="#B8B8B8"
+        		android:layout_width="1dip"
+        		android:layout_height="fill_parent"/>
+    
+    		<EditText 
+        		android:id="@+id/passwordET"
+        		android:layout_width="fill_parent"
+        		android:layout_height="fill_parent"
+        		android:hint="请输入验证码"
+        		android:password="true"
+        		android:layout_gravity="center_vertical"
+        		android:background="#fefefe"
+        		android:textColor="#000000"
+        		android:paddingLeft="5dip"
+        		style="@android:style/TextAppearance.Widget.TextView"/>
+        
+    	</LinearLayout>
     
         <LinearLayout  
         	android:layout_width="fill_parent"
-        	android:layout_height="20dip"
+        	android:layout_height="0dip"
         	android:orientation="horizontal">
         
     	</LinearLayout>

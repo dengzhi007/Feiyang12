@@ -34,7 +34,7 @@ public class ContactDetailActivity extends Activity {
 		
 		int contact_select= (Integer) getIntent().getExtras().get("contact_select");
 
-		contact_avatar=GlobalsUtil.avatars.get(contact_select);
+		contact_avatar=GlobalsUtil.contactAvatars.get(contact_select);
 		contact_name=GlobalsUtil.contactNames.get(contact_select);
 		contact_detail=(ArrayList<String>) getIntent().getExtras().get("contact_detail");
 		

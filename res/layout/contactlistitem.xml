@@ -11,6 +11,7 @@
         android:src="@drawable/contactlistitem_avatar"
         android:id="@+id/contactlistitem_avatar"
         android:layout_gravity="center"
+        android:layout_centerVertical="true"
         android:padding="8dip"/>
     
     <LinearLayout 
@@ -39,14 +40,16 @@
     
 
     
-    <Button 
-        android:layout_width="30dip"
-        android:layout_height="30dip"
-        android:id="@+id/contactlistitem_cloud"
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/contactlistitem_select"
         android:layout_alignParentRight="true"
+        android:layout_gravity="center_vertical"
         android:gravity="center_vertical"
-        android:padding="20dip"
-        android:layout_margin="10dip"/>
+        android:layout_margin="10dip"
+        style="@android:style/TextAppearance.Widget.TextView"/>
+       
     
     
 

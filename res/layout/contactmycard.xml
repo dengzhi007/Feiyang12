@@ -30,7 +30,6 @@
         	android:layout_height="wrap_content"
         	android:id="@+id/mycardavatar"
         	android:layout_gravity="center"
-        	android:paddingBottom="50dp"
         	android:src="@drawable/main_avatar"/>
     
    	  	<ListView 
