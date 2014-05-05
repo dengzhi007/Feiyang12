@@ -1,6 +1,10 @@
 package com.qihoo.feiyang.directory;
 
 import com.qihoo.feiyang.R;
+import com.qihoo.feiyang.contact.ContactActivity;
+import com.qihoo.feiyang.favorite.FavoriteFileActivity;
+import com.qihoo.feiyang.picture.PictureClassifyActivity;
+import com.qihoo.feiyang.share.ShareActivity;
 import com.qihoo.yunpan.sdk.android.config.YunpanSDKConfig;
 import com.qihoo.yunpan.sdk.android.config.YunpanSDKConstants;
 import com.qihoo.yunpan.sdk.android.http.action.UserIntfLogin;
@@ -10,14 +14,20 @@ import com.qihoo.yunpan.sdk.android.model.IYunpanInterface;
 import com.qihoo.yunpan.sdk.android.task.LoginYunpanAction;
 
 import android.app.Activity;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -27,15 +37,16 @@ public class DirectoryActivity extends FragmentActivity implements IYunpanInterf
 	private TextView text_dock_send = null;
 	private TextView text_dock_receive = null;
 	private TextView text_dock_history = null;
+	
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
         setContentView(R.layout.directory_main);
         
+        
         text_dock_send = (TextView) findViewById(R.id.directory_dock_send);
-        //text_dock_receive = (TextView) findViewById(R.id.directory_dock_receive);
-        //text_dock_history = (TextView) findViewById(R.id.directory_dock_history);
 		
         view_file_list = (ViewPager) findViewById(R.id.directory_file_list);
         
@@ -44,6 +55,29 @@ public class DirectoryActivity extends FragmentActivity implements IYunpanInterf
         
     }
 	
+    public void OnSwitch(View source){
+    	Intent intentSwitch = null;
+    	switch(source.getId()){
+    		case R.id.directory_switch_share: 
+    			intentSwitch = new Intent(DirectoryActivity.this, ShareActivity.class);
+    			this.startActivity(intentSwitch);
+    			break;
+    		case R.id.directory_switch_contact: 
+    			intentSwitch = new Intent(DirectoryActivity.this, ContactActivity.class);
+    			this.startActivity(intentSwitch);
+    			break;
+    		case R.id.directory_switch_favorite: 
+    			intentSwitch = new Intent(DirectoryActivity.this, FavoriteFileActivity.class);
+    			this.startActivity(intentSwitch);
+    			break;
+    		case R.id.directory_switch_photo: 
+    			intentSwitch = new Intent(DirectoryActivity.this, PictureClassifyActivity.class);
+    			this.startActivity(intentSwitch);
+    			break;
+    	}
+    }
+    
+    
     public class OnDockChangeListener implements OnPageChangeListener{
 
 		@Override

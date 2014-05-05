@@ -20,7 +20,7 @@
 	        android:layout_centerInParent="true"
 	        android:layout_alignParentLeft="true"
 	        android:layout_marginLeft="5dp"
-	        android:background="@drawable/share_backward"/>
+	        android:background="@drawable/backward"/>
 	
 	    <TextView
 	        android:id="@+id/share_title"

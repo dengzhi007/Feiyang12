@@ -1,0 +1,32 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    tools:context=".MainActivity" >
+
+    <RelativeLayout
+        android:id="@+id/top_bar"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:background="@color/white" >
+
+	    <ImageView
+	        android:id="@+id/share_history_search_wating"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_above="@+id/share_history_search_text"
+	        android:src="@drawable/team_logo"
+	        android:layout_centerInParent="true"/>
+	    <TextView
+	        android:id="@+id/share_history_search_text"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_centerInParent="true"
+	        android:layout_marginTop="10dp"
+	        android:textSize="25dp"
+	        android:textColor="@color/history"
+	        android:text="分享历史将会记录在这里…" />
+    </RelativeLayout>
+
+</RelativeLayout>
