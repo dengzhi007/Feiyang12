@@ -23,7 +23,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:src="@drawable/main_avatar"
-                android:padding="2dip"
+                android:layout_margin="4dip"
                 android:layout_gravity="center"
                 android:scaleType="fitCenter"
                 android:clickable="true"
@@ -35,14 +35,15 @@
                 
         	<TextView 
         	    android:id="@+id/mainnickname"
-        	    android:paddingLeft="5dip"
+        	    android:padding="5dip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/username"
                 android:textColor="#FFFFFF"
                 android:gravity="bottom"
+                android:layout_gravity="bottom"
                 android:textSize="30dp"
-                android:layout_gravity="center"/> 
+                /> 
                 
         </LinearLayout>
                 
@@ -54,7 +55,7 @@
             android:layout_height="30dp"
             android:text="云盘空间: ...T/ total T"
             android:textColor="#FFFFFF"
-            android:layout_gravity="center"
+            android:paddingLeft="5dp"
             android:layout_marginBottom="10dp"/>  
  
         
@@ -122,7 +123,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/main_like"
                 android:onClick="onClickOfPCS"
-                android:text="收藏    "
+                android:text="收藏夹   "
                 android:textColor="#0099FF"
                 android:textSize="20dp"
                 android:paddingBottom="1dip"

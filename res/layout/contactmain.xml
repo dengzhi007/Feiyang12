@@ -48,9 +48,10 @@
             
             <ImageView 
                 android:id="@+id/contact_dir"
-                android:layout_width="fill_parent"
-            	android:layout_height="wrap_content"
+                android:layout_width="30dp"
+            	android:layout_height="30dp"
             	android:clickable="true"
+            	android:layout_gravity="center"
             	android:src="@drawable/contactbottom_dir"
             	android:onClick="onClickOfContactBottomSetting"/>
             
@@ -72,9 +73,10 @@
             
             <ImageView 
                 android:id="@+id/contact_quickshare"
-                android:layout_width="fill_parent"
-            	android:layout_height="wrap_content"
+                android:layout_width="30dp"
+            	android:layout_height="30dp"
             	android:clickable="true"
+            	android:layout_gravity="center"
             	android:src="@drawable/contactbottom_quickshare"
             	android:onClick="onClickOfContactBottomSetting"/>
             
@@ -96,16 +98,17 @@
             
             <ImageView 
                 android:id="@+id/contact_favourite"
-                android:layout_width="fill_parent"
-            	android:layout_height="wrap_content"
+                android:layout_width="30dp"
+            	android:layout_height="30dp"
             	android:clickable="true"
+            	android:layout_gravity="center"
             	android:src="@drawable/contactbottom_favourite"
             	android:onClick="onClickOfContactBottomSetting"/>
             
             <TextView 
                 android:layout_width="fill_parent"
             	android:layout_height="wrap_content"
-                android:text="收藏"
+                android:text="收藏夹"
                 android:textColor="#0099FF"
                 android:gravity="center"/>
             
@@ -119,17 +122,18 @@
         	android:orientation="vertical">
             
             <ImageView 
-                android:id="@+id/contact_setting"
-                android:layout_width="fill_parent"
-            	android:layout_height="wrap_content"
+                android:id="@+id/contact_photolibrary"
+                android:layout_width="30dp"
+            	android:layout_height="30dp"
             	android:clickable="true"
-            	android:src="@drawable/contactbottom_setting"
+            	android:layout_gravity="center"
+            	android:src="@drawable/photo_library"
             	android:onClick="onClickOfContactBottomSetting"/>
             
             <TextView 
                 android:layout_width="fill_parent"
             	android:layout_height="wrap_content"
-                android:text="设置"
+                android:text="图库"
                 android:textColor="#0099FF"
                 android:gravity="center"/>
             

@@ -124,6 +124,8 @@ public class FindFragment extends Fragment{
                 		intentConfirm.setClass(getActivity(), FileReceivedConfrim.class);
                 		getActivity().startActivity(intentConfirm);
                     }
+                    
+
                 }
 	        }
 	    }
