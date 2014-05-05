@@ -3,16 +3,27 @@ package com.qihoo.feiyang.contact;
 import java.util.ArrayList;
 
 import com.qihoo.feiyang.R;
+import com.qihoo.feiyang.util.GlobalsUtil;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 public class ContactDetailActivity extends Activity {
 	
+	private Bitmap contact_avatar=null;
+	private String contact_name=null;
 	private ArrayList<String> contact_detail=null;
 	
 	@Override
@@ -21,20 +32,20 @@ public class ContactDetailActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.contactdetail);
 		
-		String contact_name=(String) getIntent().getExtras().get("contact_name");
-		String phone_number=(String) getIntent().getExtras().get("phone_number");
-		//ArrayList<String> contact_detail=(ArrayList<String>) getIntent().getExtras().get("contact_detail");
+		int contact_select= (Integer) getIntent().getExtras().get("contact_select");
+
+		contact_avatar=GlobalsUtil.avatars.get(contact_select);
+		contact_name=GlobalsUtil.contactNames.get(contact_select);
+		contact_detail=(ArrayList<String>) getIntent().getExtras().get("contact_detail");
 		
-		contact_detail=new ArrayList<String>();
-		contact_detail.add(phone_number);
-		contact_detail.add("qihoo360");
-		contact_detail.add("xxxxx@gmail.com");
+		ImageView avatar=(ImageView) findViewById(R.id.contactdetail_avatar);
+		avatar.setImageBitmap(contact_avatar);
 		
-		TextView contact=(TextView) findViewById(R.id.contactdetail_name);
-		contact.setText(contact_name);
+		TextView name=(TextView) findViewById(R.id.contactdetail_name);
+		name.setText(contact_name);
 		
-		ListView content=(ListView) findViewById(R.id.contactdetail);
-		content.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,contact_detail));
+		ListView detail=(ListView) findViewById(R.id.contactdetail);
+		detail.setAdapter(new MyAdapter(this));
 		
 	}
 	
@@ -43,4 +54,50 @@ public class ContactDetailActivity extends Activity {
 		finish();
 		
 	}
+	
+	private class MyAdapter extends BaseAdapter{
+		
+		private LayoutInflater inflater;
+		
+		public MyAdapter(Context context){
+			this.inflater = LayoutInflater.from(context);
+		}
+
+		@Override
+		public int getCount() {
+			// TODO Auto-generated method stub
+			return contact_detail.size();
+		}
+
+		@Override
+		public Object getItem(int position) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public long getItemId(int position) {
+			// TODO Auto-generated method stub
+			return position;
+		}
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			// TODO Auto-generated method stub
+			
+			if(convertView==null){
+				convertView = inflater.inflate(R.layout.contactdetaillistitem, null);
+			}
+
+
+			TextView detail = (TextView) convertView.findViewById(R.id.contactdetaillistitem);
+			
+			detail.setText(contact_detail.get(position));
+
+
+			return convertView;
+		}
+		
+	}
+
 }

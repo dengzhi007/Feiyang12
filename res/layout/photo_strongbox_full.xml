@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+    <android.support.v4.view.ViewPager android:id="@+id/photo_full_imageView"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="center"
+	        	android:scaleType="centerInside"
+        	 />
+    
+    <LinearLayout 
+        android:id="@+id/photo_info"
+        android:gravity="top"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="top"
+        android:background="@drawable/photo_top">
+        <RelativeLayout android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            >
+            <LinearLayout android:id="@+id/photo_return"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_width="50dp"
+                android:background="@android:color/transparent">
+                <ImageView 
+	                android:layout_height="35dp"
+	                android:layout_width="match_parent"
+	                android:layout_gravity="center"
+	                android:src="@drawable/backward"
+	                />
+            </LinearLayout>
+            
+	        <TextView android:id="@+id/photo_name"
+	            android:layout_width="wrap_content"
+	            android:layout_height="match_parent"
+	            android:layout_centerInParent="true"
+	            android:gravity="center"
+	            android:textColor="@color/white"
+	            android:textSize="20dp"
+	            />
+	        <TextView android:id="@+id/photo_index" 
+	            android:layout_width="wrap_content"
+	            android:layout_height="match_parent"
+	            android:layout_alignParentRight="true"
+	            android:textColor="@color/white"
+	            android:gravity="center"
+	            android:textSize="20dp"
+	            />
+        </RelativeLayout>
+     </LinearLayout>
+     
+    <LinearLayout android:id="@+id/photo_unencrypt"
+	    android:gravity="bottom"
+	    android:layout_gravity="bottom"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical"
+	    android:background="@drawable/photo_bottom">
+        <ImageView android:src="@drawable/photo_unencrypt"
+               android:layout_width="wrap_content"
+            	android:layout_height="30dp"
+            	android:layout_gravity="center"
+            	/>
+           <TextView android:text="解密"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_gravity="center" 
+		    android:textColor="@color/blue"
+		   android:gravity="center"/>
+    </LinearLayout>
+    
+
+</FrameLayout>

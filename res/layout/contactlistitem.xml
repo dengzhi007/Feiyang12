@@ -14,23 +14,25 @@
         android:padding="8dip"/>
     
     <LinearLayout 
+       
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
-        android:layout_centerInParent="true"
-        android:gravity="center"
         android:orientation="vertical"
+        android:layout_centerInParent="true"
         android:paddingLeft="5dip">
         
         <TextView     
     		android:layout_height="wrap_content" 
     		android:layout_width="wrap_content"  
     		android:id="@+id/contactlistitem_name"
+    		android:text="老实人"
     		android:textColor="#000000"/>  
     	
     	<TextView     
     		android:layout_height="wrap_content" 
     		android:layout_width="wrap_content"  
     		android:textColor="#000000"
+    		android:text="18611752594"
     		android:id="@+id/contactlistitem_phone"/>
         
     </LinearLayout>
@@ -38,11 +40,11 @@
 
     
     <Button 
-        android:layout_width="50dip"
-        android:layout_height="50dip"
-        android:background="@drawable/contactlistitem_cloud_yes"
+        android:layout_width="30dip"
+        android:layout_height="30dip"
         android:id="@+id/contactlistitem_cloud"
         android:layout_alignParentRight="true"
+        android:gravity="center_vertical"
         android:padding="20dip"
         android:layout_margin="10dip"/>
     

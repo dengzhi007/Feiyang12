@@ -8,65 +8,63 @@
     <LinearLayout  
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="0.31"
         android:orientation="vertical"
         android:background="@drawable/main_banner"
         android:padding="10dip">
         
         <LinearLayout 
             android:layout_width="fill_parent"
-        	android:layout_height="150dip"
+        	android:layout_height="wrap_content"
         	android:orientation="horizontal">
         	
         	<com.qihoo.feiyang.RoundedImageView
+        	    android:id="@+id/mainavatar"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:src="@drawable/main_avatar"
                 android:padding="2dip"
                 android:layout_gravity="center"
-                android:scaleType="fitCenter">
+                android:scaleType="fitCenter"
+                android:clickable="true"
+                android:onClick="onClickOfMainAvatar">
             
         	</com.qihoo.feiyang.RoundedImageView>
                 
             
                 
         	<TextView 
+        	    android:id="@+id/mainnickname"
         	    android:paddingLeft="5dip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/username"
                 android:textColor="#FFFFFF"
-                android:gravity="center"
+                android:gravity="bottom"
                 android:textSize="30dp"
                 android:layout_gravity="center"/> 
                 
-        	</LinearLayout>
-                
-        <LinearLayout  
-        	android:layout_width="fill_parent"
-        	android:layout_height="wrap_content"
-        	android:orientation="horizontal"
-        	android:paddingTop="10dip">
-        	
-            <TextView 
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:text="云盘空间:    "
-                android:layout_gravity="center"/>  
-                
-            <TextView 
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:text="...T/ total T"
-                android:layout_gravity="center"/>        
-        	
         </LinearLayout>
+                
+
+        	
+        <TextView 
+            android:id="@+id/mainyunsize"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="云盘空间: ...T/ total T"
+            android:textColor="#FFFFFF"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"/>  
+ 
         
         
     </LinearLayout>
 	
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.69"
         android:orientation="horizontal"
         android:layout_margin="50dip" 
         android:gravity="center_horizontal">
@@ -74,7 +72,7 @@
         <LinearLayout
             android:id="@+id/layoutcontactphoto"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:layout_weight="1"
             android:orientation="vertical"
             android:paddingRight="2dip">
@@ -111,7 +109,7 @@
         <LinearLayout
             android:id="@+id/layoutshareallfile"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:layout_weight="1"
             android:orientation="vertical"
             android:paddingLeft="2dip" >

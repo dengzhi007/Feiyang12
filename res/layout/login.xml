@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/login2_back"
+    android:orientation="vertical" >
+    
+    <LinearLayout  
+        android:layout_width="fill_parent"
+        android:layout_height="120dip"
+        android:orientation="horizontal"
+        >
+        
+    </LinearLayout>
+    
+    <!--  login layout -->
+    <LinearLayout  
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="50dip">
+        
+        <LinearLayout  
+        	android:layout_width="fill_parent"
+        	android:layout_height="40dip"
+        	android:orientation="horizontal"
+        	>
+        
+    		<ImageView 
+        		android:src="@drawable/login2_account"
+        		android:background="#ffffff"
+        		android:layout_width="50dip"
+      		    android:layout_height="fill_parent"
+        		android:layout_gravity="center"
+        		android:padding="3dip"/>
+    
+    		<TextView 
+        		android:background="#B8B8B8"
+        		android:layout_width="1dip"
+        		android:layout_height="fill_parent"/>
+    
+    		<EditText 
+        		android:id="@+id/usernameET"
+        		android:layout_width="fill_parent"
+        		android:layout_height="fill_parent"
+        		android:hint="@string/usernameHint"
+        		android:layout_gravity="center_vertical"
+        		android:background="#fefefe"
+        		android:textColor="#000000"
+        		android:paddingLeft="5dip"
+        		style="@android:style/TextAppearance.Widget.TextView"/>
+        
+    	</LinearLayout>
+    
+        <TextView 
+        	android:background="#B8B8B8"
+        	android:layout_width="fill_parent"
+        	android:layout_height="1dip"/>
+        
+        <LinearLayout 
+        	android:layout_width="fill_parent"
+        	android:layout_height="40dip"
+        	android:orientation="horizontal"
+        	>
+    
+    		<ImageView 
+        		android:src="@drawable/login2_passwd"
+        		android:background="#ffffff"
+        		android:layout_width="50dip"
+        		android:layout_height="fill_parent"
+        		android:layout_gravity="center"
+        		android:padding="3dip"/>
+    
+    		<TextView 
+        		android:background="#B8B8B8"
+        		android:layout_width="1dip"
+        		android:layout_height="fill_parent"/>
+    
+    		<EditText 
+        		android:id="@+id/passwordET"
+        		android:layout_width="fill_parent"
+        		android:layout_height="fill_parent"
+        		android:hint="@string/passwordHint"
+        		android:password="true"
+        		android:layout_gravity="center_vertical"
+        		android:background="#fefefe"
+        		android:textColor="#000000"
+        		android:paddingLeft="5dip"
+        		style="@android:style/TextAppearance.Widget.TextView"/>
+        
+    	</LinearLayout>
+    
+        <LinearLayout  
+        	android:layout_width="fill_parent"
+        	android:layout_height="20dip"
+        	android:orientation="horizontal">
+        
+    	</LinearLayout>
+    
+    	<Button 
+        	android:background="@drawable/login2_ok_back"
+        	android:layout_width="fill_parent"
+        	android:layout_height="40dp"
+        	android:text="确认登录"
+        	android:textColor="#FFFFFF"
+        	android:onClick="onClickOfLogin"/>
+        
+    </LinearLayout>
+    
+    
+    
+
+</LinearLayout>

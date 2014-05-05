@@ -10,6 +10,7 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
      
@@ -43,11 +44,12 @@
             android:name=".picture.DirectoryPictureActivity"
             />
         <activity 
-            android:name=".picture.StrongBoxPassWordActivity"/>
+            android:name=".picture.FullScreenStrongBoxActivity"/>
         <activity 
             android:name=".picture.PictureStrongBoxActivity"/>
 		<!-- picture end -->
-		        
+		<activity 
+		    android:name=".favorite.FavoriteFileActivity" />        
         <!--  share start-->
         <activity
             android:name=".share.ShareActivity"
