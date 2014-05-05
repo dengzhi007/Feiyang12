@@ -82,8 +82,8 @@ public class MainActivity extends Activity implements IYunpanInterface {
     //login button callback function 
 	public void onClickOfLogin(View source){
 		//Toast.makeText(this, "login btn clicked", 5);
-		String user="181431178@qq.com";
-		String pwd="dzy123456";
+		String user="snser@qq.com";
+		String pwd="qihoo271828";
 		//String user=null;
 		//String pwd=null;
 		EditText username=(EditText) findViewById(R.id.usernameET);
