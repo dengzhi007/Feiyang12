@@ -5,7 +5,7 @@
     android:background="@color/white"
     tools:context=".MainActivity" >
 
-    <RelativeLayout
+    <FrameLayout
         android:id="@+id/top_bar"
 	    android:layout_width="fill_parent"
 	    android:layout_height="50dp"
@@ -17,17 +17,14 @@
 	        android:id="@+id/directory_backward"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:layout_centerInParent="true"
-	        android:layout_alignParentLeft="true"
+	        android:layout_gravity="left|center_vertical"
 	        android:layout_marginLeft="5dp"
-	        android:background="@drawable/share_backward"/>
+	        android:background="@drawable/backward"/>
 	
 	    <TextView
 	        android:id="@+id/directory_title"
 	        android:layout_width="fill_parent"
 	        android:layout_height="fill_parent"
-	        android:layout_toRightOf="@+id/directory_title_back"
-	        android:layout_toLeftOf="@+id/directory_button_favorite"
 	        android:gravity="center"
 	        android:textSize="20dp"
 	        android:textColor="@color/white"
@@ -37,11 +34,10 @@
 	        android:id="@+id/directory_button_favorite"
 	        android:layout_width="30dp"
 	        android:layout_height="30dp"
-	        android:layout_centerInParent="true"
-	        android:layout_alignParentRight="true"
+	        android:layout_gravity="right|center_vertical"
 	        android:layout_marginRight="8dp"
 	        android:background="@drawable/directory_btn_favorite"/>    
-    </RelativeLayout>
+    </FrameLayout>
     
     <LinearLayout
         android:id="@+id/directory_dock_bar"
@@ -56,8 +52,7 @@
         <TextView
             android:id="@+id/directory_dock_send"
             style="@style/menuTitle"
-            android:background="@drawable/share_title_menu_current"
-            android:text="@string/share_dock_send"
+            android:background="@drawable/share_title_menu_bg"
             android:textColor="@color/blue" />
     </LinearLayout>
 

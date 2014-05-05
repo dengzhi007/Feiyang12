@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="500dp"
+    android:layout_height="wrap_content"
     android:background="#ffffff"
     
     android:orientation="vertical" >
@@ -19,76 +19,30 @@
         android:layout_gravity="center"/>
     
     <LinearLayout 
-        android:id="@+id/contactmycardbottom"
-        android:layout_width="fill_parent"
-    	android:layout_height="50dp"
-    	android:layout_alignParentBottom="true"
-    	android:orientation="horizontal" 
-    	android:layout_marginLeft="50dp"
-    	android:layout_marginRight="50dp"
-    	android:layout_marginBottom="70dp">
-        
-        <Button 
-            android:id="@+id/cancelmycard"
-            android:layout_width="wrap_content"
-        	android:layout_height="fill_parent"
-        	android:layout_weight="1"
-        	android:text="取消"
-        	android:textSize="20dp"
-        	android:textColor="#ffffff"
-        	android:layout_marginRight="20dp"
-        	android:background="#cc0000"
-        	
-        	android:onClick="onClickOfSendMyCard"/>
-        
-        
-        
-        <Button 
-            android:id="@+id/sendmycard"
-            android:layout_width="wrap_content"
-        	android:layout_height="fill_parent"
-        	android:layout_weight="1"
-        	android:text="发送"
-        	android:textSize="20dp"
-        	android:textColor="#ffffff"
-        	android:layout_marginLeft="20dp"
-        	android:background="#00cc66"
-        	android:onClick="onClickOfSendMyCard"/>
-        
-        
-    </LinearLayout>
-    
-    
-    <LinearLayout 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/contactmycardtop"
-        android:layout_above="@id/contactmycardbottom"
         android:orientation="vertical"
-        android:padding="40dp">
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"        
+        android:layout_marginBottom="70dp">
         
         <ImageView 
-        	android:layout_width="100dp"
-        	android:layout_height="100dp"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:paddingTop="20dp"
         	android:id="@+id/mycardavatar"
         	android:layout_gravity="center"
         	android:src="@drawable/main_avatar"/>
-        
-        <TextView 
-            android:layout_width="wrap_content"
-        	android:layout_height="50dp"
-        	android:gravity="center"
-        	android:id="@+id/mycardavatar"
-        	android:layout_gravity="center"/>
     
    	  	<ListView 
         	android:id="@+id/mycardinfolist"
         	android:layout_width="wrap_content"
         	android:layout_height="wrap_content"
-        	android:layout_gravity="center"
+         	android:gravity="center"
         	android:divider="#cccccc"
         	android:dividerHeight="1px"
-        	android:padding="5dip">
+        	>
         
     	</ListView>
         
@@ -96,6 +50,40 @@
     
     
     
-
+    <LinearLayout 
+        android:layout_width="fill_parent"
+    	android:layout_height="60dp"
+    	android:layout_alignParentBottom="true"
+    	android:orientation="horizontal" 
+    	android:layout_marginLeft="50dp"
+    	android:layout_marginRight="50dp"
+    	android:paddingBottom="35dp">
+        
+        <Button 
+            android:id="@+id/cancelmycard"
+            android:layout_width="wrap_content"
+        	android:layout_height="match_parent"
+        	android:layout_weight="1"
+        	android:text="取消"
+        	android:textColor="#ffffff"
+        	android:layout_marginRight="20dp"
+        	android:background="#cc0000"
+        	android:onClick="onClickOfSendMyCard"/>
+        
+        
+        
+        <Button 
+            android:id="@+id/sendmycard"
+            android:layout_width="wrap_content"
+        	android:layout_height="match_parent"
+        	android:layout_weight="1"
+        	android:text="发送"
+        	android:textColor="#ffffff"
+        	android:layout_marginLeft="20dp"
+        	android:background="#00cc66"
+        	android:onClick="onClickOfSendMyCard"/>
+        
+        
+    </LinearLayout>
 
 </RelativeLayout>

@@ -3,6 +3,8 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="#ffffff"
+    android:gravity="center"
+    android:layout_gravity="center"
     android:orientation="horizontal" >
     
     <TextView 
@@ -15,7 +17,10 @@
         android:layout_width="wrap_content"
         android:layout_weight="1"
         android:layout_height="fill_parent"
-        android:text="手机"
+        android:paddingRight="5dp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:textSize="20dp"
         android:textColor="#000000" />
     
     <TextView 
@@ -29,7 +34,10 @@
         android:layout_height="fill_parent"
         android:layout_weight="4"
         android:text="13858011543"
+        android:textSize="20dp"
         android:textColor="#000000"
+        android:gravity="center"
+        android:layout_gravity="center"
         android:background="#fefefe"
         style="@android:style/TextAppearance.Widget.TextView"/>
     

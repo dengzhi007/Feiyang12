@@ -47,7 +47,7 @@ public class ContactChangeInfoCheckActivity extends Activity {
 		setContentView(R.layout.contactchangeinfocheck);
 
 		checklist= new ArrayList<Boolean>();
-		for(int i=0;i<GlobalsUtil.contactChangeInfo.length;i++){
+		for(int i=0;i<GlobalsUtil.contactChangeInfo.size();i++){
 			checklist.add(false);
 		}
 		
@@ -78,7 +78,7 @@ public class ContactChangeInfoCheckActivity extends Activity {
 		case R.id.contactchange_selectall:
 			System.out.println("setting btn : contact change select all");
 			
-			for(int i=0;i<GlobalsUtil.contactChangeInfo.length;i++){
+			for(int i=0;i<checklist.size();i++){
 				checklist.set(i, true);
 			}
 			
@@ -96,14 +96,14 @@ public class ContactChangeInfoCheckActivity extends Activity {
 				if(checklist.get(i)){
 					
 					changes++;
-					System.out.println(GlobalsUtil.contactChangeInfo[i]+ "changed");
+					System.out.println(GlobalsUtil.contactChangeInfo.get(i)+ "changed");
 					//change local contacts
 					ArrayList<ContentProviderOperation> operations = new ArrayList<ContentProviderOperation>(); 
                     ContentProviderOperation operation = ContentProviderOperation.newInsert(Uri.parse("content://com.android.contacts/raw_contacts")).withValue("_id", null).build(); 
 					operations.add(operation); 
-                    operation = ContentProviderOperation.newInsert(Uri.parse("content://com.android.contacts/data")).withValueBackReference("raw_contact_id", 0).withValue("data2", GlobalsUtil.contactChangeInfo[i]).withValue("mimetype", "vnd.android.cursor.item/name").build(); 
+                    operation = ContentProviderOperation.newInsert(Uri.parse("content://com.android.contacts/data")).withValueBackReference("raw_contact_id", 0).withValue("data2", GlobalsUtil.contactChangeInfo.get(i)).withValue("mimetype", "vnd.android.cursor.item/name").build(); 
 					operations.add(operation); 
-                    operation = ContentProviderOperation.newInsert(Uri.parse("content://com.android.contacts/data")).withValueBackReference("raw_contact_id", 0).withValue("data1", GlobalsUtil.contactChangePhone[i]).withValue("data2", "2").withValue("mimetype", "vnd.android.cursor.item/phone_v2").build(); 
+                    operation = ContentProviderOperation.newInsert(Uri.parse("content://com.android.contacts/data")).withValueBackReference("raw_contact_id", 0).withValue("data1", GlobalsUtil.contactChangePhone.get(i)).withValue("data2", "2").withValue("mimetype", "vnd.android.cursor.item/phone_v2").build(); 
                     operations.add(operation); 
                     //operation = ContentProviderOperation.newInsert(Uri.parse("content://com.android.contacts/data")).withValueBackReference("raw_contact_id", 0).withValue("data1", "zq@itcast.cn").withValue("data2", "2").withValue("mimetype", "vnd.android.cursor.item/email_v2").build(); 
                     //operations.add(operation); 
@@ -117,8 +117,8 @@ public class ContactChangeInfoCheckActivity extends Activity {
 						e.printStackTrace();
 					} 
                     
-                    GlobalsUtil.contactNames.add(0,GlobalsUtil.contactChangeInfo[i]);
-        		    GlobalsUtil.contactPhones.add(0,GlobalsUtil.contactChangePhone[i]);
+                    GlobalsUtil.contactNames.add(0,GlobalsUtil.contactChangeInfo.get(i));
+        		    GlobalsUtil.contactPhones.add(0,GlobalsUtil.contactChangePhone.get(i));
         		    GlobalsUtil.contactAvatars.add(0,BitmapFactory.decodeResource(getResources(), R.drawable.contactlistitem_avatar));
         		    GlobalsUtil.contactIds.add(0,(long) 0);
 
@@ -135,7 +135,8 @@ public class ContactChangeInfoCheckActivity extends Activity {
 			break;
 		case R.id.contactchange_ignore:
 			System.out.println("setting btn : contact change ignore");
-			for(int i=0;i<GlobalsUtil.contactChangeInfo.length;i++){
+			
+			for(int i=0;i<checklist.size();i++){
 				checklist.set(i, false);
 			}
 			
@@ -161,7 +162,7 @@ public class ContactChangeInfoCheckActivity extends Activity {
 		@Override
 		public int getCount() {
 			// TODO Auto-generated method stub
-			return GlobalsUtil.contactChangeInfo.length;
+			return GlobalsUtil.contactChangeInfo.size();
 		}
 
 		@Override
@@ -185,8 +186,8 @@ public class ContactChangeInfoCheckActivity extends Activity {
 			TextView info = (TextView) v.findViewById(R.id.contactchangeinfo);
 			CheckBox check = (CheckBox) v.findViewById(R.id.contactchangecheck);
 			
-			time.setText(GlobalsUtil.contactChangeTime[position]);
-			info.setText(GlobalsUtil.contactChangeInfo[position] + " 更新了名片    " + GlobalsUtil.contactChangePhone[position]);
+			time.setText(GlobalsUtil.contactChangeTime.get(position));
+			info.setText(GlobalsUtil.contactChangeInfo.get(position) + " 更新了名片    " + GlobalsUtil.contactChangePhone.get(position));
 			check.setChecked(checklist.get(position));
 			
 			
