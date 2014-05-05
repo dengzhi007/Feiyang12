@@ -3,11 +3,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    <ImageView android:id="@+id/pict_thumb"
-       android:layout_width="match_parent"
-       android:layout_height="80dp" 
-       android:layout_gravity="center"
-       android:background="@color/shadowcolor"/>
+    <FrameLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView android:id="@+id/pict_thumb"
+	       android:layout_width="match_parent"
+	       android:layout_height="100dp" 
+	       android:layout_gravity="center"
+	       android:background="@color/shadowcolor"/>
+        <ImageView android:src="@drawable/photo_folder_type"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="bottom"
+            />
+    </FrameLayout>
     
     <TextView android:id="@+id/pict_dirname"
         android:layout_width="fill_parent"

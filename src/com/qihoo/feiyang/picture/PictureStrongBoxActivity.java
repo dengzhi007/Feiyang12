@@ -51,7 +51,7 @@ public class PictureStrongBoxActivity extends Activity {
 		setContentView(R.layout.photo_password);
 		passwd = (EditText) findViewById(R.id.photo_password);
 		sure = (Button) findViewById(R.id.password_sure);
-
+		
 		sure.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				try_times++;
@@ -71,6 +71,14 @@ public class PictureStrongBoxActivity extends Activity {
 				}
 			}
 		});
+		
+		View backward = findViewById(R.id.photo_return);
+		backward.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				PictureStrongBoxActivity.this.finish();
+			}
+		});
 	}
 	
 	private void hideInputMethod() {
@@ -82,6 +90,8 @@ public class PictureStrongBoxActivity extends Activity {
 	
 	private void initStrongBoxView() {
 		setContentView(R.layout.photo_main);
+		TextView title = (TextView) findViewById(R.id.photo_main_name);
+		title.setText("图片保险箱");
 		refreshGridView = (PullToRefreshGridView) findViewById(R.id.pict_gallery);
 		gridView = refreshGridView.getRefreshableView();
 		AddableAdapter adapter = new StrongBoxAdapter(this, fileLists);
@@ -89,6 +99,13 @@ public class PictureStrongBoxActivity extends Activity {
 		ThumbHandler handler = new ThumbHandler(adapter);
 		LoadFromDBThread thread = new LoadFromDBThread(handler);
 		thread.start();
+		View backward = findViewById(R.id.photo_return);
+		backward.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				PictureStrongBoxActivity.this.finish();
+			}
+		});
 	}
 }
 
@@ -149,11 +166,9 @@ class StrongBoxAdapter extends AddableAdapter {
 		Bitmap map = FileUtil.loadBitmapFromCache(FileUtil.getThumbPicName(nid));
 		String inflater=Context.LAYOUT_INFLATER_SERVICE;
 		LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(inflater);
-		LinearLayout linearLayout = (LinearLayout) layoutInflater.inflate(R.layout.photo_main_list_item, null);
+		LinearLayout linearLayout = (LinearLayout) layoutInflater.inflate(R.layout.photo_dir_list_item, null);
 		ImageView imageView = (ImageView) linearLayout.findViewById(R.id.pict_thumb);
-		TextView textView = (TextView) linearLayout.findViewById(R.id.pict_dirname);
 		imageView.setImageBitmap(map);
-		textView.setText(name);
 		return linearLayout;
 	}
 }
