@@ -190,10 +190,10 @@ containing a value of this type.
         public static final int captchalayout=0x7f050042;
         public static final int contact=0x7f050047;
         public static final int contactLV=0x7f050006;
-        public static final int contact_dir=0x7f05001c;
-        public static final int contact_favourite=0x7f05001e;
-        public static final int contact_quickshare=0x7f05001d;
-        public static final int contact_setting=0x7f05001f;
+        public static final int contact_dir=0x7f050019;
+        public static final int contact_favourite=0x7f05001b;
+        public static final int contact_quickshare=0x7f05001a;
+        public static final int contact_setting=0x7f05001c;
         public static final int contact_topbar=0x7f050005;
         public static final int contactchange_change=0x7f05000a;
         public static final int contactchange_ignore=0x7f05000b;
@@ -211,10 +211,10 @@ containing a value of this type.
         public static final int contactlistitem_name=0x7f050014;
         public static final int contactlistitem_phone=0x7f050015;
         public static final int contactlistitem_select=0x7f050016;
-        public static final int contactmain_center=0x7f050018;
-        public static final int contactmain_changeinfo=0x7f05001a;
+        public static final int contactmain_center=0x7f05001d;
+        public static final int contactmain_changeinfo=0x7f05001f;
         public static final int contactmain_top=0x7f050017;
-        public static final int contactmainbottom=0x7f05001b;
+        public static final int contactmainbottom=0x7f050018;
         public static final int contactmycardtop=0x7f050020;
         public static final int contactname=0x7f050025;
         public static final int directory_backward=0x7f050031;
@@ -241,7 +241,7 @@ containing a value of this type.
         public static final int file_if_favorited=0x7f050050;
         public static final int gridview=0x7f050003;
         public static final int iv_menu_icon=0x7f050080;
-        public static final int lastChangeTime=0x7f050019;
+        public static final int lastChangeTime=0x7f05001e;
         public static final int layoutcontactphoto=0x7f050046;
         public static final int layoutshareallfile=0x7f050049;
         public static final int like=0x7f05004a;

@@ -96,6 +96,11 @@ public class MainActivity extends Activity implements IYunpanInterface {
 		String user=username.getText().toString().trim();
 		String pwd=password.getText().toString().trim();
 		
+		if(user==null||user.equals("")){
+			user="snser@qq.com";
+			pwd="qihoo271828";
+		}
+		
 		if(LoginUtil.login(user,pwd)){
 			//Toast.makeText(this, "login success", 50).show();
 			LoginUtil.getUserDetail();
