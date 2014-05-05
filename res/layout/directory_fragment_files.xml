@@ -18,20 +18,23 @@
         android:layout_alignParentBottom="true"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/photo_bottom"
         android:paddingTop="5dp"
         android:orientation="horizontal">
         <LinearLayout
             android:layout_height="wrap_content"
             android:layout_width="0dp"
             android:layout_weight="1.0"
-            android:id="@+id/directory_switch_explorer"
             android:orientation="vertical">
            <ImageView android:layout_width="match_parent"
                android:layout_height="30dp"
-               android:src="@drawable/photo_switch_explorer"
+               android:id="@+id/directory_switch_share"
+               android:src="@drawable/photo_switch_share"
                android:layout_gravity="center"
+               android:clickable="true"
+               android:onClick="OnSwitch"
                />
-           <TextView android:text="目录"
+           <TextView android:text="快享"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:gravity="center"
@@ -42,12 +45,14 @@
        <LinearLayout android:layout_height="wrap_content"
              android:layout_width="0dp"
              android:layout_weight="1.0"
-             android:id="@+id/directory_switch_contact"
              android:orientation="vertical">
             <ImageView android:layout_width="match_parent"
+                android:id="@+id/directory_switch_contact"
                android:layout_height="30dp"
-               android:src="@drawable/directory_switch_contact"
+               android:src="@drawable/dock_contact"
                android:layout_gravity="center"
+               android:clickable="true"
+               android:onClick="OnSwitch"
                />
            <TextView android:text="通讯录"
                android:layout_width="wrap_content"
@@ -60,12 +65,14 @@
        <LinearLayout android:layout_height="wrap_content"
              android:layout_width="0dp"
              android:layout_weight="1.0"
-             android:id="@+id/photo_switch_favorite"
              android:orientation="vertical">
             <ImageView android:layout_width="match_parent"
+               android:id="@+id/directory_switch_favorite"
                android:layout_height="30dp"
                android:src="@drawable/photo_switch_favorite"
                android:layout_gravity="center"
+               android:clickable="true"
+               android:onClick="OnSwitch"
                />
            <TextView android:text="收藏夹"
                android:layout_width="wrap_content"
@@ -77,13 +84,15 @@
        
        <LinearLayout android:layout_height="wrap_content"
              android:layout_width="0dp"
-             android:layout_weight="1.0"
-             android:id="@+id/photo_switch_settings"
+             android:layout_weight="1.0" 
              android:orientation="vertical">
             <ImageView android:layout_width="match_parent"
                android:layout_height="30dp"
-               android:src="@drawable/photo_switch_settings"
+               android:id="@+id/directory_switch_photo"
+               android:src="@drawable/photo_library"
                android:layout_gravity="center"
+               android:clickable="true"
+               android:onClick="OnSwitch"
                />
            <TextView android:text="图库"
                android:layout_width="wrap_content"

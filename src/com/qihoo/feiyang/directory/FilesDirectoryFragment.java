@@ -4,6 +4,8 @@ import java.io.FileFilter;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.w3c.dom.Text;
+
 import com.qihoo.feiyang.R;
 import com.qihoo.feiyang.util.StrongBoxAndFavoriteUtil;
 import com.qihoo.yunpan.sdk.android.http.action.FileGetNodeList;
@@ -34,6 +36,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class FilesDirectoryFragment extends Fragment implements OnClickListener {
@@ -44,7 +47,8 @@ public class FilesDirectoryFragment extends Fragment implements OnClickListener 
 	private Context context;
 	private static String currentFolderPath = "/";
 	private static FileDirectoyItemAdapter adapter = null;
-	private Boolean isSetFavoriteFlag = false;
+	private static int selectedCount = 0;
+	private TextView textTitle = null;
 	
 	class favoriteItem{
 		String path;
@@ -59,7 +63,6 @@ public class FilesDirectoryFragment extends Fragment implements OnClickListener 
 
 		@Override
 		public boolean equals(Object o) {
-			// TODO Auto-generated method stub
 			if (((favoriteItem)o).path.equals(this.path)
 			    && ((favoriteItem)o).nid.equals(this.nid)
 			    && ((favoriteItem)o).pid.equals(this.pid)){
@@ -69,7 +72,7 @@ public class FilesDirectoryFragment extends Fragment implements OnClickListener 
 		}
 	}
 	
-	List<favoriteItem> shareFileList = new ArrayList<favoriteItem>();
+	static List<favoriteItem> shareFileList = new ArrayList<favoriteItem>();
 	
 	public Boolean isSetFavorite(List<favoriteItem> shareFileList){
 		if (shareFileList.isEmpty()){
@@ -87,7 +90,6 @@ public class FilesDirectoryFragment extends Fragment implements OnClickListener 
 		this.context = context;
 		// TODO Auto-generated constructor stub
 	}
-	
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -96,14 +98,14 @@ public class FilesDirectoryFragment extends Fragment implements OnClickListener 
 		btnFolderBackward = (ImageView)getActivity().findViewById(R.id.directory_backward);
 		btnFavorite = (ImageView)getActivity().findViewById(R.id.directory_button_favorite);
 		btnFolderBackward.setOnClickListener(new FolderBackwardListener());
-		btnFavorite.setOnClickListener(new BtnShareListener());
-		
+		btnFavorite.setOnClickListener(new BtnFavoriteListener());
+		btnFavorite.setVisibility(View.INVISIBLE);
+		textTitle = (TextView)getActivity().findViewById(R.id.directory_title);
 		
 		adapter = FileDirectoyItemAdapter.instance(getActivity(), fileList, this);
 		refreshFileList(currentFolderPath);
 		lv_files.setOnItemClickListener(new FolderClickListener());
 		lv_files.setAdapter(adapter);
-		
 		return view;
 	}
 
@@ -175,6 +177,9 @@ public class FilesDirectoryFragment extends Fragment implements OnClickListener 
 	
 	private void refreshFileList(String rootNodePath) {
 		fileList.clear();
+		shareFileList.clear();
+		selectedCount = 0;
+		btnFavorite.setVisibility(View.INVISIBLE);
 		//遍历文件夹
 		FileNodeList fileNodeList = new FileGetNodeList().getNodeList(rootNodePath);
 		List<YunFile> yunpanFileList = fileNodeList.data.node_list;
@@ -191,12 +196,21 @@ public class FilesDirectoryFragment extends Fragment implements OnClickListener 
 			if (!isFolder){
 				fileInfo = fileSize + " 修改日期:" + fileMTime;
 			}
+			if (StrongBoxAndFavoriteUtil.ifFileIsFavorite(nid)){
+				fileName += " [已收藏]";
+			}
 			fileList.add(new FileDirectoryItem(fileIcon, fileName, fileInfo, isFolder, filePath, nid, pid, false));
 		}
+		if (!currentFolderPath.equals("/")){
+			String s = currentFolderPath.substring(0, currentFolderPath.length() - 1);
+			String currentFolder = s.substring(s.lastIndexOf("/") + 1);
+			textTitle.setText(currentFolder);
+		}else{
+			textTitle.setText("目录");
+		}
+		
 		adapter.notifyDataSetInvalidated();
 	}
-	
-	
 	
 	class FolderClickListener implements OnItemClickListener{
 		@Override
@@ -211,6 +225,9 @@ public class FilesDirectoryFragment extends Fragment implements OnClickListener 
 	class FolderBackwardListener implements OnClickListener{
 		@Override
 		public void onClick(View v) {
+			if (currentFolderPath.equals("/")){
+				((Activity)context).finish();
+			}			
 			String parentFolderPath = "/";
 			if (!currentFolderPath.equals("/")){
 				String s = currentFolderPath.substring(0, currentFolderPath.length() - 1);
@@ -221,26 +238,25 @@ public class FilesDirectoryFragment extends Fragment implements OnClickListener 
 		}
 	}
 	
-	class BtnShareListener implements OnClickListener{
+	class BtnFavoriteListener implements OnClickListener{
 		@Override
 		public void onClick(View v) {
-
-			
-			Log.i("Share", "BtnShareListener");
-			
+			Boolean isSetF = isSetFavorite(shareFileList);
 			for (int i = 0; i != shareFileList.size(); ++i){
 				String path = shareFileList.get(i).path;
 				String nid = shareFileList.get(i).nid;
 				String pid = shareFileList.get(i).pid;
-				if (isSetFavoriteFlag){
-					StrongBoxAndFavoriteUtil.addFileIntoFavorite(path, nid, pid);
+				if (isSetF){
+					Boolean addfresult = StrongBoxAndFavoriteUtil.addFileIntoFavorite(path, nid, pid);
+					Log.i("Share", "addF " + addfresult);
 				}else{
-					StrongBoxAndFavoriteUtil.removeFileFromFavorite(nid);
+					Boolean delfresult = StrongBoxAndFavoriteUtil.removeFileFromFavorite(nid);
+					Log.i("Share", "delF " + delfresult);
 				}
 			}
 			refreshFileList(currentFolderPath);
 			btnFavorite.setBackgroundResource(R.drawable.directory_btn_favorite);
-			if (isSetFavoriteFlag){
+			if (isSetF){
 				Toast.makeText(getActivity(), "添加收藏成功！", Toast.LENGTH_LONG).show();
 			}else{
 				Toast.makeText(getActivity(), "取消收藏成功！", Toast.LENGTH_LONG).show();
@@ -258,20 +274,23 @@ public class FilesDirectoryFragment extends Fragment implements OnClickListener 
 		String pid = fileList.get(index).pid;
 		
 		if (fileList.get(index).isChecked){//add
+			if (++selectedCount == 1){
+				btnFavorite.setVisibility(View.VISIBLE);
+			}
 			shareFileList.add(new favoriteItem(path, nid, pid));
 			checkbox.setBackgroundResource(R.drawable.share_file_item_selected);
-			
 		}else{//del
+			if (--selectedCount == 0){
+				btnFavorite.setVisibility(View.INVISIBLE);
+			}
 			shareFileList.remove(new favoriteItem(path, nid, pid));
 			checkbox.setBackgroundResource(R.drawable.share_file_item_unselected);
 		}
 		
 		if (isSetFavorite(shareFileList)){
-			isSetFavoriteFlag = true;
 			btnFavorite.setBackgroundResource(R.drawable.directory_btn_favorite);
 		}
 		else{
-			isSetFavoriteFlag = false;
 			btnFavorite.setBackgroundResource(R.drawable.directory_btn_notfavorite);
 		}
 	}

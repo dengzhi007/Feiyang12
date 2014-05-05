@@ -36,7 +36,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class FindFragment extends Fragment{
+public class HistoryFragment extends Fragment{
 	//private GridView gv_menu;
 	private Animation animation = null;
 	private Context context = null;
@@ -52,32 +52,32 @@ public class FindFragment extends Fragment{
 	
 	private boolean f = true;
 	
-	public FindFragment(Context context){
+	public HistoryFragment(Context context){
 		this.context = context;
 	}
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.share_receive_file, container, false);
-		
-		image_share_wating = (ImageView)view.findViewById(R.id.share_search_wating);
-		text_share_search = (TextView)view.findViewById(R.id.share_search_text);
-		btn_share = (TextView)view.findViewById(R.id.share_button_share);
-		
-		animation = AnimationUtils.loadAnimation(getActivity(), R.anim.rotate_loading_anim);
-		animation.setInterpolator(new LinearInterpolator());
-		image_share_wating.startAnimation(animation);
-		
-		smsBroadcastReceiver = new SMSBroadcastReceiver();
-		
-		btn_share.setOnClickListener(new OnBtnStartSearchClick());
-		image_share_wating.setVisibility(View.INVISIBLE);
-		
-		//dumpFiles();
-
-		filterMessage = new IntentFilter();
-		filterMessage.addAction(ACTION);
-		filterMessage.setPriority(Integer.MAX_VALUE);
+		View view = inflater.inflate(R.layout.share_history, container, false);
+//		
+//		image_share_wating = (ImageView)view.findViewById(R.id.share_history_search_wating);
+//		text_share_search = (TextView)view.findViewById(R.id.share_search_text);
+//		btn_share = (TextView)view.findViewById(R.id.share_button_share);
+//		
+//		animation = AnimationUtils.loadAnimation(getActivity(), R.anim.rotate_loading_anim);
+//		animation.setInterpolator(new LinearInterpolator());
+//		image_share_wating.startAnimation(animation);
+//		
+//		smsBroadcastReceiver = new SMSBroadcastReceiver();
+//		
+//		btn_share.setOnClickListener(new OnBtnStartSearchClick());
+//		image_share_wating.setVisibility(View.INVISIBLE);
+//		
+//		//dumpFiles();
+//
+//		filterMessage = new IntentFilter();
+//		filterMessage.addAction(ACTION);
+//		filterMessage.setPriority(Integer.MAX_VALUE);
 		//
 		
 		return view;

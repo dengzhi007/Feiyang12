@@ -33,6 +33,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 
 public class FilesFragment extends Fragment implements OnClickListener {
 	private ListView lv_files;
@@ -42,6 +43,8 @@ public class FilesFragment extends Fragment implements OnClickListener {
 	private Context context;
 	private static String currentFolderPath = "/";
 	private static FileItemAdapter adapter = null;
+	private int selectedShareItem = 0;
+	private TextView textTitle = null;
 	
 	public FilesFragment(Context context) {
 		this.context = context;
@@ -57,7 +60,8 @@ public class FilesFragment extends Fragment implements OnClickListener {
 		btnShare = (ImageView)getActivity().findViewById(R.id.share_button_share);
 		btnFolderBackward.setOnClickListener(new FolderBackwardListener());
 		btnShare.setOnClickListener(new BtnShareListener());
-		
+		btnShare.setVisibility(View.INVISIBLE);
+		textTitle = (TextView)getActivity().findViewById(R.id.share_title);
 		
 		adapter = FileItemAdapter.instance(getActivity(), fileList, this);
 		refreshFileList(currentFolderPath);
@@ -135,6 +139,8 @@ public class FilesFragment extends Fragment implements OnClickListener {
 	
 	private void refreshFileList(String rootNodePath) {
 		fileList.clear();
+		selectedShareItem = 0;
+		btnShare.setVisibility(View.INVISIBLE);
 		//遍历文件夹
 		FileNodeList fileNodeList = new FileGetNodeList().getNodeList(rootNodePath);
 		List<YunFile> yunpanFileList = fileNodeList.data.node_list;
@@ -151,10 +157,15 @@ public class FilesFragment extends Fragment implements OnClickListener {
 			}
 			fileList.add(new FileItem(fileIcon, fileName, fileInfo, isFolder, filePath, false));
 		}
+		if (!currentFolderPath.equals("/")){
+			String s = currentFolderPath.substring(0, currentFolderPath.length() - 1);
+			String currentFolder = s.substring(s.lastIndexOf("/") + 1);
+			textTitle.setText(currentFolder);
+		}else{
+			textTitle.setText("目录");
+		}
 		adapter.notifyDataSetInvalidated();
 	}
-	
-	
 	
 	class FolderClickListener implements OnItemClickListener{
 		@Override
@@ -170,6 +181,10 @@ public class FilesFragment extends Fragment implements OnClickListener {
 		@Override
 		public void onClick(View v) {
 			String parentFolderPath = "/";
+			if (currentFolderPath.equals("/")){
+				((Activity)context).finish();
+			}
+			
 			if (!currentFolderPath.equals("/")){
 				String s = currentFolderPath.substring(0, currentFolderPath.length() - 1);
 				parentFolderPath = s.substring(0, s.lastIndexOf("/") + 1);
@@ -218,8 +233,14 @@ public class FilesFragment extends Fragment implements OnClickListener {
 		CheckBox checkbox = (CheckBox)v.findViewById(R.id.share_file_item_share);
 		if (fileList.get((Integer)v.getTag()).isShare){
 			checkbox.setBackgroundResource(R.drawable.share_file_item_selected);
+			if (++selectedShareItem == 1){
+				btnShare.setVisibility(View.VISIBLE);
+			}
 		}else{
 			checkbox.setBackgroundResource(R.drawable.share_file_item_unselected);
+			if (--selectedShareItem == 0){
+				btnShare.setVisibility(View.INVISIBLE);
+			}
 		}
 	}
 
