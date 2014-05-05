@@ -1,10 +1,11 @@
-package com.qihoo.feiyang.share;
+package com.qihoo.feiyang.directory;
 
 import java.io.FileFilter;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.qihoo.feiyang.R;
+import com.qihoo.feiyang.util.StrongBoxAndFavoriteUtil;
 import com.qihoo.yunpan.sdk.android.http.action.FileGetNodeList;
 import com.qihoo.yunpan.sdk.android.http.action.LinkCreateFile;
 import com.qihoo.yunpan.sdk.android.http.model.FileNodeList;
@@ -34,16 +35,51 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 
-public class FilesFragment extends Fragment implements OnClickListener {
+public class FilesDirectoryFragment extends Fragment implements OnClickListener {
 	private ListView lv_files;
-	private static List<FileItem> fileList = new ArrayList<FileItem>();
+	private static List<FileDirectoryItem> fileList = new ArrayList<FileDirectoryItem>();
 	private static ImageView btnFolderBackward = null;
 	private static ImageView btnShare = null;
 	private Context context;
 	private static String currentFolderPath = "/";
-	private static FileItemAdapter adapter = null;
+	private static FileDirectoyItemAdapter adapter = null;
+	private Boolean isSetFavorite = false;
 	
-	public FilesFragment(Context context) {
+	class favoriteItem{
+		String path;
+		String nid;
+		String pid;
+		
+		public favoriteItem(String path, String nid, String pid){
+			this.path = path;
+			this.nid = nid;
+			this.pid = pid;
+		}
+
+		@Override
+		public boolean equals(Object o) {
+			// TODO Auto-generated method stub
+			if (((favoriteItem)o).path.equals(this.path)
+			    && ((favoriteItem)o).nid.equals(this.nid)
+			    && ((favoriteItem)o).pid.equals(this.pid)){
+				return true;
+			}
+			return false;
+		}
+	}
+	
+	List<favoriteItem> shareFileList = new ArrayList<favoriteItem>();
+	
+	public Boolean isSetFavorite(List<favoriteItem> shareFileList){
+		for (int i = 0; i != shareFileList.size(); ++i){
+			if (!StrongBoxAndFavoriteUtil.ifFileIsFavorite(shareFileList.get(i).nid)){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public FilesDirectoryFragment(Context context) {
 		this.context = context;
 		// TODO Auto-generated constructor stub
 	}
@@ -51,15 +87,15 @@ public class FilesFragment extends Fragment implements OnClickListener {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.share_fragment_files, container, false);
+		View view = inflater.inflate(R.layout.directory_fragment_files, container, false);
 		findView(view);
-		btnFolderBackward = (ImageView)getActivity().findViewById(R.id.share_backward);
-		btnShare = (ImageView)getActivity().findViewById(R.id.share_button_share);
+		btnFolderBackward = (ImageView)getActivity().findViewById(R.id.directory_backward);
+		btnShare = (ImageView)getActivity().findViewById(R.id.directory_button_favorite);
 		btnFolderBackward.setOnClickListener(new FolderBackwardListener());
 		btnShare.setOnClickListener(new BtnShareListener());
 		
 		
-		adapter = FileItemAdapter.instance(getActivity(), fileList, this);
+		adapter = FileDirectoyItemAdapter.instance(getActivity(), fileList, this);
 		refreshFileList(currentFolderPath);
 		lv_files.setOnItemClickListener(new FolderClickListener());
 		lv_files.setAdapter(adapter);
@@ -68,7 +104,7 @@ public class FilesFragment extends Fragment implements OnClickListener {
 	}
 
 	private void findView(View v) {
-		lv_files = (ListView) v.findViewById(R.id.lv_files);
+		lv_files = (ListView) v.findViewById(R.id.directory_files);
 	}
 	
 	private String formatFileSize(long fileSizeByte){
@@ -145,11 +181,13 @@ public class FilesFragment extends Fragment implements OnClickListener {
 			String fileSize = formatFileSize(yunpanFileList.get(i).count_size);
 			int fileIcon = getFileIcon(fileName, isFolder);
 			String fileMTime = yunpanFileList.get(i).mtime;
+			String nid = yunpanFileList.get(i).nid;
+			String pid = yunpanFileList.get(i).pid;
 			String fileInfo = "";
 			if (!isFolder){
 				fileInfo = fileSize + " 修改日期:" + fileMTime;
 			}
-			fileList.add(new FileItem(fileIcon, fileName, fileInfo, isFolder, filePath, false));
+			fileList.add(new FileDirectoryItem(fileIcon, fileName, fileInfo, isFolder, filePath, nid, pid, false));
 		}
 		adapter.notifyDataSetInvalidated();
 	}
@@ -183,43 +221,42 @@ public class FilesFragment extends Fragment implements OnClickListener {
 	class BtnShareListener implements OnClickListener{
 		@Override
 		public void onClick(View v) {
+
+			
 			Log.i("Share", "BtnShareListener");
-			StringBuffer sb = new StringBuffer();
-			List<String> shareFileList = new ArrayList<String>();
+
+			List<favoriteItem> shareFileList = new ArrayList<favoriteItem>();
 			String firstFileName = null;
+			Boolean isSetFavorite = false;
 			
 			for (int i = 0; i != fileList.size(); ++i){
-				if (fileList.get(i).isShare){
-					sb.append(fileList.get(i).filePath + "\n");
-					shareFileList.add(fileList.get(i).filePath);
-					if (firstFileName == null){
-						firstFileName = fileList.get(i).fileName;
+				if (fileList.get(i).isChecked){
+					String path = fileList.get(i).fileName;
+					String nid = fileList.get(i).nid;
+					String pid = fileList.get(i).pid;
+					shareFileList.add(new favoriteItem(path, nid, pid));
+					if (!isSetFavorite && !StrongBoxAndFavoriteUtil.ifFileIsFavorite(nid)){
+						isSetFavorite = true;
 					}
 				}
 			}
-			LinkCreateFileData linkInfo = new LinkCreateFile().getFileLink(shareFileList);
-			//好友AAA用360云盘给你分享文件http://yunpan.cn/cccccccccc，提取码：ZZZZ【360】
-//			String msgContent = "我通过360云盘给你分享了 \"" + firstFileName + "\"";
-//			if (shareFileList.size() > 1){
-//				msgContent += ("等" + shareFileList.size() + "三项分享");
-//			}
-//			msgContent += ("，查看链接:http://yunpan.cn/" + linkInfo.data.shorturl + " 提取码:" + linkInfo.data.password);
-			String msgContent = "我用360云盘给你分享文件 http://yunpan.cn/" + linkInfo.data.shorturl
-								+ "，提取码：" + linkInfo.data.password + "【360】";
-			Uri uri = Uri.parse("smsto:");
-    		Intent intent = new Intent(Intent.ACTION_SENDTO, uri);   		
-    		intent.putExtra("sms_body", msgContent);
-    		getActivity().startActivity(intent);
 		}
 	}
 	
 	@Override
 	public void onClick(View v) {//OnCheckboxClick
-		fileList.get((Integer)v.getTag()).isShare ^= true;
-		CheckBox checkbox = (CheckBox)v.findViewById(R.id.share_file_item_share);
-		if (fileList.get((Integer)v.getTag()).isShare){
+		fileList.get((Integer)v.getTag()).isChecked ^= true;
+		CheckBox checkbox = (CheckBox)v.findViewById(R.id.directory_file_item_favorite);
+		int index = (Integer)v.getTag();
+		String path = fileList.get(index).fileName;
+		String nid = fileList.get(index).nid;
+		String pid = fileList.get(index).pid;
+		
+		if (fileList.get(index).isChecked){
+			shareFileList.add(new favoriteItem(path, nid, pid));
 			checkbox.setBackgroundResource(R.drawable.share_file_item_selected);
 		}else{
+			shareFileList.remove(new favoriteItem(path, nid, pid));
 			checkbox.setBackgroundResource(R.drawable.share_file_item_unselected);
 		}
 	}

@@ -2,6 +2,7 @@ package com.qihoo.feiyang;
 
 import com.qihoo.feiyang.R;
 import com.qihoo.feiyang.contact.ContactMainActivity;
+import com.qihoo.feiyang.directory.DirectoryActivity;
 import com.qihoo.feiyang.favorite.FavoriteFileActivity;
 import com.qihoo.feiyang.picture.PictureClassifyActivity;
 import com.qihoo.feiyang.share.ShareActivity;
@@ -147,6 +148,11 @@ public class MainActivity extends Activity implements IYunpanInterface {
 		case R.id.contact:
 			System.out.println("contact btn click");
 			intent=new Intent(MainActivity.this,ContactMainActivity.class);
+			startActivity(intent);
+			break;
+		case R.id.allfile:
+			System.out.println("allfile btn click");
+			intent=new Intent(MainActivity.this,DirectoryActivity.class);
 			startActivity(intent);
 			break;
 		case R.id.share:

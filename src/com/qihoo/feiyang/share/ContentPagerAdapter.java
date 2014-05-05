@@ -13,7 +13,7 @@ public class ContentPagerAdapter extends FragmentPagerAdapter {
 		super(fm);
 		fragments = new Fragment[3];
 		fragments[0] = new FilesFragment(context);
-		fragments[1] = new FilesFragment(context);
+		fragments[1] = new FindFragment(context);
 		fragments[2] = new FilesFragment(context);
 	}
 
