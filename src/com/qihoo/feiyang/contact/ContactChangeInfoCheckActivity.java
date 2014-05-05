@@ -1,5 +1,6 @@
 package com.qihoo.feiyang.contact;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import com.qihoo.feiyang.R;
 import com.qihoo.feiyang.util.GlobalsUtil;
@@ -11,9 +12,14 @@ import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.OperationApplicationException;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.RemoteException;
+import android.provider.ContactsContract;
+import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,9 +88,14 @@ public class ContactChangeInfoCheckActivity extends Activity {
 		case R.id.contactchange_change:
 			System.out.println("setting btn : contact change change");
 			
+			
+			int changes=0;
+			
 			for(int i=0;i<checklist.size();i++){
 				
 				if(checklist.get(i)){
+					
+					changes++;
 					System.out.println(GlobalsUtil.contactChangeInfo[i]+ "changed");
 					//change local contacts
 					ArrayList<ContentProviderOperation> operations = new ArrayList<ContentProviderOperation>(); 
@@ -105,12 +116,22 @@ public class ContactChangeInfoCheckActivity extends Activity {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					} 
-
+                    
+                    GlobalsUtil.contactNames.add(0,GlobalsUtil.contactChangeInfo[i]);
+        		    GlobalsUtil.contactPhones.add(0,GlobalsUtil.contactChangePhone[i]);
+        		    GlobalsUtil.contactAvatars.add(0,BitmapFactory.decodeResource(getResources(), R.drawable.contactlistitem_avatar));
+        		    GlobalsUtil.contactIds.add(0,(long) 0);
 
 				}
 				
 			}
-			Toast.makeText(this, "更新成功", 50).show();
+			if(changes>0){
+				Toast.makeText(this, "更新了"+changes+"个名片", 50).show();
+			}else{
+				Toast.makeText(this, "未选择更新名片", 50).show();
+			}
+			
+		
 			break;
 		case R.id.contactchange_ignore:
 			System.out.println("setting btn : contact change ignore");
@@ -119,8 +140,7 @@ public class ContactChangeInfoCheckActivity extends Activity {
 			}
 			
 			listItemAdapter.notifyDataSetChanged();
-			
-			
+
 			break;
 		
 

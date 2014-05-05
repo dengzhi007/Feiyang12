@@ -4,8 +4,36 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white" >
-    <LinearLayout android:layout_alignParentTop="true"
-        android:layout_above="@+id/favorite_ops"
+    <RelativeLayout android:background="@drawable/photo_top"
+        android:orientation="horizontal"
+        android:layout_height="50dp"
+        android:layout_width="fill_parent"
+        android:id="@+id/favorite_top"
+        android:layout_alignParentTop="true">
+        <LinearLayout android:layout_width="wrap_content"
+           android:layout_height="match_parent"
+           android:id="@+id/favorite_return"
+           android:layout_alignParentLeft="true">
+           <ImageView android:layout_width="match_parent"
+               android:layout_height="30dp"
+               android:src="@drawable/backward"
+               android:layout_gravity="center"/>
+       </LinearLayout>
+       
+        <TextView android:text="收藏夹"
+           android:layout_centerInParent="true"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:textColor="@color/white"
+           android:gravity="center"
+           android:textSize="20dp"/>
+       
+        
+    </RelativeLayout>
+    
+    <LinearLayout android:layout_centerInParent="true"
+        android:layout_below="@+id/favorite_top"
+        android:layout_above="@+id/favorite_bottom"
         android:layout_height="wrap_content"
         android:layout_width="fill_parent">
         <ListView android:id="@+id/favorite_list"
@@ -13,18 +41,123 @@
             android:layout_height="match_parent"/>
     </LinearLayout>
     
-    <LinearLayout android:id="@+id/favorite_ops"
-        android:layout_height="wrap_content"
+    <FrameLayout android:id="@+id/favorite_bottom"
         android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:gravity="center"
-        android:orientation="horizontal">
-        <TextView android:id="@+id/favorite_cancel"
+        android:background="@drawable/photo_bottom">
+        <LinearLayout android:id="@+id/favorite_layout_cancel"
+	        android:layout_height="wrap_content"
+	        android:layout_width="fill_parent"
+	        android:gravity="center"
+	        android:layout_gravity="center"
+	        android:visibility="invisible"
+	        android:orientation="horizontal">
+	        <LinearLayout android:id="@+id/favorite_cancel"
+	            android:gravity="center"
+	            android:layout_gravity="center"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:orientation="horizontal"
+	            >
+	            <ImageView android:src="@drawable/favorite_cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"/>
+		        <TextView android:layout_height="wrap_content"
+		            android:layout_width="wrap_content"
+		            android:layout_gravity="center"
+		            android:textSize="20dp"
+		            android:textColor="@color/blue"
+		            android:gravity="center"
+		            android:text="取消收藏"/>
+	        </LinearLayout>
+	    </LinearLayout>
+	    
+        <LinearLayout android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_gravity="center"
             android:gravity="center"
-            android:text="取消收藏"/>
-    </LinearLayout>
+	        android:layout_gravity="center"
+            android:id="@+id/favorite_layout_navigate"
+            android:orientation="horizontal">
+            <LinearLayout android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+	        android:layout_gravity="center"
+                android:id="@+id/favorite_switch_explorer">
+                <ImageView android:src="@drawable/photo_switch_explorer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"/>
+                <TextView android:text="目录"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:textColor="@color/blue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+            
+            <LinearLayout android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+	        android:layout_gravity="center"
+                android:orientation="vertical"
+                android:id="@+id/favorite_switch_share">
+                <ImageView android:src="@drawable/photo_switch_share"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"/>
+                <TextView android:text="快享"
+                    android:gravity="center"
+                    android:textColor="@color/blue"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+            
+            <LinearLayout android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+	        android:layout_gravity="center"
+                android:id="@+id/favorite_switch_photo">
+                <ImageView android:src="@drawable/photo_library"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"/>
+                <TextView android:text="图库"
+                    android:gravity="center"
+                    android:textColor="@color/blue"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+            
+            <LinearLayout android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+	        	android:layout_gravity="center"
+                android:orientation="vertical"
+                android:id="@+id/favorite_switch_home">
+                <ImageView android:src="@drawable/home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"/>
+                <TextView android:text="主页"
+                    android:gravity="center"
+                    android:textColor="@color/blue"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+            
+        </LinearLayout>
+    </FrameLayout>
+    
 
 </RelativeLayout>
