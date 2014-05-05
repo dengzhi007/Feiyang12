@@ -1,0 +1,97 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white" >
+       
+    <ListView
+        android:id="@+id/directory_files"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/directory_classfy_bottom"
+        android:divider="@color/light_gray"
+        android:dividerHeight="1dp" >
+    </ListView>
+    
+    <LinearLayout 
+        android:id="@+id/directory_classfy_bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1.0"
+            android:id="@+id/photo_switch_explorer"
+            android:orientation="vertical">
+           <ImageView android:layout_width="match_parent"
+               android:layout_height="30dp"
+               android:src="@drawable/photo_switch_explorer"
+               android:layout_gravity="center"
+               />
+           <TextView android:text="目录"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:gravity="center"
+               android:layout_gravity="center"
+               android:textColor="@color/blue"/>
+       </LinearLayout>
+       
+       <LinearLayout android:layout_height="wrap_content"
+             android:layout_width="0dp"
+             android:layout_weight="1.0"
+             android:id="@+id/photo_switch_share"
+             android:orientation="vertical">
+            <ImageView android:layout_width="match_parent"
+               android:layout_height="30dp"
+               android:src="@drawable/photo_switch_share"
+               android:layout_gravity="center"
+               />
+           <TextView android:text="快享"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:gravity="center"
+               android:layout_gravity="center"
+               android:textColor="@color/blue"/>
+       </LinearLayout>
+       
+       <LinearLayout android:layout_height="wrap_content"
+             android:layout_width="0dp"
+             android:layout_weight="1.0"
+             android:id="@+id/photo_switch_favorite"
+             android:orientation="vertical">
+            <ImageView android:layout_width="match_parent"
+               android:layout_height="30dp"
+               android:src="@drawable/photo_switch_favorite"
+               android:layout_gravity="center"
+               />
+           <TextView android:text="收藏"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:gravity="center"
+               android:layout_gravity="center"
+               android:textColor="@color/blue"/>
+       </LinearLayout>
+       
+       <LinearLayout android:layout_height="wrap_content"
+             android:layout_width="0dp"
+             android:layout_weight="1.0"
+             android:id="@+id/photo_switch_settings"
+             android:orientation="vertical">
+            <ImageView android:layout_width="match_parent"
+               android:layout_height="30dp"
+               android:src="@drawable/photo_switch_settings"
+               android:layout_gravity="center"
+               />
+           <TextView android:text="设置"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:gravity="center"
+               android:layout_gravity="center"
+               android:textColor="@color/blue"/>
+       </LinearLayout>
+   </LinearLayout>
+
+</RelativeLayout>

@@ -30,6 +30,13 @@
             </intent-filter>
         </activity>
         
+        <!--  directory start-->
+        <activity
+            android:name=".directory.DirectoryActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <!--  directory end -->
+        
          <!--  picture start -->
 		<activity 
             android:name=".picture.MainPicureActivity"
@@ -56,9 +63,12 @@
             android:label="@string/app_name" >
         </activity>
         <activity 
-            android:name=".share.FileReceivedConfrim" />
-        <!-- android:theme="@android:style/Theme.Dialog" -->
+            android:name=".share.FileReceivedConfrim" 
+            android:theme="@android:style/Theme.Dialog"/>
         <!--  share end -->
+        
+        
+        
         <!--  contact start -->
         
         <activity
