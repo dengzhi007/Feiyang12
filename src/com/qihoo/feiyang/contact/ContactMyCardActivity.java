@@ -3,6 +3,7 @@ package com.qihoo.feiyang.contact;
 import java.util.ArrayList;
 
 import com.qihoo.feiyang.R;
+import com.qihoo.feiyang.util.GlobalsUtil;
 
 import android.app.Activity;
 import android.content.Context;
@@ -16,13 +17,15 @@ import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class ContactMyCardActivity extends Activity {
 	
-	String[] cardinfo=new String[]{"手机","家庭","公司","住址"};
+	
 	
 	ArrayList<String> contactDetail=null;
 	
@@ -38,16 +41,12 @@ public class ContactMyCardActivity extends Activity {
 		
 		setContentView(R.layout.contactmycard);
 		
-		
-		
-		contactName=(String) getIntent().getExtras().get("contact_name");
-		phoneNum=(String) getIntent().getExtras().get("phone_number");
-		
-		
+		ImageView avatar=(ImageView)findViewById(R.id.mycardavatar);
+		avatar.setImageBitmap(GlobalsUtil.mainAvatar);
 		
 		ListView content=(ListView) findViewById(R.id.mycardinfolist);
 		content.setAdapter(new MyAdapter(this));
-		//content.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,cardinfo));
+		
 	}
 	
 	public void onClickOfSendMyCard(View source){
@@ -59,6 +58,7 @@ public class ContactMyCardActivity extends Activity {
 			case R.id.sendmycard:
 				System.out.println("send my card btn click");
 				//send sms
+				/*
 				SmsManager smsManager = SmsManager.getDefault();
 				String smsContent="老实人的名片：\n手机：xxxxxxxxxxx\n电话：xxxxxxxx\n公司：xxxxxxxx\n地址：xxxxxxxxxx";
                 if(phoneNum!=null) {
@@ -68,7 +68,16 @@ public class ContactMyCardActivity extends Activity {
                 
                 Toast.makeText(this, "发送成功", 50).show();
                 
-                finish();
+                
+                */
+				System.out.println("contact main cloud contact btn click");
+				
+				Intent intent=new Intent(ContactMyCardActivity.this,ContactActivity.class);
+
+				startActivity(intent);
+				
+				finish();
+				
 				break;
 
 			default:
@@ -88,7 +97,7 @@ private class MyAdapter extends BaseAdapter{
 		@Override
 		public int getCount() {
 			// TODO Auto-generated method stub
-			return cardinfo.length;
+			return GlobalsUtil.cardinfo.length;
 		}
 
 		@Override
@@ -106,21 +115,17 @@ private class MyAdapter extends BaseAdapter{
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 			// TODO Auto-generated method stub
-			View v = inflater.inflate(R.layout.contactmycardlistitem, null);
-			
-			//ImageView avatar = (ImageView) v.findViewById(R.id.contactlistitem_avatar);
-			TextView name = (TextView) v.findViewById(R.id.contactname);
-			TextView phone = (TextView) v.findViewById(R.id.contactdetail);
-			
-			
-			
-			name.setText(cardinfo[position]);
-			phone.setText("xxxxxxxxxx");
-			
-			
-			
-			
-			return v;
+
+			if(convertView==null)
+				convertView=inflater.inflate(R.layout.contactmycardlistitem, null);
+
+			TextView info = (TextView) convertView.findViewById(R.id.contactname);
+			EditText phone = (EditText) convertView.findViewById(R.id.contactdetail);
+
+			info.setText(GlobalsUtil.cardinfo[position]);
+			phone.setText(GlobalsUtil.phoneinfo[position]);
+
+			return convertView;
 		}
 		
 	}

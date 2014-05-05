@@ -13,7 +13,9 @@
     <string name="loginMargin">20dip</string>
     <string name="username">暴走的用户</string>
     
-    
+    <!--  directory start -->
+    	<string name="directory_title_name">目录</string>
+	<!--  directory end -->
     
     <!--  photo start -->
 	<!--  photo end -->
@@ -63,5 +65,10 @@
 	    <string name="share_dock_send">分享文件</string>
 	    <string name="share_dock_receive">接收文件</string>
 	    <string name="share_dock_history">历史记录</string>
+	    <string name="share_search_text">开始查收小伙伴的分享?</string>
+	    <string name="share_search_abort">搞起</string>
+	    <string name="share_file_received_dump">转存到云盘</string>
+	    <string name="share_file_received_ignore">忽略</string>
+	    <string name="share_file_received_info">您的朋友XXX向您分享了XXXXXX等N个文件</string>
 	<!--  share end -->
 </resources>

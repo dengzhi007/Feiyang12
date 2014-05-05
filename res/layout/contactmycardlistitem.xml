@@ -2,27 +2,40 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="#ffffff"
     android:orientation="horizontal" >
-    
+    
     <TextView 
-        android:id="@+id/contactname"
-        android:layout_width="wrap_content"
+        android:layout_width="1dp"
         android:layout_height="fill_parent"
-        android:text="手机"
-        android:textColor="#0000ff"/>
-    
-    <TextView 
-        android:layout_width="1px"
-        android:layout_height="fill_parent"
-       
         android:textColor="#cccccc"/>
     
+    <TextView
+        android:id="@+id/contactname"
+        android:layout_width="wrap_content"
+        android:layout_weight="1"
+        android:layout_height="fill_parent"
+        android:text="手机"
+        android:textColor="#000000" />
+    
     <TextView 
+        android:layout_width="1dp"
+        android:layout_height="fill_parent"
+        android:textColor="#cccccc"/>
+    
+    <EditText 
         android:id="@+id/contactdetail"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
+        android:layout_weight="4"
         android:text="13858011543"
-        android:textColor="#0000ff"/>
+        android:textColor="#000000"
+        android:background="#fefefe"
+        style="@android:style/TextAppearance.Widget.TextView"/>
     
+    <TextView 
+        android:layout_width="1dp"
+        android:layout_height="fill_parent"
+        android:textColor="#cccccc"/>
 
 </LinearLayout>

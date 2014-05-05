@@ -101,7 +101,7 @@ public final class StrongBoxAndFavoriteUtil {
 	 * @param pid 文件的pid
 	 * @return
 	 */
-	public static boolean addFileIntoFavorite(String fullName, String nid, String pid) {
+	public static boolean addFileIntoFavorite(String fullName, String nid, String pid) {//
 		checkNull();
 		ContentValues values = new ContentValues();
 		values.put(KEY_FULLNAME, fullName);
@@ -118,7 +118,7 @@ public final class StrongBoxAndFavoriteUtil {
 		return true;
 	}
 	
-	public static boolean removeFileFromFavorite(String nid) {
+	public static boolean removeFileFromFavorite(String nid) {//
 		checkNull();
 		writeDB.delete(TABLE_FAVORITE_NAME, KEY_NID + "=?", new String[]{nid});
 		return true;
@@ -143,7 +143,7 @@ public final class StrongBoxAndFavoriteUtil {
 		return list;
 	}
 	
-	public static boolean ifFileIsFavorite(String nid) {
+	public static boolean ifFileIsFavorite(String nid) {//
 		Cursor cursor = readDB.query(TABLE_FAVORITE_NAME, null, KEY_NID + "=?", new String[]{nid}, null, null, null);
 		cursor.moveToFirst();
 		boolean result = !cursor.isAfterLast();

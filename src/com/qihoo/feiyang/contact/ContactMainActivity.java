@@ -88,6 +88,12 @@ public class ContactMainActivity extends Activity {
 		startActivity(intent);
 	}
 	
-	
+	public void onClickOfcontactmain_MyCard(View source){
+		System.out.println("contact main my card btn click");
+		
+		Intent intent=new Intent(ContactMainActivity.this,ContactMyCardActivity.class);
+
+		startActivity(intent);
+	}
 
 }
