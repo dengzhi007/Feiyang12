@@ -176,7 +176,6 @@ public class FilesFragment extends Fragment implements OnClickListener {
 			}
 			currentFolderPath = parentFolderPath;
 			refreshFileList(currentFolderPath);
-			//adapter.
 		}
 	}
 	

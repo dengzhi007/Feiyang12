@@ -34,16 +34,17 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.Toast;
 
 public class FilesDirectoryFragment extends Fragment implements OnClickListener {
 	private ListView lv_files;
 	private static List<FileDirectoryItem> fileList = new ArrayList<FileDirectoryItem>();
 	private static ImageView btnFolderBackward = null;
-	private static ImageView btnShare = null;
+	private static ImageView btnFavorite = null;
 	private Context context;
 	private static String currentFolderPath = "/";
 	private static FileDirectoyItemAdapter adapter = null;
-	private Boolean isSetFavorite = false;
+	private Boolean isSetFavoriteFlag = false;
 	
 	class favoriteItem{
 		String path;
@@ -71,6 +72,9 @@ public class FilesDirectoryFragment extends Fragment implements OnClickListener 
 	List<favoriteItem> shareFileList = new ArrayList<favoriteItem>();
 	
 	public Boolean isSetFavorite(List<favoriteItem> shareFileList){
+		if (shareFileList.isEmpty()){
+			return true;
+		}
 		for (int i = 0; i != shareFileList.size(); ++i){
 			if (!StrongBoxAndFavoriteUtil.ifFileIsFavorite(shareFileList.get(i).nid)){
 				return true;
@@ -90,9 +94,9 @@ public class FilesDirectoryFragment extends Fragment implements OnClickListener 
 		View view = inflater.inflate(R.layout.directory_fragment_files, container, false);
 		findView(view);
 		btnFolderBackward = (ImageView)getActivity().findViewById(R.id.directory_backward);
-		btnShare = (ImageView)getActivity().findViewById(R.id.directory_button_favorite);
+		btnFavorite = (ImageView)getActivity().findViewById(R.id.directory_button_favorite);
 		btnFolderBackward.setOnClickListener(new FolderBackwardListener());
-		btnShare.setOnClickListener(new BtnShareListener());
+		btnFavorite.setOnClickListener(new BtnShareListener());
 		
 		
 		adapter = FileDirectoyItemAdapter.instance(getActivity(), fileList, this);
@@ -214,7 +218,6 @@ public class FilesDirectoryFragment extends Fragment implements OnClickListener 
 			}
 			currentFolderPath = parentFolderPath;
 			refreshFileList(currentFolderPath);
-			//adapter.
 		}
 	}
 	
@@ -224,21 +227,23 @@ public class FilesDirectoryFragment extends Fragment implements OnClickListener 
 
 			
 			Log.i("Share", "BtnShareListener");
-
-			List<favoriteItem> shareFileList = new ArrayList<favoriteItem>();
-			String firstFileName = null;
-			Boolean isSetFavorite = false;
 			
-			for (int i = 0; i != fileList.size(); ++i){
-				if (fileList.get(i).isChecked){
-					String path = fileList.get(i).fileName;
-					String nid = fileList.get(i).nid;
-					String pid = fileList.get(i).pid;
-					shareFileList.add(new favoriteItem(path, nid, pid));
-					if (!isSetFavorite && !StrongBoxAndFavoriteUtil.ifFileIsFavorite(nid)){
-						isSetFavorite = true;
-					}
+			for (int i = 0; i != shareFileList.size(); ++i){
+				String path = shareFileList.get(i).path;
+				String nid = shareFileList.get(i).nid;
+				String pid = shareFileList.get(i).pid;
+				if (isSetFavoriteFlag){
+					StrongBoxAndFavoriteUtil.addFileIntoFavorite(path, nid, pid);
+				}else{
+					StrongBoxAndFavoriteUtil.removeFileFromFavorite(nid);
 				}
+			}
+			refreshFileList(currentFolderPath);
+			btnFavorite.setBackgroundResource(R.drawable.directory_btn_favorite);
+			if (isSetFavoriteFlag){
+				Toast.makeText(getActivity(), "添加收藏成功！", Toast.LENGTH_LONG).show();
+			}else{
+				Toast.makeText(getActivity(), "取消收藏成功！", Toast.LENGTH_LONG).show();
 			}
 		}
 	}
@@ -252,12 +257,22 @@ public class FilesDirectoryFragment extends Fragment implements OnClickListener 
 		String nid = fileList.get(index).nid;
 		String pid = fileList.get(index).pid;
 		
-		if (fileList.get(index).isChecked){
+		if (fileList.get(index).isChecked){//add
 			shareFileList.add(new favoriteItem(path, nid, pid));
 			checkbox.setBackgroundResource(R.drawable.share_file_item_selected);
-		}else{
+			
+		}else{//del
 			shareFileList.remove(new favoriteItem(path, nid, pid));
 			checkbox.setBackgroundResource(R.drawable.share_file_item_unselected);
+		}
+		
+		if (isSetFavorite(shareFileList)){
+			isSetFavoriteFlag = true;
+			btnFavorite.setBackgroundResource(R.drawable.directory_btn_favorite);
+		}
+		else{
+			isSetFavoriteFlag = false;
+			btnFavorite.setBackgroundResource(R.drawable.directory_btn_notfavorite);
 		}
 	}
 

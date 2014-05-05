@@ -16,6 +16,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
@@ -41,6 +42,7 @@ public class DirectoryActivity extends FragmentActivity implements IYunpanInterf
         
         view_file_list.setAdapter(new ContentPagerDirecotryAdapter(getSupportFragmentManager(), this));
         view_file_list.setOnPageChangeListener(new OnDockChangeListener());
+        //view_file_list.setVisibility(View.GONE);
         
     }
 	
