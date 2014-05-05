@@ -126,12 +126,13 @@ public final class StrongBoxAndFavoriteUtil {
 	
 	public static List<StrongBoxFile> getAllStrongBoxPictures() {
 		checkNull();
+		List<StrongBoxFile> list = new ArrayList<StrongBoxFile>();
+		if (readDB == null) return list;
 		Cursor cursor = readDB.query(TABLE_STRONG_NAME, null, null, null, null, null, null);
 		int nameIndex = cursor.getColumnIndex(KEY_NAME);
 		int fullNameIndex = cursor.getColumnIndex(KEY_FULLNAME);
 		int nidIndex = cursor.getColumnIndex(KEY_NID);
 		int pidIndex = cursor.getColumnIndex(KEY_PID);
-		List<StrongBoxFile> list = new ArrayList<StrongBoxFile>();
 		for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
 			String name = cursor.getString(nameIndex);
 			String fullName = cursor.getString(fullNameIndex);

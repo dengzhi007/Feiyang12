@@ -47,7 +47,7 @@
         android:layout_alignParentBottom="true"
         android:background="@drawable/photo_bottom">
         <LinearLayout android:id="@+id/favorite_layout_cancel"
-	        android:layout_height="wrap_content"
+	        android:layout_height="60dp"
 	        android:layout_width="fill_parent"
 	        android:gravity="center"
 	        android:layout_gravity="center"
@@ -84,16 +84,14 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:gravity="center"
-	        android:layout_gravity="center"
                 android:id="@+id/favorite_switch_explorer">
                 <ImageView android:src="@drawable/photo_switch_explorer"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
                     android:layout_gravity="center"/>
                 <TextView android:text="目录"
-                    android:gravity="center"
-                    android:layout_gravity="center"
+                    android:gravity="center|bottom"
+                    android:layout_gravity="center|bottom"
                     android:textColor="@color/blue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
@@ -102,8 +100,6 @@
             <LinearLayout android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"
-	        android:layout_gravity="center"
                 android:orientation="vertical"
                 android:id="@+id/favorite_switch_share">
                 <ImageView android:src="@drawable/photo_switch_share"
@@ -111,9 +107,9 @@
                     android:layout_height="30dp"
                     android:layout_gravity="center"/>
                 <TextView android:text="快享"
-                    android:gravity="center"
+                    android:gravity="center|bottom"
                     android:textColor="@color/blue"
-                    android:layout_gravity="center"
+                    android:layout_gravity="center|bottom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
@@ -122,17 +118,15 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:gravity="center"
-	        android:layout_gravity="center"
                 android:id="@+id/favorite_switch_photo">
                 <ImageView android:src="@drawable/photo_library"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
                     android:layout_gravity="center"/>
                 <TextView android:text="图库"
-                    android:gravity="center"
+                    android:gravity="center|bottom"
                     android:textColor="@color/blue"
-                    android:layout_gravity="center"
+                    android:layout_gravity="center|bottom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
@@ -140,18 +134,16 @@
             <LinearLayout android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"
-	        	android:layout_gravity="center"
                 android:orientation="vertical"
-                android:id="@+id/favorite_switch_home">
-                <ImageView android:src="@drawable/home"
+                android:id="@+id/favorite_switch_contact">
+                <ImageView android:src="@drawable/dock_contact"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
                     android:layout_gravity="center"/>
-                <TextView android:text="主页"
-                    android:gravity="center"
+                <TextView android:text="通讯录"
+                    android:gravity="center|bottom"
                     android:textColor="@color/blue"
-                    android:layout_gravity="center"
+                    android:layout_gravity="center|bottom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
