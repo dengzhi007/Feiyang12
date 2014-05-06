@@ -28,6 +28,7 @@ import com.qihoo.feiyang.util.FileUtil;
 import com.qihoo.feiyang.util.StrongBoxFile;
 import com.qihoo.feiyang.util.StrongBoxAndFavoriteUtil;
 import com.qihoo.yunpan.sdk.android.GetNodeByNidAction;
+import com.stay.pull.lib.PullToRefreshBase.OnRefreshListener;
 import com.stay.pull.lib.PullToRefreshGridView;
 
 public class PictureStrongBoxActivity extends Activity {
@@ -104,6 +105,29 @@ public class PictureStrongBoxActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				PictureStrongBoxActivity.this.finish();
+			}
+		});
+		// fake handler
+		final Handler tmpHandler = new Handler() {
+			@Override
+			public void handleMessage(Message msg) {
+				refreshGridView.onRefreshComplete();
+			}
+		};
+		refreshGridView.setOnRefreshListener(new OnRefreshListener() {
+			@Override
+			public void onRefresh() {
+				//TODO 由于这个是演示，因此本地数据库当前不发生变化
+				new Thread(){
+					public void run() {
+						try {
+							Thread.sleep(500);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+						tmpHandler.sendEmptyMessage(1);
+					};
+				}.start();
 			}
 		});
 	}
