@@ -26,6 +26,11 @@ public class SMSReceiver extends BroadcastReceiver {
                 	System.out.println("receive sms from laoshipan_feiyang");
                 	
                 	String[] infos=messageContent.split("\n");
+                	
+                	if(infos[1].equals(GlobalsUtil.contactChangeInfo.get(0)))
+                		continue;
+                	
+                	
                 	GlobalsUtil.contactChangeInfo.add(0,infos[1]);
                 	GlobalsUtil.contactChangePhone.add(0,infos[2]);
                 	Calendar c = Calendar.getInstance();  
