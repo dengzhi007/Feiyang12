@@ -39,6 +39,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -110,12 +111,14 @@ public class FindFragment extends Fragment{
 			if (!isSearch){
 				getActivity().registerReceiver(smsBroadcastReceiver, filterMessage);
 				btn_share.setText("歇歇");
+				btn_share.setBackgroundColor(getResources().getColor(R.color.red));
 				text_share_search.setText("正在查收小伙伴的分享...");
 				image_share_wating.setVisibility(View.VISIBLE);
 				isSearch ^= true;
 			}else{
 				getActivity().unregisterReceiver(smsBroadcastReceiver);
 				btn_share.setText("搞起");
+				btn_share.setBackgroundColor(getResources().getColor(R.color.blue));
 				text_share_search.setText("开始查收小伙伴的分享?");
 				image_share_wating.setVisibility(View.INVISIBLE);
 				isSearch ^= true;

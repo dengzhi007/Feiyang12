@@ -74,6 +74,7 @@ public class FileReceivedConfrim extends Activity{
         btn_ignore.setOnClickListener(new OnIgnoreClickListener());
         
 		shorturl = subStr(messageContent, "360云盘给你分享文件 http://yunpan.cn/", " ，");
+        //shorturl = subStr(messageContent, "360云盘给你分享文件 http://yunpan.cn/", " ");
 		linkPassword = subStr(messageContent, "提取码：", "【");
         
 		try {
@@ -233,16 +234,16 @@ public class FileReceivedConfrim extends Activity{
 		//get actual url
 		shareLink = httpGetMethod("http://yunpan.cn/" + shortUrl, referer);
 		Log.i("Share", shareLink);
-		
-		//verify share password
-		List<BasicNameValuePair> paramsVerifyPassword = new LinkedList<BasicNameValuePair>();
-		paramsVerifyPassword.add(new BasicNameValuePair("shorturl", shortUrl));
-		paramsVerifyPassword.add(new BasicNameValuePair("linkpassword", linkPassword));
-		String paramVerifyPassword = URLEncodedUtils.format(paramsVerifyPassword, "UTF-8");
-		String verifyHost = "http" + subStr(shareLink, "http", "lk/") + "share/verifyPassword";
-		String verifyPasswordPage = httpGetMethod(verifyHost + "?" + paramVerifyPassword, referer);
-		Log.i("Share", verifyPasswordPage);
-		
+		if (!linkPassword.equals("")){
+			//verify share password
+			List<BasicNameValuePair> paramsVerifyPassword = new LinkedList<BasicNameValuePair>();
+			paramsVerifyPassword.add(new BasicNameValuePair("shorturl", shortUrl));
+			paramsVerifyPassword.add(new BasicNameValuePair("linkpassword", linkPassword));
+			String paramVerifyPassword = URLEncodedUtils.format(paramsVerifyPassword, "UTF-8");
+			String verifyHost = "http" + subStr(shareLink, "http", "lk/") + "share/verifyPassword";
+			String verifyPasswordPage = httpGetMethod(verifyHost + "?" + paramVerifyPassword, referer);
+			Log.i("Share", verifyPasswordPage);
+		}
 		//get share file info
 		String shareFilePage = httpGetMethod(shareLink, shareLink);
 		previewSign = subStr(shareFilePage, "previewSign: '", "'");
@@ -330,6 +331,7 @@ public class FileReceivedConfrim extends Activity{
 			//转存到我的网盘
 			//好友AAA用360云盘给你分享文件 http://yunpan.cn/cccccccccc，提取码：ZZZZ【360】
 			//Toast.makeText(FileReceivedConfrim.this, surl + "\n" + pwd, Toast.LENGTH_LONG).show();
+			Toast.makeText(FileReceivedConfrim.this, "正在努力的转存中...", Toast.LENGTH_LONG).show();
 			Log.i("Share", "surl=" + shorturl);
 			Log.i("Share", "pwd=" + linkPassword);
 			dumpFiles(shorturl, linkPassword);

@@ -219,7 +219,7 @@ public class FilesFragment extends Fragment implements OnClickListener {
 //			}
 //			msgContent += ("，查看链接:http://yunpan.cn/" + linkInfo.data.shorturl + " 提取码:" + linkInfo.data.password);
 			String msgContent = "我用360云盘给你分享文件 http://yunpan.cn/" + linkInfo.data.shorturl
-								+ "，提取码：" + linkInfo.data.password + "【360】";
+								+ " ，提取码：" + linkInfo.data.password + "【360】";
 			Uri uri = Uri.parse("smsto:");
     		Intent intent = new Intent(Intent.ACTION_SENDTO, uri);   		
     		intent.putExtra("sms_body", msgContent);
