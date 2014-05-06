@@ -48,6 +48,9 @@ public class ContactMyCardActivity extends Activity {
 		ImageView avatar=(ImageView)findViewById(R.id.mycardavatar);
 		avatar.setImageBitmap(GlobalsUtil.mainAvatar);
 		
+		TextView name=(TextView) findViewById(R.id.mycardname);
+		name.setText(GlobalsUtil.nickName);
+		
 		ListView content=(ListView) findViewById(R.id.mycardinfolist);
 		content.setAdapter(new MyAdapter(this));
 		

@@ -13,7 +13,7 @@ public class GlobalsUtil {
 		contactChangeInfo.add("honestman");
 		contactChangeInfo.add("大菠萝");
 		contactChangeInfo.add("敏锅锅");
-		contactChangeInfo.add("龙泽王希");
+		contactChangeInfo.add("小希哥");
 		
 		contactChangeTime = new ArrayList<String>();
 		contactChangeTime.add("2014-4-30");
