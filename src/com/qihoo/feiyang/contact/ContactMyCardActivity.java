@@ -10,6 +10,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.SmsManager;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +24,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
 public class ContactMyCardActivity extends Activity {
@@ -57,19 +61,7 @@ public class ContactMyCardActivity extends Activity {
 				break;
 			case R.id.sendmycard:
 				System.out.println("send my card btn click");
-				//send sms
-				/*
-				SmsManager smsManager = SmsManager.getDefault();
-				String smsContent="老实人的名片：\n手机：xxxxxxxxxxx\n电话：xxxxxxxx\n公司：xxxxxxxx\n地址：xxxxxxxxxx";
-                if(phoneNum!=null) {
-                    
-                 smsManager.sendTextMessage(phoneNum, null, smsContent, null, null);
-                }
-                
-                Toast.makeText(this, "发送成功", 50).show();
-                
-                
-                */
+		
 				System.out.println("contact main cloud contact btn click");
 				
 				Intent intent=new Intent(ContactMyCardActivity.this,ContactActivity.class);
@@ -122,9 +114,34 @@ private class MyAdapter extends BaseAdapter{
 			TextView info = (TextView) convertView.findViewById(R.id.contactname);
 			EditText phone = (EditText) convertView.findViewById(R.id.contactdetail);
 
-			info.setText(GlobalsUtil.cardinfo[position]);
+			info.setText(GlobalsUtil.cardinfo[position]+": ");
 			phone.setText(GlobalsUtil.phoneinfo[position]);
-
+			phone.setTag(position);
+			/*
+			phone.addTextChangedListener(new TextWatcher() {
+				
+				@Override
+				public void onTextChanged(CharSequence s, int start, int before, int count) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void beforeTextChanged(CharSequence s, int start, int count,
+						int after) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void afterTextChanged(Editable s) {
+					// TODO Auto-generated method stub
+					Toast.makeText(ContactMyCardActivity.this, "逗逼，不要乱改，没时间开发了", 50).show();
+					
+					
+				}
+			});
+		    */ 
 			return convertView;
 		}
 		

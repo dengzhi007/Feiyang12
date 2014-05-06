@@ -11,16 +11,20 @@ import com.qihoo.feiyang.util.DBUtil;
 import com.qihoo.feiyang.util.FileUtil;
 import com.qihoo.feiyang.util.GlobalsUtil;
 import com.qihoo.feiyang.util.LoginUtil;
+import com.qihoo.feiyang.util.NetworkUtil;
 import com.qihoo.feiyang.util.StrongBoxAndFavoriteUtil;
 import com.qihoo.yunpan.sdk.android.model.IYunpanInterface;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.PendingIntent.OnFinished;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,12 +39,20 @@ public class MainActivity extends Activity implements IYunpanInterface {
         super.onCreate(savedInstanceState);
         
       //initialing...
+        if(!NetworkUtil.isConnected(this)){
+			Toast.makeText(this, "网络未连接", 50).show();
+        }
+        
         LoginUtil.setYunDiskAuth(this);
         DBUtil.init(this, 1);
         FileUtil.init();
         AlbumUtil.init(this);
         StrongBoxAndFavoriteUtil.init(this, 1);
+        GlobalsUtil.init( );
         
+        registerReceiver(GlobalsUtil.smsBroadcastReceiver, GlobalsUtil.filterMessage);
+        
+       
 
         if(LoginUtil.switchUserEnvironment(DBUtil.getQid())){
         	
@@ -70,7 +82,10 @@ public class MainActivity extends Activity implements IYunpanInterface {
 	public void onNewUserToken(String arg0, String arg1) {
 		// TODO Auto-generated method stub
 		System.out.println("new user token");
+		Intent intent=new Intent();
+		intent.setAction("login");
 		
+		startActivity(intent);
 	}
 
 
@@ -79,6 +94,10 @@ public class MainActivity extends Activity implements IYunpanInterface {
 		// TODO Auto-generated method stub
 		System.out.println("user cookie invalid");
 		
+		Intent intent=new Intent();
+		intent.setAction("login");
+		
+		startActivity(intent);
 	}
     
 	
@@ -101,19 +120,31 @@ public class MainActivity extends Activity implements IYunpanInterface {
 			pwd="qihoo271828";
 		}
 		
+		if(!NetworkUtil.isConnected(this)){
+			Toast.makeText(this, "网络未连接", 50).show();
+			return;
+		}
+		
 		if(LoginUtil.login(user,pwd)){
 			//Toast.makeText(this, "login success", 50).show();
 			LoginUtil.getUserDetail();
 			setContentView(R.layout.main);
 			
+			InputMethodManager inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+			if(inputMethodManager!=null&&getCurrentFocus()!=null)
+				inputMethodManager.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+			
 			RoundedImageView avatar=(RoundedImageView) findViewById(R.id.mainavatar);
-        	avatar.setImageBitmap(GlobalsUtil.mainAvatar);
+        	if(avatar!=null)
+        		avatar.setImageBitmap(GlobalsUtil.mainAvatar);
         	
         	TextView name=(TextView) findViewById(R.id.mainnickname);
-        	name.setText(GlobalsUtil.nickName);
+        	if(name!=null)
+        		name.setText(GlobalsUtil.nickName);
         	
         	TextView size=(TextView) findViewById(R.id.mainyunsize);
-        	size.setText("云盘空间：" + GlobalsUtil.usedSize +"  / total " + GlobalsUtil.totalSize);
+        	if(size!=null)
+        		size.setText("云盘空间：" + GlobalsUtil.usedSize +"  / total " + GlobalsUtil.totalSize);
 			
 		}else{
 			Toast.makeText(this, "login fail", 50).show();
@@ -177,19 +208,13 @@ public class MainActivity extends Activity implements IYunpanInterface {
 		
 		
 	}
-	/*
+	
+	
 	@Override
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
+	protected void onDestroy() {
 		// TODO Auto-generated method stub
-		if(keyCode == KeyEvent.KEYCODE_BACK){
-			System.out.println("key back pressed");
-			
-			
-			
-			return true;
-		}
-		
-		return super.onKeyDown(keyCode, event);
+		unregisterReceiver(GlobalsUtil.smsBroadcastReceiver);
+		super.onDestroy();
 	}
-    */
+	
 }

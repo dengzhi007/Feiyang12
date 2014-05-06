@@ -2,16 +2,16 @@
 <resources>
 
     <!--  common start -->
-    <string name="app_name">飞扬盘</string>
+    <string name="app_name">老实盘</string>
 
-    <string name="authName">Diaos_Disk</string>
+    <string name="authName">Honestman_Disk</string>
     <string name="authKey">097c20c8481f0248e50cd056aa46b02c</string>
     <string name="authSecret">ca62f95ef3c51f0929f9fcabf0bc13ee</string>
     
     <string name="usernameHint">手机号/邮箱</string> 
     <string name="passwordHint">6~12位密码</string>
     <string name="loginMargin">20dip</string>
-    <string name="username">暴走的用户</string>
+    <string name="username">龙泽王希</string>
     
     <!--  directory start -->
     	<string name="directory_title_name">目录</string>

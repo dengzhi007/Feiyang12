@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -47,29 +48,50 @@ public class MainPicureActivity extends Activity {
 	private ThumbPictureAdapter adapter = null;
 	private View backward = null;
 	
+	private boolean isFirstStart = true;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.photo_main);
 		refreshGridView = (PullToRefreshGridView) findViewById(R.id.pict_gallery);
 		gridView = refreshGridView.getRefreshableView();
-		adapter = new ThumbPictureAdapter(this, new MainPictureViewAdd());
 		backward = findViewById(R.id.photo_return);
 		backward.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
 				MainPicureActivity.this.finish();
 			}
 		});
-		//loadAllPictures();
-		gridView.setAdapter(adapter);
+		
+		final Handler endRefreshHandler = new Handler() {
+			@Override
+			public void handleMessage(Message msg) {
+				if (isFirstStart) {
+					isFirstStart = false;
+					return;
+				}
+				refreshGridView.onRefreshComplete();
+				Toast t = Toast.makeText(MainPicureActivity.this, 
+						"更新完成", Toast.LENGTH_SHORT);
+				t.setGravity(Gravity.TOP, 0, 73);
+				t.show();
+			}
+		};
+		
 		refreshGridView.setOnRefreshListener(new OnRefreshListener() {
 			public void onRefresh() {
-				System.out.println("hehehe");
+				refreshGridView(endRefreshHandler);
 			}
-			
 		});
+		
+		refreshGridView(endRefreshHandler);
+	}
+	
+	private void refreshGridView(Handler endRefreshHandler) {
+		adapter = new ThumbPictureAdapter(this, new MainPictureViewAdd());
+		gridView.setAdapter(adapter);
 		handler = new ThumbHandler(adapter);
-		thread = new LoadDiskPictureThread(handler);
+		thread = new LoadDiskPictureThread(handler, endRefreshHandler);
 		thread.start();
 	}
 	
@@ -86,10 +108,12 @@ public class MainPicureActivity extends Activity {
 
 class LoadDiskPictureThread extends Thread{
 	private Handler handler;
+	private Handler endRefreshHandler;
 	private volatile boolean isRun = true;
 	
-	public LoadDiskPictureThread(Handler handler) {
+	public LoadDiskPictureThread(Handler handler, Handler endRefreshHandler) {
 		this.handler = handler;
+		this.endRefreshHandler = endRefreshHandler;
 		setName("Download Thread");
 	}
 	
@@ -118,6 +142,7 @@ class LoadDiskPictureThread extends Thread{
 			msg.setData(data);
 			handler.sendMessage(msg);
 		}
+		endRefreshHandler.sendEmptyMessage(0);
 	}
 	
 	public void setStop() {

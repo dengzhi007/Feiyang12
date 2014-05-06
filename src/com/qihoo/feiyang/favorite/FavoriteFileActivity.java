@@ -16,6 +16,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
@@ -26,11 +27,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.qihoo.feiyang.R;
+import com.qihoo.feiyang.contact.ContactMainActivity;
+import com.qihoo.feiyang.directory.DirectoryActivity;
 import com.qihoo.feiyang.picture.FullScreenPictureActivity;
+import com.qihoo.feiyang.picture.PictureClassifyActivity;
+import com.qihoo.feiyang.share.ShareActivity;
 import com.qihoo.feiyang.util.FavoriteFile;
 import com.qihoo.feiyang.util.FileUtil;
 import com.qihoo.feiyang.util.StrongBoxAndFavoriteUtil;
-import com.qihoo.yunpan.sdk.android.config.YunpanSDKConfig;
 import com.qihoo.yunpan.sdk.android.http.action.FileGetNodeByName;
 import com.qihoo.yunpan.sdk.android.http.model.YunFile;
 import com.qihoo.yunpan.sdk.android.http.model.YunFileNode;
@@ -44,9 +48,14 @@ public class FavoriteFileActivity extends Activity {
 	private ExecutorService exec = Executors.newFixedThreadPool(5);
 	
 	private View backward =null;
-	private View favorite_cancel = null;
 	private View favorite_layout_cancel = null;
 	private View favorite_layout_navigate = null;
+	
+	private View favorite_cancel = null;
+	private View favorite_switch_explorer = null;
+	private View favorite_switch_share = null;
+	private View favorite_switch_photo = null;
+	private View favorite_switch_contact = null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -54,15 +63,57 @@ public class FavoriteFileActivity extends Activity {
 		setContentView(R.layout.favorite_main);
 
 		favorite_list = (ListView) findViewById(R.id.favorite_list);
-		favorite_cancel = findViewById(R.id.favorite_cancel);
-		backward = findViewById(R.id.favorite_return);
 		favorite_layout_cancel = findViewById(R.id.favorite_layout_cancel);
 		favorite_layout_navigate = findViewById(R.id.favorite_layout_navigate);
-
+		
+		backward = findViewById(R.id.favorite_return);
+		favorite_cancel = findViewById(R.id.favorite_cancel);
+		favorite_switch_explorer = findViewById(R.id.favorite_switch_explorer);
+		favorite_switch_share = findViewById(R.id.favorite_switch_share);
+		favorite_switch_photo = findViewById(R.id.favorite_switch_photo);
+		favorite_switch_contact = findViewById(R.id.favorite_switch_contact);
+		
+		setBtnCliclEvent();
+	}
+	
+	private void setBtnCliclEvent() {
+		final Context context = this;
 		backward.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				FavoriteFileActivity.this.finish();
+			}
+		});
+		
+		favorite_switch_explorer.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(context, DirectoryActivity.class);
+				startActivity(intent);
+			}
+		});
+		
+		favorite_switch_share.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(context, ShareActivity.class);
+				startActivity(intent);
+			}
+		});
+		
+		favorite_switch_photo.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(context, PictureClassifyActivity.class);
+				startActivity(intent);
+			}
+		});
+		
+		favorite_switch_contact.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(context, ContactMainActivity.class);
+				startActivity(intent);
 			}
 		});
 	}
@@ -91,10 +142,11 @@ public class FavoriteFileActivity extends Activity {
 						fit.remove();
 						// TODO delete from databases
 						String nid = file.getNid();
-						//StrongBoxAndFavoriteUtil.removeFileFromFavorite(nid);
+						StrongBoxAndFavoriteUtil.removeFileFromFavorite(nid);
 					}
 				}
 				adapter.notifyDataSetChanged();
+				setBottomVibleAction();
 			}
 		});
 		favorite_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {

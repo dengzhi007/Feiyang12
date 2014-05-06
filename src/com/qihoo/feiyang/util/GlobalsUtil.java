@@ -1,11 +1,40 @@
 package com.qihoo.feiyang.util;
 
 import java.util.ArrayList;
-
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 
 public class GlobalsUtil {
+	
+	public static void init( ){
+		contactChangeInfo = new ArrayList<String>();
+		contactChangeInfo.add("laoshiren");
+		contactChangeInfo.add("honestman");
+		contactChangeInfo.add("大菠萝");
+		contactChangeInfo.add("敏锅锅");
+		contactChangeInfo.add("龙泽王希");
+		
+		contactChangeTime = new ArrayList<String>();
+		contactChangeTime.add("2014-4-30");
+		contactChangeTime.add("2014-5-1");
+		contactChangeTime.add("2014-5-2");
+		contactChangeTime.add("2014-5-3");
+		contactChangeTime.add("2014-5-4");
+		
+		contactChangePhone = new ArrayList<String>();
+		contactChangePhone.add("18611752594");
+		contactChangePhone.add("18611747011");
+		contactChangePhone.add("18601347404");
+		contactChangePhone.add("18500844425");
+		contactChangePhone.add("15167150200");
+		
+		smsBroadcastReceiver = new SMSReceiver();
+		filterMessage = new IntentFilter();
+		filterMessage.addAction("android.provider.Telephony.SMS_RECEIVED");
+		filterMessage.setPriority(Integer.MAX_VALUE);
+		
+	}
 	
 	public static Bitmap mainAvatar=null;
 	public static String nickName;
@@ -15,9 +44,9 @@ public class GlobalsUtil {
 	public static String[] cardinfo=new String[]{"手机","家庭","公司","住址"};
 	public static String[] phoneinfo=new String[]{"13858011543","010-11111111","010-78787878","qihoo360"};
 	
-	public static String[] contactChangeInfo=new String[]{"laoshiren","honestman","大菠萝"};
-	public static String[] contactChangeTime=new String[]{"2014-4-30","2014-5-2","2014-5-5"};
-	public static String[] contactChangePhone=new String[]{"18611752594","18611747011","18601347404"};
+	public static ArrayList<String> contactChangeInfo=null;
+	public static ArrayList<String> contactChangeTime=null;
+	public static ArrayList<String> contactChangePhone=null;
 	
 	
 	public static String lastChangeTime="2014-4-30";
@@ -36,6 +65,8 @@ public class GlobalsUtil {
 	public static ArrayList<Long> contactIds=null;
 	public static ArrayList<ArrayList<String>> contactDetails=null;
 	
+	public static SMSReceiver smsBroadcastReceiver;
+	public static IntentFilter filterMessage;
 	
-
+	
 }

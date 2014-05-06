@@ -44,7 +44,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="20dp">
         
         <Button
             android:id="@+id/contactchange_selectall"
@@ -53,7 +54,9 @@
             android:layout_weight="1"
             android:padding="5dip"
             android:text="全选"
-            android:background="#ffffff"
+            android:textSize="20dp"
+            android:textColor="#ffffff"
+            android:background="#99ccff"
             android:onClick="onClickOfContactChangeBottomSetting"/>
         
         <Button
@@ -63,6 +66,8 @@
             android:layout_weight="1"
             android:padding="5dip"
             android:text="更新"
+            android:textSize="20dp"
+            android:textColor="#ffffff"
             android:background="#40E0D0"
             android:onClick="onClickOfContactChangeBottomSetting"/>
         <Button
@@ -72,7 +77,9 @@
             android:layout_weight="1"
             android:padding="5dip"
             android:text="忽略"
-            android:background="#ffffff"
+            android:textSize="20dp"
+            android:textColor="#ffffff"
+            android:background="#99ccff"
             android:onClick="onClickOfContactChangeBottomSetting"/>
         
     </LinearLayout>
