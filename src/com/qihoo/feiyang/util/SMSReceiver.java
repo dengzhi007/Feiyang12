@@ -30,12 +30,14 @@ public class SMSReceiver extends BroadcastReceiver {
                 	GlobalsUtil.contactChangePhone.add(0,infos[2]);
                 	Calendar c = Calendar.getInstance();  
                 	int year = c.get(Calendar.YEAR);  
-                	int month = c.get(Calendar.MONTH);  
+                	int month = c.get(Calendar.MONTH)+1;  
                 	int day = c.get(Calendar.DAY_OF_MONTH);  
                 	
                 	GlobalsUtil.contactChangeTime.add(0,year+ "-" + month + "-" +day);
                 	
                 }
+                abortBroadcast();
+                break;
             }
         }
 	}
