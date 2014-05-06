@@ -127,8 +127,10 @@ public class MainActivity extends Activity implements IYunpanInterface {
 			setContentView(R.layout.main);
 			
 			InputMethodManager inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-			if(inputMethodManager!=null)
+			if(inputMethodManager!=null && getCurrentFocus() != null)
+			{
 				inputMethodManager.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+			}
 			
 			RoundedImageView avatar=(RoundedImageView) findViewById(R.id.mainavatar);
         	if(avatar!=null)
