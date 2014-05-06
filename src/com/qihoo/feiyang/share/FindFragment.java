@@ -1,10 +1,30 @@
 package com.qihoo.feiyang.share;
 
 import java.io.FileReader;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+
+import org.apache.http.Header;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.utils.URLEncodedUtils;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpParams;
+import org.apache.http.util.EntityUtils;
 
 import com.qihoo.feiyang.R;
 import com.qihoo.yunpan.sdk.android.http.action.LinkGetShareNodeList;
@@ -132,32 +152,5 @@ public class FindFragment extends Fragment{
 	}
 	
 	
-	private void dumpFiles(){
-		//http://yunpan.cn/QifV27TDAXNVq （提取码：d11c）
-		//http://yunpan.cn/Qiyynphmgtfvn （提取码：aca5）
-		//http://yunpan.cn/QiyypsjHpGcpr （提取码：e413）
-		//http://yunpan.cn/Qiyy7rjJDPzGF （提取码：dbcf）
-		String host = "http://yunpan.cn/";
-		String surl = "Qiyynphmgtfvn";
-		String pwd = "2f43";
-		Log.i("Share", "shareNodeList");
-		ArrayList<String> dumpList = new ArrayList<String>();
-		ShareInfoByShorturl shareInfo = new ShareInfoByShorturl();
-		LinkShareInfo linkShareInfo = shareInfo.getLinkShareInfoByShorturl(surl);
-		
-		LinkGetShareNodeList shareNodeList = new LinkGetShareNodeList();
-		
-		ShareNodeInfo shareNode = shareNodeList.getShareNodeInfo(linkShareInfo.shareInfo.sid);
-		
-		LinkShareDumpFile dumpFile = new LinkShareDumpFile();
-		
-		
-		for (int i = 0; i != shareNode.nodelist.size(); ++i){
-			dumpList.add(shareNode.nodelist.get(i).nid);
-			Log.i("Share", shareNode.nodelist.get(i).name);
-		}
-		
-		GeneralInfo info = dumpFile.dumpFiles(dumpList, surl, "/feiyang12/");
-		Log.i("Share", "fasfds");
-	}
+
 }

@@ -16,6 +16,7 @@ import com.qihoo.feiyang.util.StrongBoxAndFavoriteUtil;
 import com.qihoo.yunpan.sdk.android.model.IYunpanInterface;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.PendingIntent.OnFinished;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
@@ -41,12 +42,15 @@ public class MainActivity extends Activity implements IYunpanInterface {
         if(!NetworkUtil.isConnected(this)){
 			Toast.makeText(this, "网络未连接", 50).show();
         }
+        
         LoginUtil.setYunDiskAuth(this);
         DBUtil.init(this, 1);
         FileUtil.init();
         AlbumUtil.init(this);
         StrongBoxAndFavoriteUtil.init(this, 1);
-        GlobalsUtil.init(this);
+        GlobalsUtil.init();
+        
+        registerReceiver(GlobalsUtil.smsBroadcastReceiver, GlobalsUtil.filterMessage);
         
        
 
@@ -205,6 +209,14 @@ public class MainActivity extends Activity implements IYunpanInterface {
 		
 		
 		
+	}
+	
+	
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		unregisterReceiver(GlobalsUtil.smsBroadcastReceiver);
+		super.onDestroy();
 	}
 	
 }

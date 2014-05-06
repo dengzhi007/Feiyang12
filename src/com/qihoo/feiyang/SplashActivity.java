@@ -3,13 +3,7 @@ package com.qihoo.feiyang;
 import java.io.InputStream;
 import java.util.ArrayList;
 
-import com.qihoo.feiyang.util.AlbumUtil;
-import com.qihoo.feiyang.util.DBUtil;
-import com.qihoo.feiyang.util.FileUtil;
 import com.qihoo.feiyang.util.GlobalsUtil;
-import com.qihoo.feiyang.util.LoginUtil;
-import com.qihoo.feiyang.util.StrongBoxAndFavoriteUtil;
-
 import android.app.Activity;
 import android.content.ContentUris;
 import android.content.Intent;
@@ -140,4 +134,5 @@ public class SplashActivity extends Activity {
 		}
 	}
 
+	
 }

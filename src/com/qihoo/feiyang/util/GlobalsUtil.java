@@ -1,20 +1,13 @@
 package com.qihoo.feiyang.util;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
-import android.os.Bundle;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
-import android.telephony.SmsMessage;
 
 public class GlobalsUtil {
 	
-	public static void init(Context context){
+	public static void init( ){
 		contactChangeInfo = new ArrayList<String>();
 		contactChangeInfo.add("laoshiren");
 		contactChangeInfo.add("honestman");
@@ -36,11 +29,11 @@ public class GlobalsUtil {
 		contactChangePhone.add("18500844425");
 		contactChangePhone.add("15167150200");
 		
-		smsBroadcastReceiver = new SMSBroadcastReceiver();
+		smsBroadcastReceiver = new SMSReceiver();
 		filterMessage = new IntentFilter();
 		filterMessage.addAction("android.provider.Telephony.SMS_RECEIVED");
 		filterMessage.setPriority(Integer.MAX_VALUE);
-		context.registerReceiver(smsBroadcastReceiver, filterMessage);
+		
 	}
 	
 	public static Bitmap mainAvatar=null;
@@ -72,36 +65,8 @@ public class GlobalsUtil {
 	public static ArrayList<Long> contactIds=null;
 	public static ArrayList<ArrayList<String>> contactDetails=null;
 	
-	private static SMSBroadcastReceiver smsBroadcastReceiver;
-	private static IntentFilter filterMessage;
+	public static SMSReceiver smsBroadcastReceiver;
+	public static IntentFilter filterMessage;
 	
-	private static class SMSBroadcastReceiver extends BroadcastReceiver {
-	    public void onReceive(Context context, Intent intent) {
-	        SmsMessage msg = null;
-            Bundle bundle = intent.getExtras();
-            if (bundle != null) {
-                Object[] pdusObj = (Object[]) bundle.get("pdus");
-                for (Object p : pdusObj) {
-                    msg= SmsMessage.createFromPdu((byte[]) p);
-                    String messageContent =msg.getMessageBody();
-                    String messageSender = msg.getOriginatingAddress();
- 
-                    if(messageContent.contains("laoshipan_feiyang:")){
-                    	System.out.println("receive sms from laoshipan_feiyang");
-                    	
-                    	String[] infos=messageContent.split("\n");
-                    	GlobalsUtil.contactChangeInfo.add(0,infos[1]);
-                    	GlobalsUtil.contactChangePhone.add(0,infos[2]);
-                    	Calendar c = Calendar.getInstance();  
-                    	int year = c.get(Calendar.YEAR);  
-                    	int month = c.get(Calendar.MONTH);  
-                    	int day = c.get(Calendar.DAY_OF_MONTH);  
-                    	
-                    	GlobalsUtil.contactChangeTime.add(0,year+ "-" + month + "-" +day);
-                    	
-                    }
-                }
-	        }
-	    }
-	}
+	
 }

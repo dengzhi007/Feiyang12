@@ -269,7 +269,7 @@ public class FilesDirectoryFragment extends Fragment implements OnClickListener 
 		fileList.get((Integer)v.getTag()).isChecked ^= true;
 		CheckBox checkbox = (CheckBox)v.findViewById(R.id.directory_file_item_favorite);
 		int index = (Integer)v.getTag();
-		String path = fileList.get(index).fileName;
+		String path = fileList.get(index).filePath;
 		String nid = fileList.get(index).nid;
 		String pid = fileList.get(index).pid;
 		
