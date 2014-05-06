@@ -42,7 +42,7 @@
                 android:textColor="#FFFFFF"
                 android:gravity="bottom"
                 android:layout_gravity="bottom"
-                android:textSize="30dp"
+                android:textSize="20dp"
                 /> 
                 
         </LinearLayout>

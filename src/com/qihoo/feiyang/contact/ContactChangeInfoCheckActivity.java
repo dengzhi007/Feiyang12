@@ -1,25 +1,18 @@
 package com.qihoo.feiyang.contact;
 
-import java.io.InputStream;
 import java.util.ArrayList;
+
 import com.qihoo.feiyang.R;
 import com.qihoo.feiyang.util.GlobalsUtil;
 
 import android.app.Activity;
 import android.content.ContentProviderOperation;
-import android.content.ContentResolver;
-import android.content.ContentUris;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.OperationApplicationException;
-import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.RemoteException;
-import android.provider.ContactsContract;
-import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -91,19 +84,25 @@ public class ContactChangeInfoCheckActivity extends Activity {
 			
 			int changes=0;
 			
-			for(int i=0;i<checklist.size();i++){
+			for(int i=0,j=0;i<checklist.size();i++,j++){
 				
 				if(checklist.get(i)){
 					
 					changes++;
-					System.out.println(GlobalsUtil.contactChangeInfo.get(i)+ "changed");
+					
+					if(j<0){
+                    	Toast.makeText(this, "j<0", 50).show();
+                    	return;
+                    }
+					
+					System.out.println(GlobalsUtil.contactChangeInfo.get(j)+ "changed");
 					//change local contacts
 					ArrayList<ContentProviderOperation> operations = new ArrayList<ContentProviderOperation>(); 
                     ContentProviderOperation operation = ContentProviderOperation.newInsert(Uri.parse("content://com.android.contacts/raw_contacts")).withValue("_id", null).build(); 
 					operations.add(operation); 
-                    operation = ContentProviderOperation.newInsert(Uri.parse("content://com.android.contacts/data")).withValueBackReference("raw_contact_id", 0).withValue("data2", GlobalsUtil.contactChangeInfo.get(i)).withValue("mimetype", "vnd.android.cursor.item/name").build(); 
+                    operation = ContentProviderOperation.newInsert(Uri.parse("content://com.android.contacts/data")).withValueBackReference("raw_contact_id", 0).withValue("data2", GlobalsUtil.contactChangeInfo.get(j)).withValue("mimetype", "vnd.android.cursor.item/name").build(); 
 					operations.add(operation); 
-                    operation = ContentProviderOperation.newInsert(Uri.parse("content://com.android.contacts/data")).withValueBackReference("raw_contact_id", 0).withValue("data1", GlobalsUtil.contactChangePhone.get(i)).withValue("data2", "2").withValue("mimetype", "vnd.android.cursor.item/phone_v2").build(); 
+                    operation = ContentProviderOperation.newInsert(Uri.parse("content://com.android.contacts/data")).withValueBackReference("raw_contact_id", 0).withValue("data1", GlobalsUtil.contactChangePhone.get(j)).withValue("data2", "2").withValue("mimetype", "vnd.android.cursor.item/phone_v2").build(); 
                     operations.add(operation); 
                     //operation = ContentProviderOperation.newInsert(Uri.parse("content://com.android.contacts/data")).withValueBackReference("raw_contact_id", 0).withValue("data1", "zq@itcast.cn").withValue("data2", "2").withValue("mimetype", "vnd.android.cursor.item/email_v2").build(); 
                     //operations.add(operation); 
@@ -116,11 +115,18 @@ public class ContactChangeInfoCheckActivity extends Activity {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					} 
+
                     
-                    GlobalsUtil.contactNames.add(0,GlobalsUtil.contactChangeInfo.get(i));
-        		    GlobalsUtil.contactPhones.add(0,GlobalsUtil.contactChangePhone.get(i));
+                    GlobalsUtil.contactNames.add(0,GlobalsUtil.contactChangeInfo.get(j));
+        		    GlobalsUtil.contactPhones.add(0,GlobalsUtil.contactChangePhone.get(j));
         		    GlobalsUtil.contactAvatars.add(0,BitmapFactory.decodeResource(getResources(), R.drawable.contactlistitem_avatar));
         		    GlobalsUtil.contactIds.add(0,(long) 0);
+        		    
+                    GlobalsUtil.contactChangeInfo.remove(j);
+                    GlobalsUtil.contactChangePhone.remove(j);
+                    GlobalsUtil.contactChangeTime.remove(j);
+                    
+                    j--;
 
 				}
 				
@@ -131,7 +137,13 @@ public class ContactChangeInfoCheckActivity extends Activity {
 				Toast.makeText(this, "未选择更新名片", 50).show();
 			}
 			
-		
+			checklist= new ArrayList<Boolean>();
+			for(int i=0;i<GlobalsUtil.contactChangeInfo.size();i++){
+				checklist.add(false);
+			}
+			
+			listItemAdapter.notifyDataSetChanged();
+			
 			break;
 		case R.id.contactchange_ignore:
 			System.out.println("setting btn : contact change ignore");
